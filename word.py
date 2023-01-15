@@ -28,7 +28,7 @@ class Word(Applications):
 
     def write_text(self, text):
         pg.write(text)
-        sleep(0.5)
+        sleep(0.1)
         print('Successfully written ' + text)
 
     def change_to_bold(self):
