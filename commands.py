@@ -1,3 +1,6 @@
+import pyautogui as pg
+
+
 class Commands():
     available_actions = ['write bold', 'end bold', 'write italic', 'end italic', 'write underlined', 'end underlined',
                          'align justify', 'end justify', 'align center', 'end center',
@@ -22,6 +25,7 @@ class Commands():
         return self.text
 
     def compare_text(self, obj, word):
+        print(word)
         if '{bold}' in word:
             obj.change_to_bold()
             replaced = word.replace('{bold}', '')
@@ -38,10 +42,33 @@ class Commands():
             obj.change_to_italic()
             replaced = word.replace('{/italic}', '')
             return replaced
+        if '{underlined}' in word:
+            obj.change_to_underlined()
+            replaced = word.replace('{underlined}', '')
+            return replaced
+        if '{/underlined}' in word:
+            obj.change_to_underlined()
+            replaced = word.replace('{/underlined}', '')
+            return replaced
+        if '{align_center}' in word:
+            pg.press('enter')
+            obj.align_center()
+            replaced = word.replace('{align_center}', '')
+            return replaced
+        if '{/align_center}' in word:
+            pg.press('enter')
+            obj.align_center()
+            replaced = word.replace('{/align_center}', '')
+            return replaced
+
         return word
 
-    def execute(self, text, obj):
+    def execute(self, text, obj, word):
         split_text = text.split()
         for word in split_text:
             to_write = self.compare_text(obj, word)
-            obj.write_text(to_write + ' ')
+            if word:
+                to_write.replace(' ', '')
+                obj.write_text(to_write)
+            else:
+                obj.write_text(to_write + ' ')

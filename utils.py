@@ -14,3 +14,12 @@ def move_and_click(path):
     else:
         print('Could not find item on screen!  ' + path)
     return res
+
+def move_mouse(path):
+    res = pg.locateCenterOnScreen(path, confidence=0.8)
+    if res != None:
+        pg.moveTo(res)
+        sleep(0.5)
+    else:
+        print('Could not find item on screen!  ' + path)
+    return res

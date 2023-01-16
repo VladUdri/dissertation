@@ -1,7 +1,8 @@
 from applicaitons import Applications
 import pyautogui as pg
 from time import sleep
-from utils import move_and_click
+from utils import move_and_click, move_mouse
+from commands import Commands
 
 
 class Word(Applications):
@@ -43,7 +44,7 @@ class Word(Applications):
         pg.keyUp('ctrl')
         sleep(0.1)
 
-    def change_to_underline(self):
+    def change_to_underlined(self):
         pg.keyDown('ctrl')
         pg.press('u')
         pg.keyUp('ctrl')
@@ -57,7 +58,7 @@ class Word(Applications):
 
     def align_center(self):
         pg.keyDown('ctrl')
-        pg.press('h')
+        pg.press('e')
         pg.keyUp('ctrl')
         sleep(0.1)
 
@@ -78,6 +79,69 @@ class Word(Applications):
         pg.press('j')
         pg.keyUp('ctrl')
         sleep(0.1)
+
+    def find_replace(self):
+        pg.keyDown('ctrl')
+        pg.press('h')
+        pg.keyUp('ctrl')
+        sleep(0.1)
+
+    def select_all(self):
+        pg.keyDown('ctrl')
+        pg.press('a')
+        pg.keyUp('ctrl')
+        sleep(0.1)
+
+    def tab_back(self):
+        pg.keyDown('shift')
+        pg.press('tab')
+        pg.keyUp('shift')
+        sleep(0.1)
+
+    def find_edit_words(self, text_to_edit, command, obj):
+        self.find_replace()
+        # selects all and deletes, in case there are any other words in the text box
+        self.select_all()
+        pg.press('backspace')
+        pg.write(text_to_edit)
+
+        if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
+            print('find and replace MORE not none')
+            move_and_click('img\\find_replace_more.png')
+            self.tab_back()
+        else:
+            pg.press('tab')
+
+        if pg.locateCenterOnScreen('img\\find_replace_no_formatting.png') is not None:
+            print('find_replace_no_formatting not none')
+            move_and_click('img\\find_replace_no_formatting.png')
+
+
+
+        # pg.press('tab')
+        self.select_all()
+        pg.press('backspace')
+        text = Commands(command)
+        res = text.contains_text()
+        print(res)
+        sleep(1)
+        text.execute(res, obj, True)
+
+        if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
+            print('find and replace MORE not none')
+            move_and_click('img\\find_replace_more.png')
+
+        if pg.locateCenterOnScreen('img\\find_replace_whole_words.png', confidence=0.9) is not None:
+            print('find replace whole words not none')
+            move_and_click('img\\find_replace_whole_words.png')
+        elif pg.locateCenterOnScreen('img\\find_replace_whole_words_checked.png', confidence=0.9) is not None:
+            print('find_replace_whole_words_checked.png not none')
+
+        move_mouse('img\\find_replace_actions.png')
+        move_and_click('img\\find_replace_find_less.png')
+        pg.press('tab', presses=2)
+        pg.press('enter')
+        # move_and_click('img\\find_replace_replace_all.png')
 
     def write_title(self, text):
         self.align_center()
