@@ -101,59 +101,57 @@ class Word(Applications):
         pg.keyUp('ctrl')
         sleep(0.1)
 
-    def sequence_exists(self):
+    def find_edit_words(self, text_to_edit, command, obj):
+        self.find_replace()
+        # selects all and deletes, in case there are any other words in the text box
+        self.select_all()
+        pg.press('backspace')
+        pg.write(text_to_edit)
 
-        def find_edit_words(self, text_to_edit, command, obj):
-            self.find_replace()
-            # selects all and deletes, in case there are any other words in the text box
-            self.select_all()
-            pg.press('backspace')
-            pg.write(text_to_edit)
+        if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
+            print('find and replace MORE not none')
+            move_and_click('img\\find_replace_more.png')
+            self.tab_back()
+        else:
+            pg.press('tab')
 
-            if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
-                print('find and replace MORE not none')
-                move_and_click('img\\find_replace_more.png')
-                self.tab_back()
-            else:
-                pg.press('tab')
+        if pg.locateCenterOnScreen('img\\find_replace_no_formatting.png') is not None:
+            print('find_replace_no_formatting not none')
+            move_and_click('img\\find_replace_no_formatting.png')
 
-            if pg.locateCenterOnScreen('img\\find_replace_no_formatting.png') is not None:
-                print('find_replace_no_formatting not none')
-                move_and_click('img\\find_replace_no_formatting.png')
+        # pg.press('tab')
+        self.select_all()
+        pg.press('backspace')
+        text = Commands(command)
+        res = text.contains_text()
+        print(res)
+        sleep(1)
+        text.execute(res, obj, True)
 
-            # pg.press('tab')
-            self.select_all()
-            pg.press('backspace')
-            text = Commands(command)
-            res = text.contains_text()
-            print(res)
-            sleep(1)
-            text.execute(res, obj, True)
+        if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
+            print('find and replace MORE not none')
+            move_and_click('img\\find_replace_more.png')
 
-            if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
-                print('find and replace MORE not none')
-                move_and_click('img\\find_replace_more.png')
+        if pg.locateCenterOnScreen('img\\find_replace_whole_words.png', confidence=0.9) is not None:
+            print('find replace whole words not none')
+            move_and_click('img\\find_replace_whole_words.png')
+        elif pg.locateCenterOnScreen('img\\find_replace_whole_words_checked.png', confidence=0.9) is not None:
+            print('find_replace_whole_words_checked.png not none')
 
-            if pg.locateCenterOnScreen('img\\find_replace_whole_words.png', confidence=0.9) is not None:
-                print('find replace whole words not none')
-                move_and_click('img\\find_replace_whole_words.png')
-            elif pg.locateCenterOnScreen('img\\find_replace_whole_words_checked.png', confidence=0.9) is not None:
-                print('find_replace_whole_words_checked.png not none')
-
-            move_mouse('img\\find_replace_actions.png')
-            move_and_click('img\\find_replace_find_less.png')
-            pg.press('tab', presses=2)
+        move_mouse('img\\find_replace_actions.png')
+        move_and_click('img\\find_replace_find_less.png')
+        pg.press('tab', presses=2)
+        pg.press('enter')
+        # move_and_click('img\\find_replace_replace_all.png')
+        sleep(0.5)
+        if pg.locateCenterOnScreen('img\\find_replace_confirm_research.png', confidence=0.9) is not None:
+            print('found')
             pg.press('enter')
-            # move_and_click('img\\find_replace_replace_all.png')
-            sleep(0.5)
-            if pg.locateCenterOnScreen('img\\find_replace_confirm_research.png', confidence=0.9) is not None:
-                print('found')
-                pg.press('enter')
-            pg.press('enter')
+        pg.press('enter')
 
-            if pg.locateCenterOnScreen('img\\find_replace_cancel.png') is not None:
-                print('find and replace MORE not none')
-                move_and_click('img\\find_replace_cancel.png')
+        if pg.locateCenterOnScreen('img\\find_replace_cancel.png') is not None:
+            print('find and replace MORE not none')
+            move_and_click('img\\find_replace_cancel.png')
 
     def write_title(self, text):
         self.align_center()

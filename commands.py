@@ -1,5 +1,6 @@
 import pyautogui as pg
 from time import sleep
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 
 class Commands():
@@ -12,38 +13,47 @@ class Commands():
                                     '{align_left}', '{/align_left}', '{align_right}', '{/align_right}', '{bullets}',
                                     '{/bullets}']
 
-    commands = ['word']
-    commands_helpers = ['document', 'create', 'new', 'open']
+    comm = {'word': True, 'save': True, 'write': True, 'writing': True}
 
     def __init__(self, text):
         self.text = text
 
-    def translate_for_word(self, text):
-        for i in range(0, len(text)):
-            if text[i] == 'word':
-                if text[i - 1] == 'new' or text[i - 1] == 'create' or (
-                        text[i - 2] == 'new' and text[i - 1] == 'empty') or (
-                        text[i - 2] == 'create' and text[i - 1] == 'empty') or (
-                        text[i - 3] == 'create' and text[i - 2] == 'new' and text[i - 1] == 'empty'):
-                    return '{new_word}'
+    def checker(self):
+        for word in range(0, len(self.text)):
+            print(self.text[word])
+            if self.text[word] in self.comm.keys():
+                if self.text[word] == 'word':
+                    return self.translate_for_word(self.text, word)
+                elif self.text[word] == 'save':
+                    return self.translate_for_save(self.text, word)
+                elif self.text[word] == 'write' or self.text[word] == 'writing':
+                    return self.translate_for_write(self.text, word)
+
+    def translate_for_word(self, text, i):
+        if text[i - 1] == 'new' or text[i - 1] == 'create' or (
+                text[i - 2] == 'new' and text[i - 1] == 'empty') or (
+                text[i - 2] == 'create' and text[i - 1] == 'empty') or (
+                text[i - 3] == 'create' and text[i - 2] == 'new' and text[i - 1] == 'empty'):
+            return '{new_word}'
         return ''
 
-    def translate_for_save(self, text):
-        for i in range(0, len(text)):
-            if text[i] == 'word':
-                if text[i - 1] == 'new' or text[i - 1] == 'create' or (
-                        text[i - 2] == 'new' and text[i - 1] == 'empty') or (
-                        text[i - 2] == 'create' and text[i - 1] == 'empty') or (
-                        text[i - 3] == 'create' and text[i - 2] == 'new' and text[i - 1] == 'empty'):
-                    return '{new_word}'
+    def translate_for_save(self, text, i):
+        if i + 1 < len(text):
+            if text[i + 1] == 'word' or text[i + 1] == 'document':
+                return '{save_word}'
+        return ''
+
+    # start write; start writing; write text; start writing text; write in word; write in document;
+    def translate_for_write(self, text, i):
+        if text[i - 1] == 'start' or text[i + 1] == 'text' or (
+                text[i - 1] == 'start' and text[i + 1] == 'text') or text[i + 2] == 'word' or \
+                text[i + 1] == 'document' or text[i + 2] == 'document':
+            return '{write}'
         return ''
 
     def contains_text(self):
-        print('function')
-        actions = []
         for index in range(0, len(self.available_actions)):
             if self.available_actions[index] in self.text:
-                actions.append(self.available_actions_translated[index])
                 self.text = self.text.replace(self.available_actions[index], self.available_actions_translated[index])
 
         return self.text
@@ -87,11 +97,12 @@ class Commands():
 
         return word
 
-    def execute(self, text, obj, word):
-        split_text = text.split()
+    def execute(self, obj, is_word):
+        self.contains_text()
+        split_text = self.text.split()
         for word in split_text:
             to_write = self.compare_text(obj, word)
-            if word:
+            if is_word:
                 to_write.replace(' ', '')
                 obj.write_text(to_write)
             else:
