@@ -27,11 +27,9 @@ class Applications(AppSettings):
     # function that presses on the start button
     def open_app(self):
         try:
-            res = pg.locateCenterOnScreen('start.png', confidence=0.9)
+            res = pg.locateCenterOnScreen('start.png', confidence=0.8)
             if res is not None:
-                print(res)
-                pg.moveTo(res)
-                pg.click()
+                move_and_click('start.png')
             else:
                 pg.hotkey('winleft')
             sleep(0.7)

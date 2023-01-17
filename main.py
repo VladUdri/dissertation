@@ -1,28 +1,19 @@
 from word import Word
 from time import sleep
-from commands import Commands
+from nltk.tokenize import sent_tokenize, word_tokenize
+from execution import verify_translation_execute
 
 if __name__ == "__main__":
-    # save_name = 'test 1234'
-    # newname = 'test 1234'
-    # bold = '{bold}'
-    # end_bold = '{/bold}'
-    # words = []
-    # write_text = True
-    # bold_text = 'Ana'
-    #
+    memory = []
     start = Word('word')
-    # start.open_app()
-    # sleep(1)
-    # start.create_blank_docx()
-    sleep(1)
-    # start.save(save_name, 'change name', newname)
-    # sleep(1)
-    # text =  'Seen from a boat, approaching the island through cold, choppy, white-flecked seas, the island of Staffa looks like a dense grey forest of rock off the western coast of Scotland. Columns of basalt push up and then flower out into a puffy, cloud-like summit on top of which the plant life of the island grows, a rolling plain of grass and heather and machair whipped by the sea-wind.'
-    # start.write_text(text)
-    comm = 'write bold write italic and'
-    translated_text = Commands(comm)
-    start.find_edit_words('and', comm, start)
-    # res = translated_text.contains_text()
-    # sleep(1)
-    # translated_text.execute(res, start)
+    i = 0
+    title = 'Random writing'
+    while True:
+        i += 1
+        short_term_text = start.get_text(title, title)
+        tokenized_text = word_tokenize(short_term_text)
+        memory.append(tokenized_text)
+        exec = verify_translation_execute(tokenized_text)
+        memory.append(exec)
+        if i == 5:
+            break

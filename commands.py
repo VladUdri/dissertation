@@ -1,4 +1,5 @@
 import pyautogui as pg
+from time import sleep
 
 
 class Commands():
@@ -11,8 +12,31 @@ class Commands():
                                     '{align_left}', '{/align_left}', '{align_right}', '{/align_right}', '{bullets}',
                                     '{/bullets}']
 
+    commands = ['word']
+    commands_helpers = ['document', 'create', 'new', 'open']
+
     def __init__(self, text):
         self.text = text
+
+    def translate_for_word(self, text):
+        for i in range(0, len(text)):
+            if text[i] == 'word':
+                if text[i - 1] == 'new' or text[i - 1] == 'create' or (
+                        text[i - 2] == 'new' and text[i - 1] == 'empty') or (
+                        text[i - 2] == 'create' and text[i - 1] == 'empty') or (
+                        text[i - 3] == 'create' and text[i - 2] == 'new' and text[i - 1] == 'empty'):
+                    return '{new_word}'
+        return ''
+
+    def translate_for_save(self, text):
+        for i in range(0, len(text)):
+            if text[i] == 'word':
+                if text[i - 1] == 'new' or text[i - 1] == 'create' or (
+                        text[i - 2] == 'new' and text[i - 1] == 'empty') or (
+                        text[i - 2] == 'create' and text[i - 1] == 'empty') or (
+                        text[i - 3] == 'create' and text[i - 2] == 'new' and text[i - 1] == 'empty'):
+                    return '{new_word}'
+        return ''
 
     def contains_text(self):
         print('function')
