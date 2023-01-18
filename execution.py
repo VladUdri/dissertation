@@ -48,7 +48,7 @@ def verify_translation_execute(text):
         sleep(1)
         return res
     elif res == '{taskbar_outlook}':
-        outlook = Outlook('outlook')
+        outlook = Outlook('Outlook')
         outlook.open_taskbar()
         sleep(1)
         return res
@@ -68,7 +68,24 @@ def verify_translation_execute(text):
         volume = ComputerActions()
         volume.brightness_down()
         sleep(0.5)
-
+    elif res == '{new_email}':
+        outlook = Outlook('Outlook')
+        if pg.locateCenterOnScreen('img\\in_outlook.png', confidence=0.8) is not None:
+            outlook.send_email()
+            sleep(1)
+        else:
+            if pg.locateCenterOnScreen('img\\taskbar_outlook.png',
+                                       confidence=0.8) is not None or pg.locateCenterOnScreen(
+                'img\\taskbar_outlook_empty.png'):
+                outlook.open_taskbar()
+                sleep(1)
+                outlook.send_email()
+                sleep(1)
+            else:
+                outlook.open_app()
+                sleep(1)
+                outlook.send_email()
+                sleep(1)
 
 def write_text():
     word = Word('word')
