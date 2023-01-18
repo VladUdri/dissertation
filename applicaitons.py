@@ -23,6 +23,8 @@ class Applications(AppSettings):
             return 'Excel'
         elif app_name in self.ppt_dict:
             return 'PowerPoint'
+        elif app_name == 'Outlook':
+            return 'Outlook'
 
     # function that presses on the start button
     def open_app(self):
