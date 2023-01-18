@@ -14,7 +14,7 @@ class Commands():
                                     '{/bullets}']
 
     comm = {'word': True, 'save': True, 'write': True, 'writing': True, 'volume': True, 'brightness': True,
-            'outlook': True}
+            'outlook': True, 'email': True}
 
     def __init__(self, text):
         self.text = text
@@ -35,6 +35,8 @@ class Commands():
                     return self.translate_for_brightness(self.text, word)
                 elif lower_case_text == 'outlook':
                     return self.translate_for_outlook(self.text, word)
+                elif lower_case_text == 'email':
+                    return self.translate_for_email(self.text, word)
 
     def translate_for_word(self, text, i):
         if text[i - 1] == 'new' or text[i - 1] == 'create' or (
@@ -87,6 +89,11 @@ class Commands():
                 return '{taskbar_outlook}'
             else:
                 return '{new_outlook}'
+        return ''
+
+    def translate_for_email(self, text, i):
+        if text[i - 1] == 'send' or text[i - 2] == 'send':
+            return '{new_email}'
         return ''
 
     def contains_text(self):

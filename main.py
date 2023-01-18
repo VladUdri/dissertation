@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # sleep(5)
     # outlook.send_email()
     # short_term_text = start.get_text(title, title)
-    tokenized_text = word_tokenize('please open outlook now')
+    tokenized_text = word_tokenize('send email')
     memory.append(tokenized_text)
     exec = verify_translation_execute(tokenized_text)
     memory.append(exec)
