@@ -91,3 +91,24 @@ def imToString():
 
 # Calling the function
 imToString()
+
+# while True:
+# 	if (write_text):
+# 		text = start.get_text()
+#
+# 	if 'stop' == text:
+# 		write_text = False
+# 	elif bold in text:
+# 		start.change_to_bold()
+# 		text = text.replace(bold, '')
+# 		words.append(text)
+# 		start.write_text(text)
+# 		start.change_to_bold()
+# 	else:
+# 		words.append(text)
+# 		start.write_text(text)
+# 	print(len(words))
+# 	if (len(words) >= 5):
+# 		break
+# 	elif (len(words) == 3):
+# 		print(words)

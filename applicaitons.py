@@ -23,15 +23,15 @@ class Applications(AppSettings):
             return 'Excel'
         elif app_name in self.ppt_dict:
             return 'PowerPoint'
+        elif app_name == 'Outlook':
+            return 'Outlook'
 
     # function that presses on the start button
     def open_app(self):
         try:
-            res = pg.locateCenterOnScreen('start.png', confidence=0.9)
+            res = pg.locateCenterOnScreen('start.png', confidence=0.8)
             if res is not None:
-                print(res)
-                pg.moveTo(res)
-                pg.click()
+                move_and_click('start.png')
             else:
                 pg.hotkey('winleft')
             sleep(0.7)
@@ -56,25 +56,28 @@ class Applications(AppSettings):
 
     # function that saves the progress from an app (only works with Word, Ppt and Excel)
     # TODO make it work with other apps too
-    def save(self, save_name, action, new_name):
-        try:
-            res = move_and_click('img\\save_icon.png')
+    def save(self, save_name):
+        res = move_and_click('img\\save_icon.png')
+        sleep(0.5)
+        if res is not None:
+            pg.write(save_name)
             sleep(0.5)
-            if res is not None:
-                pg.write(save_name)
-                sleep(0.5)
-                move_and_click('img\\save.png')
-                sleep(0.5)
-                if pg.locateCenterOnScreen('img\\replace_file.png', confidence=0.8) is not None:
-                    while pg.locateCenterOnScreen('img\\replace_file.png', confidence=0.8) is not None:
-                        self.save_already_exists(action, new_name)
-                else:
-                    print('Successfully saved!')
+            move_and_click('img\\save.png')
+            sleep(0.5)
+            if pg.locateCenterOnScreen('img\\replace_file.png', confidence=0.8) is not None:
+                while pg.locateCenterOnScreen('img\\replace_file.png', confidence=0.8) is not None:
+                    replace = pg.prompt(text='Already exists. Replace?', title='Name for document', default='')
+                    if replace == 'yes':
+                        self.save_already_exists('replace', '')
+                    else:
+                        new_name = pg.prompt(text='New name', title='Name for document', default='')
+                        self.save_already_exists('change name', new_name)
             else:
-                pg.hotkey('ctrl', 's')
-
-        except:
-            print('exception')
+                print('Successfully saved!')
+                return True
+        else:
+            pg.hotkey('ctrl', 's')
+        return True
 
     def save_already_exists(self, action, new_name):
         print('This name already exists.')
