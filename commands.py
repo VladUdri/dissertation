@@ -18,17 +18,28 @@ class Commands():
     comm = {'word': True, 'save': True, 'write': True, 'writing': True, 'volume': True, 'brightness': True,
             'outlook': True, 'email': True, 'edit': True}
 
+    # toggle
     action_translation_one_word = {'bold': {'exists': False, 'activate': '{bold}', 'inactivate': '{/bold}'},
                                    'italic': {'exists': False, 'activate': '{italic}', 'inactivate': '{/italic}'},
                                    'underlined': {'exists': False, 'activate': '{underlined}',
-                                                  'inactivate': '{/underlined}'}}
+                                                  'inactivate': '{/underlined}'},
+                                   'title': {'exists': False, 'activate': '{title}', 'inactivate': '{/title}'}}
 
     align = False
+
     action_translation_two_words = {'left': '{align_left}',
                                     'right': '{align_right}',
                                     'center': '{align_center}',
                                     'justify': '{align_justify}',
                                     }
+    one_time = {'paragraph': '{paragraph}'}
+
+    act = {'{bold}': ['ctrl', 'b'], '{/bold}': ['ctrl', 'b'], '{italic}': ['ctrl', 'i'], '{/italic}': ['ctrl', 'i'],
+           '{underlined}': ['ctrl', 'u'], '{/underlined}': ['ctrl', 'u'],
+           '{align_justify}': ['ctrl', 'j'],
+           '{align_center}': ['ctrl', 'e'],
+           '{align_left}': ['ctrl', 'l'], '{align_right}': ['ctrl', 'r'], '{paragraph}': ['enter'],
+           '{title}': ['enter', 'ctrl', ']', ']', 'e'], '{/title}': ['enter', 'ctrl', '[', '[', 'e']}
 
     def __init__(self, text):
         self.text = text
@@ -166,32 +177,51 @@ class Commands():
     # this will work for words
     # TO BE KEPT
     def convert_text(self, text):
-        if text in self.action_translation_one_word.keys():
-            if self.action_translation_one_word[text]['exists'] == False:
-                self.action_translation_one_word[text]['exists'] = True
-                return self.action_translation_one_word[text]['activate']
+        new_text = []
+        for word in text:
+            lowercase_text = word.lower()
+            if lowercase_text in self.action_translation_one_word.keys():
+                if not self.action_translation_one_word[lowercase_text]['exists']:
+                    self.action_translation_one_word[lowercase_text]['exists'] = True
+                    new_text.append(self.action_translation_one_word[lowercase_text]['activate'])
+                    continue
+                else:
+                    self.action_translation_one_word[lowercase_text]['exists'] = False
+                    new_text.append(self.action_translation_one_word[lowercase_text]['inactivate'])
+                    continue
+            elif lowercase_text == 'align':
+                self.align = True
+            elif lowercase_text in self.action_translation_two_words.keys():
+                if self.align:
+                    self.align = False
+                    new_text = new_text[:-1]
+                    new_text.append(self.action_translation_two_words[lowercase_text])
+            elif lowercase_text in self.one_time.keys():
+                new_text.append(self.one_time[lowercase_text])
+                continue
             else:
-                self.action_translation_one_word[text]['exists'] = False
-                return self.action_translation_one_word[text]['inactivate']
-        elif text == 'align':
-            self.align = True
-        elif text in self.action_translation_two_words.keys():
-            if self.align:
                 self.align = False
-                return self.action_translation_two_words[text]
-        else:
-            self.align = False
-        return text
+            new_text.append(word)
+        return new_text
 
     def write_text_new(self, text):
         words = word_tokenize(text)
-        new_text = ''
-        for word in words:
-            converted_word = self.convert_text(word)
-            if new_text != '' and converted_word not in string.punctuation:
-                new_text += ' '
-            new_text += converted_word
-        return new_text
+        converted_word = self.convert_text(words)
+        first = True
+        for word in converted_word:
+            if word in self.act.keys():
+                self.execute_keypresses(self.act[word])
+                continue
+            if not first and word not in string.punctuation:
+                pg.write(' ')
+            pg.write(word)
+            first = False
+
+    def execute_keypresses(self, keys):
+        for key in keys:
+            pg.keyDown(key)
+        for key in keys:
+            pg.keyUp(key)
 
     def execute(self, obj, is_word):
         self.contains_text()
