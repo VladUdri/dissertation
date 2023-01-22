@@ -1,30 +1,14 @@
+from AppOpener import open, mklist, give_appnames
 from word import Word
 from time import sleep
+from commands import Commands
 from nltk.tokenize import sent_tokenize, word_tokenize
-from execution import verify_translation_execute
-import pyautogui as pg
-import screen_brightness_control as sbc
-from computer_actions import ComputerActions
-from outlook import Outlook
 
-if __name__ == "__main__":
-    memory = []
-    start = Word('word')
-    i = 0
-    title = 'Random writing'
-    # while True:
-    #     i += 1
-    #     short_term_text = start.get_text(title, title)
-    #     tokenized_text = word_tokenize(short_term_text)
-    #     memory.append(tokenized_text)
-    #     exec = verify_translation_execute(tokenized_text)
-    #     memory.append(exec)
-    # outlook = Outlook('Outlook')
-    # outlook.open_app()
-    # sleep(5)
-    # outlook.send_email()
-    # short_term_text = start.get_text(title, title)
-    tokenized_text = word_tokenize('send email')
-    memory.append(tokenized_text)
-    exec = verify_translation_execute(tokenized_text)
-    memory.append(exec)
+if __name__ == '__main__':
+
+    word = Word('word')
+    sleep(3)
+    # word.convert_text()
+    comm = Commands('asd')
+    text = 'Seen from a boat, approaching align left the island through cold, choppy, white-flecked seas, the island of Staffa looks bold like a dense grey forest bold of rock align off the right western italic coast of Scotland. Columns align justify of basalt push up and then flower out into a puffy, cloud-like summit on top of which the plant life of the island grows, a rolling plain of grass and heather and machair whipped by the sea-wind. Underlined italic The island is made of very ancient rock, but is so strange-looking and so dynamic that you have to tell yourself, repeatedly, that it has been here for a long, long time, such a long time that the best guesses of humankind as to its age can only approximate a range of years that could encompass, with ease, every meaningful incident of human civilisation.'
+    print(comm.write_text_new(text))

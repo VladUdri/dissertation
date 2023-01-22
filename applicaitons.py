@@ -1,6 +1,8 @@
 from app_settings import AppSettings
 import pyautogui as pg
 from time import sleep
+from pywinauto import Desktop
+from AppOpener import open, close, mklist, give_appnames
 
 from utils import move_and_click
 
@@ -108,3 +110,35 @@ class Applications(AppSettings):
                 print('Successfully saved!')
             else:
                 print('Could not save!')
+
+    '''
+    In order to open an application, we use the method open from the AppOpener library.
+    '''
+
+    def open_application(self):
+        open(self.app_name)
+        sleep(3)
+
+    def close_application(self):
+        pg.keyDown('alt')
+        pg.press('f4')
+        pg.keyUp('alt')
+
+    '''
+    save_as function that presses combinations of key so that it saves the document.
+    It uses pyautogui to execute the presses
+    '''
+
+    def save_as(self):
+        pg.press('alt')
+        sleep(0.5)
+        pg.press('f')
+        sleep(0.5)
+        pg.press('a')
+        sleep(0.5)
+        pg.press('o')
+        sleep(0.5)
+        name = pg.prompt('Name of document')
+        pg.write(name)
+        sleep(1)
+        pg.press('enter')

@@ -126,7 +126,7 @@ class Word(Applications):
         res = text.contains_text()
         print(res)
         sleep(1)
-        text.execute(res, obj, True)
+        text.execute(res, obj)
 
         if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
             print('find and replace MORE not none')
@@ -203,7 +203,7 @@ class Word(Applications):
         res = text.contains_text()
         print(res)
         sleep(1)
-        text.execute(res, obj, False)
+        text.execute(res, obj)
 
         if pg.locateCenterOnScreen('img\\find_replace_more.png') is not None:
             print('find and replace MORE not none')
@@ -230,3 +230,49 @@ class Word(Applications):
         if pg.locateCenterOnScreen('img\\find_replace_cancel.png') is not None:
             print('find and replace MORE not none')
             move_and_click('img\\find_replace_cancel.png')
+
+    def create_new_doc(self):
+        print('Creating new word document...')
+        pg.sleep(1)
+        pg.press('enter')
+        pg.sleep(1)
+        print('Word document successfully created!')
+
+    def open_font_dialog(self):
+        pg.keyDown('ctrl')
+        pg.press('d')
+        pg.keyUp('ctrl')
+        sleep(0.5)
+
+    '''
+    Function that changes the font of the writing.
+    It uses pyautoguy to execute word keyboard shortcuts
+    '''
+
+    def change_font(self):
+        print('Changing font...')
+        sleep(1)
+        self.open_font_dialog()
+        font = pg.prompt(title='font')
+        sleep(0.5)
+        pg.write(font)
+        sleep(0.5)
+        pg.press('down')
+        sleep(0.5)
+        pg.press('enter')
+
+    '''
+        Function that changes the font size of the writing.
+        It uses pyautoguy to execute word keyboard shortcuts
+        '''
+
+    def change_font_size(self):
+        print('Changing font...')
+        sleep(1)
+        self.open_font_dialog()
+        pg.press('tab', presses=2)
+        size = pg.prompt(title='Font size', text='Numbers only')
+        sleep(0.5)
+        pg.write(size)
+        sleep(0.5)
+        pg.press('enter')

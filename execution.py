@@ -86,12 +86,23 @@ def verify_translation_execute(text):
                 sleep(1)
                 outlook.send_email()
                 sleep(1)
+    elif res == '{write}':
+        write_text()
+    elif res == '{edit_word}':
+        text_to_edit = pg.prompt('Text to edit')
+        new_text = pg.prompt('New text')
+        print(text_to_edit)
+        print(new_text)
+        word = Word('word')
+        word.find_edit_words(text_to_edit, new_text, word)
 
 def write_text():
     word = Word('word')
     text = ''
-    while True and text != None:
+    while text != 'end write':
         text = pg.prompt(text='Text', title='Write text', default='')
+        if text == 'end write':
+            break
         comm = Commands(text)
         res = comm.execute(word, False)
-        return
+        # return res

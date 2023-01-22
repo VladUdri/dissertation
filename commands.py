@@ -1,6 +1,8 @@
 import pyautogui as pg
 from time import sleep
 from nltk.tokenize import sent_tokenize, word_tokenize
+import string
+import re
 
 
 class Commands():
@@ -14,7 +16,19 @@ class Commands():
                                     '{/bullets}']
 
     comm = {'word': True, 'save': True, 'write': True, 'writing': True, 'volume': True, 'brightness': True,
-            'outlook': True, 'email': True}
+            'outlook': True, 'email': True, 'edit': True}
+
+    action_translation_one_word = {'bold': {'exists': False, 'activate': '{bold}', 'inactivate': '{/bold}'},
+                                   'italic': {'exists': False, 'activate': '{italic}', 'inactivate': '{/italic}'},
+                                   'underlined': {'exists': False, 'activate': '{underlined}',
+                                                  'inactivate': '{/underlined}'}}
+
+    align = False
+    action_translation_two_words = {'left': '{align_left}',
+                                    'right': '{align_right}',
+                                    'center': '{align_center}',
+                                    'justify': '{align_justify}',
+                                    }
 
     def __init__(self, text):
         self.text = text
@@ -37,6 +51,8 @@ class Commands():
                     return self.translate_for_outlook(self.text, word)
                 elif lower_case_text == 'email':
                     return self.translate_for_email(self.text, word)
+                elif lower_case_text == 'edit':
+                    return self.translate_for_edit(self.text, word)
 
     def translate_for_word(self, text, i):
         if text[i - 1] == 'new' or text[i - 1] == 'create' or (
@@ -96,6 +112,11 @@ class Commands():
             return '{new_email}'
         return ''
 
+    def translate_for_edit(self, text, i):
+        if text[i + 1] == 'text':
+            return '{edit_word}'
+        return ''
+
     def contains_text(self):
         for index in range(0, len(self.available_actions)):
             if self.available_actions[index] in self.text:
@@ -141,6 +162,36 @@ class Commands():
             return replaced
 
         return word
+
+    # this will work for words
+    # TO BE KEPT
+    def convert_text(self, text):
+        if text in self.action_translation_one_word.keys():
+            if self.action_translation_one_word[text]['exists'] == False:
+                self.action_translation_one_word[text]['exists'] = True
+                return self.action_translation_one_word[text]['activate']
+            else:
+                self.action_translation_one_word[text]['exists'] = False
+                return self.action_translation_one_word[text]['inactivate']
+        elif text == 'align':
+            self.align = True
+        elif text in self.action_translation_two_words.keys():
+            if self.align:
+                self.align = False
+                return self.action_translation_two_words[text]
+        else:
+            self.align = False
+        return text
+
+    def write_text_new(self, text):
+        words = word_tokenize(text)
+        new_text = ''
+        for word in words:
+            converted_word = self.convert_text(word)
+            if new_text != '' and converted_word not in string.punctuation:
+                new_text += ' '
+            new_text += converted_word
+        return new_text
 
     def execute(self, obj, is_word):
         self.contains_text()
