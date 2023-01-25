@@ -1,8 +1,7 @@
 from app_settings import AppSettings
 import pyautogui as pg
 from time import sleep
-from pywinauto import Desktop
-from AppOpener import open, close, mklist, give_appnames
+from AppOpener import open
 
 from utils import move_and_click
 

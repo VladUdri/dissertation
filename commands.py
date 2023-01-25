@@ -1,9 +1,9 @@
 import pyautogui as pg
 from time import sleep
+import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 import string
 import re
-
 
 class Commands():
     available_actions = ['write bold', 'end bold', 'write italic', 'end italic', 'write underlined', 'end underlined',
@@ -135,44 +135,6 @@ class Commands():
 
         return self.text
 
-    def compare_text(self, obj, word):
-        print(word)
-        if '{bold}' in word:
-            obj.change_to_bold()
-            replaced = word.replace('{bold}', '')
-            return replaced
-        if '{/bold}' in word:
-            obj.change_to_bold()
-            replaced = word.replace('{/bold}', '')
-            return replaced
-        if '{italic}' in word:
-            obj.change_to_italic()
-            replaced = word.replace('{italic}', '')
-            return replaced
-        if '{/italic}' in word:
-            obj.change_to_italic()
-            replaced = word.replace('{/italic}', '')
-            return replaced
-        if '{underlined}' in word:
-            obj.change_to_underlined()
-            replaced = word.replace('{underlined}', '')
-            return replaced
-        if '{/underlined}' in word:
-            obj.change_to_underlined()
-            replaced = word.replace('{/underlined}', '')
-            return replaced
-        if '{align_center}' in word:
-            pg.press('enter')
-            obj.align_center()
-            replaced = word.replace('{align_center}', '')
-            return replaced
-        if '{/align_center}' in word:
-            pg.press('enter')
-            obj.align_center()
-            replaced = word.replace('{/align_center}', '')
-            return replaced
-
-        return word
 
     # this will work for words
     # TO BE KEPT
@@ -205,6 +167,7 @@ class Commands():
         return new_text
 
     def write_text_new(self, text):
+
         words = word_tokenize(text)
         converted_word = self.convert_text(words)
         first = True

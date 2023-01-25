@@ -19,16 +19,6 @@ class Outlook(Applications):
         pg.keyUp('alt')
         sleep(0.1)
 
-    def open_taskbar(self):
-        if pg.locateCenterOnScreen('img\\taskbar_outlook.png', confidence=0.8):
-            move_and_click('img\\taskbar_outlook.png')
-            sleep(1)
-            print('check 1')
-        elif pg.locateCenterOnScreen('img\\taskbar_outlook_empty.png', confidence=0.8):
-            move_and_click('img\\taskbar_outlook_empty.png')
-            sleep(1)
-            print('check 2')
-
     def send_email(self):
         self.create_new()
         sleep(1)
@@ -51,4 +41,3 @@ class Outlook(Applications):
         pg.write(body)
         sleep(1)
         self.send()
-        # pg.press('tab')
