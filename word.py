@@ -237,6 +237,7 @@ class Word(Applications):
         pg.press('enter')
         pg.sleep(1)
         print('Word document successfully created!')
+        return True
 
     def open_font_dialog(self):
         pg.keyDown('ctrl')

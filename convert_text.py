@@ -5,7 +5,7 @@ import string
 from nltk.stem import WordNetLemmatizer
 
 
-class CommandsRecognition:
+class ConvertText:
     def __init__(self, text):
         self.text = text
 
@@ -68,4 +68,5 @@ class CommandsRecognition:
     def process_text(self):
         lemm_text = self.lemm(self.text)
         result = self.remove_stopwords(lemm_text)
-        print(result)
+        # print(result)
+        return result

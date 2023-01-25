@@ -117,6 +117,7 @@ class Applications(AppSettings):
     def open_application(self):
         open(self.app_name)
         sleep(3)
+        return True
 
     def close_application(self):
         pg.keyDown('alt')

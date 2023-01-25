@@ -3,8 +3,9 @@ from word import Word
 from time import sleep
 from commands import Commands
 import nltk
-from commands_recognition import CommandsRecognition
-
+from convert_text import ConvertText
+import pyttsx3 as pt
+import execution
 
 if __name__ == '__main__':
     # word = Word('word')
@@ -16,7 +17,16 @@ if __name__ == '__main__':
     # vos = VoskModel()
     # vos.test()
 
-    test = CommandsRecognition('Start writing in word')
-    # res = test.remove_stopwords('Seen from a boat, approaching align left the paragraph island through cold, choppy, white-flecked seas.')
-    # for result in res:
-    test.process_text()
+    # test = ConvertText('Start writing in word')
+    # text.
+    # test.process_text ()
+    # vos = VoskModel()
+    # while True:
+    #     res = vos.test()
+    #     if res is not None and res is not '':
+    #         print(res)
+
+    engine = pt.init()
+    engine.setProperty(
+        'voice', 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
+    execution.execute_app('Create a new word document', engine)
