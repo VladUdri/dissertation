@@ -23,7 +23,7 @@ class ConvertText:
                 filtered.append(word)
         filtered = [word for word in words if word.casefold()
                     not in stop_words]
-        print(filtered)
+        # print(filtered)
         return filtered
 
     """

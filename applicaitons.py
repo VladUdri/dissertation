@@ -7,43 +7,9 @@ from utils import move_and_click
 
 
 class Applications(AppSettings):
-    word_dict = {'word', 'ms word', 'microsoft word'}
-    excel_dict = {'excel', 'ms excel', 'microsoft excel', 'spreadsheet'}
-    ppt_dict = {'power point', 'powerpoint', 'microsoft power point', 'ms power point'}
-
-    start_img = 'img/start.png'
-
     def __init__(self, app_name):
         super().__init__(app_name)
         self.app_name = app_name
-
-    def get_app(self, app_name):
-        if app_name in self.word_dict:
-            return 'Word'
-        elif app_name in self.excel_dict:
-            return 'Excel'
-        elif app_name in self.ppt_dict:
-            return 'PowerPoint'
-        elif app_name == 'Outlook':
-            return 'Outlook'
-
-    # function that presses on the start button
-    def open_app(self):
-        try:
-            res = pg.locateCenterOnScreen('start.png', confidence=0.8)
-            if res is not None:
-                move_and_click('start.png')
-            else:
-                pg.hotkey('winleft')
-            sleep(0.7)
-            # gets the app name through the get_app filter
-            app = self.get_app(self.app_name)
-            # writes the name of the app in the search bar
-            pg.write(app)
-            sleep(0.5)
-            self.open_btn_press(app)
-        except:
-            print('exception')
 
     # function that opens applications
     # todo make it be universal, so that it can be used by any other app (now it can only be used by word apps)
