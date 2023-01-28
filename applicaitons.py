@@ -1,48 +1,15 @@
 from app_settings import AppSettings
 import pyautogui as pg
 from time import sleep
+from AppOpener import open
 
 from utils import move_and_click
 
 
 class Applications(AppSettings):
-    word_dict = {'word', 'ms word', 'microsoft word'}
-    excel_dict = {'excel', 'ms excel', 'microsoft excel', 'spreadsheet'}
-    ppt_dict = {'power point', 'powerpoint', 'microsoft power point', 'ms power point'}
-
-    start_img = 'img/start.png'
-
     def __init__(self, app_name):
         super().__init__(app_name)
         self.app_name = app_name
-
-    def get_app(self, app_name):
-        if app_name in self.word_dict:
-            return 'Word'
-        elif app_name in self.excel_dict:
-            return 'Excel'
-        elif app_name in self.ppt_dict:
-            return 'PowerPoint'
-        elif app_name == 'Outlook':
-            return 'Outlook'
-
-    # function that presses on the start button
-    def open_app(self):
-        try:
-            res = pg.locateCenterOnScreen('start.png', confidence=0.8)
-            if res is not None:
-                move_and_click('start.png')
-            else:
-                pg.hotkey('winleft')
-            sleep(0.7)
-            # gets the app name through the get_app filter
-            app = self.get_app(self.app_name)
-            # writes the name of the app in the search bar
-            pg.write(app)
-            sleep(0.5)
-            self.open_btn_press(app)
-        except:
-            print('exception')
 
     # function that opens applications
     # todo make it be universal, so that it can be used by any other app (now it can only be used by word apps)
@@ -108,3 +75,36 @@ class Applications(AppSettings):
                 print('Successfully saved!')
             else:
                 print('Could not save!')
+
+    '''
+    In order to open an application, we use the method open from the AppOpener library.
+    '''
+
+    def open_application(self):
+        open(self.app_name)
+        sleep(3)
+        return True
+
+    def close_application(self):
+        pg.keyDown('alt')
+        pg.press('f4')
+        pg.keyUp('alt')
+
+    '''
+    save_as function that presses combinations of key so that it saves the document.
+    It uses pyautogui to execute the presses
+    '''
+
+    def save_as(self):
+        pg.press('alt')
+        sleep(0.5)
+        pg.press('f')
+        sleep(0.5)
+        pg.press('a')
+        sleep(0.5)
+        pg.press('o')
+        sleep(0.5)
+        name = pg.prompt('Name of document')
+        pg.write(name)
+        sleep(1)
+        pg.press('enter')

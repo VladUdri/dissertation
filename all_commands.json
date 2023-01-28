@@ -1,0 +1,32 @@
+{
+    "default_commands": {
+        "open_app": {
+            "patterns": [
+                [
+                    "open"
+                ],
+                [
+                    "initialise"
+                ],
+                [
+                    "initialize"
+                ]
+            ],
+            "responses": [
+                "Opening  <app_name>",
+                "Please wait, I am opening <app_name>"
+            ]
+        },
+        "close_app": {
+            "patterns": [
+                [
+                    "close"
+                ]
+            ],
+            "responses": [
+                "Closing  <app_name>",
+                "Please wait, I am closing <app_name>"
+            ]
+        }
+    }
+}
