@@ -12,9 +12,13 @@
                     "initialize"
                 ]
             ],
-            "responses": [
+            "start_responses": [
                 "Opening  <app_name>",
                 "Please wait, I am opening <app_name>"
+            ],
+            "stop_responses": [
+                "<app_name> is open.",
+                "Done opening <app_name>"
             ]
         },
         "close_app": {
@@ -23,9 +27,40 @@
                     "close"
                 ]
             ],
-            "responses": [
+            "start_responses": [
                 "Closing  <app_name>",
                 "Please wait, I am closing <app_name>"
+            ],
+            "stop_responses": [
+                "<app_name> is closed.",
+                "Done closing <app_name>"
+            ]
+        },
+        "create_new": {
+            "patterns": [
+                [
+                    "new",
+                    "document"
+                ],
+                [
+                    "create",
+                    "new"
+                ],
+                [
+                    "create",
+                    "new",
+                    "document"
+                ],
+                [
+                    "compose",
+                    "new"
+                ]
+            ],
+            "start_responses": [
+                "Please wait."
+            ],
+            "stop_responses": [
+                "Done!"
             ]
         }
     }

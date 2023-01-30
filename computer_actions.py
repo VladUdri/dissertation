@@ -51,5 +51,3 @@ class ComputerActions:
 
     def play_pause(self):
         pg.press('playpause')
-
-            # print('Minimum volume')

@@ -1,7 +1,7 @@
 from final_applications import Applicationss
 import pyautogui as pg
 from time import sleep
-from utils import move_and_click, move_mouse
+from utils import move_and_click, move_mouse, focus_window
 from commands import Commands
 
 
@@ -55,13 +55,13 @@ class Word(Applicationss):
         sleep(0.5)
         pg.press('enter')
 
-
     def word_create_new(self):
-        self.open_app()
+        focus_window(self._app_name)
         if self.get_state() == 'open':
             pg.press('enter')
             sleep(1)
             print('New doc created.')
+            self.set_state('new_created')
             return True
         elif self.get_state() == 'new_created':
             self.create_new_default()

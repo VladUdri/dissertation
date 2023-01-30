@@ -39,7 +39,7 @@ class ConvertText:
         result = ''
         for index in range(0, len(words_prop)):
             part = self.part_of_speech(words_prop[index])
-            if part is not '':
+            if part != '':
                 res = lemmatizer.lemmatize(words_prop[index][0], pos=part)
             else:
                 res = lemmatizer.lemmatize(words_prop[index][0])

@@ -4,11 +4,30 @@ from final_word import Word
 from outlook import Outlook
 import json
 from final_applications import Applicationss
+from utils import speak
+from random import randint
 
-default_apps = {'word': ['open_app', 'close_app'],
-                'outlook': ['open_app', 'close_app']}
+default_apps = {'word': ['open_app', 'close_app', 'create_new'],
+                'outlook': ['open_app', 'close_app', 'create_new']}
 
 start_apps = {}
+
+
+def defaut_actions(obj, action, app, engine):
+    speak(engine, decode_speech_feedback(action, app, start=True))
+    match action:
+        case 'open_app':
+            res = obj.open_app()
+        case 'close_app':
+            res = obj.close_app()
+        case 'create_new':
+            if app == 'word':
+                res = obj.word_create_new()
+            elif app == 'outlook':
+                res = obj.create_new()
+    sleep(1)
+    if res:
+        speak(engine, decode_speech_feedback(action, app, start=False))
 
 
 def get_json():
@@ -33,6 +52,16 @@ def search_str(text):
     return None
 
 
+def decode_speech_feedback(action, last_app, start):
+    comm = get_json()
+    if start == True:
+        index = randint(0, len(comm[action]['start_responses']) - 1)
+        return comm[action]['start_responses'][index].replace('<app_name>', last_app)
+    else:
+        index = randint(0, len(comm[action]['stop_responses']) - 1)
+        return comm[action]['stop_responses'][index].replace('<app_name>', last_app)
+
+
 def startup_app(app):
     match app:
         case 'word':
@@ -43,18 +72,39 @@ def startup_app(app):
                 start_apps['outlook'] = Outlook('outlook', 'closed')
 
 
-def execute_app(phrase, engine):
+def execute_app(app, action, engine):
+    if action not in default_apps[app]:
+        return False
+    defaut_actions(start_apps[app], action, app, engine)
+
+
+def execute(phrase, engine, last_app):
     convertion = ConvertText(phrase)
     converted_text = convertion.process_text()
     text_to_compare = ' '.join(converted_text[0:len(converted_text)])
-    # print(text_to_compare)
+    print(text_to_compare)
     action = search_str(text_to_compare)
     if action is not None:
         app = get_app(text_to_compare)
+        if app is not None:
+            last_app = app
+        else:
+            if last_app != '':
+                app = last_app
+            else:
+                # todo maybe something else
+                speak(engine=engine,
+                      text='Please say the command again, but specify the app!')
+                return
     else:
-        app = ''
+        speak(engine=engine, text='Sorry! I don\'t know that.')
+        return
     startup_app(app)
-    start_apps[app].open_app()
+    res = execute_app(app=app, action=action, engine=engine)
+    if res == False:
+        speak('Action not available for this app.')
+        return
+    return last_app
 
 
 # idee: creeaza niste states pt fiecare obiect. de exemplu. am deschis un word, dar nu am creeat un doc nou => status opened; am deschis un word si am creat un doc nou => status created. in asa fel

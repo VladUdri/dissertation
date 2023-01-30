@@ -4,6 +4,7 @@ from AppOpener import open
 import psutil
 from app_settings import AppSettings
 from utils import move_and_click
+import pygetwindow as gw
 
 '''
 State rules: 
@@ -37,7 +38,7 @@ class Applicationss(AppSettings):
         sleep(3)
         return True
 
-    # to use
+    # to delete
     def close_command(self):
         pg.keyDown('alt')
         pg.press('f4')
@@ -50,7 +51,7 @@ class Applicationss(AppSettings):
     '''
     # to use
 
-    def save_as(self):
+    def save_as(self, get_name):
         pg.press('alt')
         sleep(0.5)
         pg.press('f')
@@ -59,7 +60,7 @@ class Applicationss(AppSettings):
         sleep(0.5)
         pg.press('o')
         sleep(0.5)
-        name = pg.prompt('Name of document')
+        name = get_name
         pg.write(name)
         sleep(1)
         pg.press('enter')
@@ -68,8 +69,8 @@ class Applicationss(AppSettings):
     # to use
     def close_app(self):
         if self.is_app_open():
-            self.open_app()
-            self.close_command()
+            res = gw.getWindowsWithTitle(self._app_name)[0]
+            res.close()
             self.set_state('closed')
             print('App closed')
             return True

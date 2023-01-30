@@ -1,13 +1,15 @@
-from applicaitons import Applications
+from final_applications import Applicationss
 import pyautogui as pg
 from time import sleep
-from utils import move_and_click, move_mouse
+from utils import focus_window
 from commands import Commands
 
 
-class Outlook(Applications):
+class Outlook(Applicationss):
 
     def create_new(self):
+        focus_window(self._app_name)
+        sleep(0.5)
         pg.keyDown('ctrl')
         pg.press('n')
         pg.keyUp('ctrl')
