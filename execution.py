@@ -1,9 +1,9 @@
 from time import sleep
 from convert_text import ConvertText
-from final_word import Word
+from word import Word
 from outlook import Outlook
 import json
-from final_applications import Applicationss
+from application import Applicationss
 from utils import speak
 from random import randint
 
@@ -13,7 +13,7 @@ default_apps = {'word': ['open_app', 'close_app', 'create_new'],
 start_apps = {}
 
 
-def defaut_actions(obj, action, app, engine):
+def default_actions(obj, action, app, engine):
     speak(engine, decode_speech_feedback(action, app, start=True))
     match action:
         case 'open_app':
@@ -53,7 +53,9 @@ def search_str(text):
 
 
 def decode_speech_feedback(action, last_app, start):
-    comm = get_json()
+    # comm = get_json()
+    with open('all_commands.json') as f:
+        comm = json.load(f)
     if start == True:
         index = randint(0, len(comm[action]['start_responses']) - 1)
         return comm[action]['start_responses'][index].replace('<app_name>', last_app)
@@ -75,7 +77,7 @@ def startup_app(app):
 def execute_app(app, action, engine):
     if action not in default_apps[app]:
         return False
-    defaut_actions(start_apps[app], action, app, engine)
+    default_actions(start_apps[app], action, app, engine)
 
 
 def execute(phrase, engine, last_app):

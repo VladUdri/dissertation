@@ -62,6 +62,25 @@
             "stop_responses": [
                 "Done!"
             ]
+        },
+        "save_as": {
+            "patterns": [
+                [
+                    "save",
+                    "document"
+                ],
+                [
+                    "save"
+                ]
+            ],
+            "start_responses": [
+                "Please wait. I am saving!"
+            ],
+            "stop_responses": [
+                "Done!",
+                "Saved!",
+                "<app_name> is saved."
+            ]
         }
     }
 }

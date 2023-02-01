@@ -1,4 +1,3 @@
-from app_settings import AppSettings
 import pyautogui as pg
 import sys
 from time import sleep
@@ -37,3 +36,4 @@ def focus_window(name):
     res.restore()
     res.minimize()
     res.restore()
+    res.maximize()

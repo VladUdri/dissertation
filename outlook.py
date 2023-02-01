@@ -1,11 +1,12 @@
-from final_applications import Applicationss
+from application import IApplications
 import pyautogui as pg
 from time import sleep
 from utils import focus_window
-from commands import Commands
 
 
-class Outlook(Applicationss):
+class Outlook(IApplications):
+    def __init__(self, app_name, state):
+        super().__init__(app_name, state)
 
     def create_new(self):
         focus_window(self._app_name)
