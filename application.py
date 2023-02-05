@@ -4,8 +4,9 @@ from AppOpener import open
 import psutil
 import pygetwindow as gw
 from abc import ABC, abstractmethod
-
-
+from vosk_voice import VoskModel
+from speak import Speak
+from key_action import KeyAction
 '''
 State rules: 
     ### 'close' = app is not opened;
@@ -18,6 +19,9 @@ class IApplications(ABC):
     def __init__(self, app_name, state='closed'):
         self._app_name = app_name
         self._state = state
+        self.listen = VoskModel()
+        self.speak = Speak()
+        self.key_action = KeyAction()
 
     @abstractmethod
     def create_new(self):
@@ -34,6 +38,7 @@ class IApplications(ABC):
     In order to open an application, we use the method open from the AppOpener library.
     '''
     # to use
+
     def open_app(self):
         open(self._app_name)
         self._state = 'open'
@@ -47,6 +52,7 @@ class IApplications(ABC):
     # to use
     # todo add states
     # to use
+
     def close_app(self):
         if self.is_app_open():
             res = gw.getWindowsWithTitle(self._app_name)[0]

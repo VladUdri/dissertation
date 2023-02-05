@@ -15,6 +15,6 @@ class Save(ICommand):
                 self.app.save_as()
         except:
             speaker.speak('save_as', self.app, None)
-            print('exception create new')
+            print('exception save')
         else:
             speaker.speak('save_as', self.app, False)

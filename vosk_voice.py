@@ -1,53 +1,95 @@
 import pyaudio
-from vosk import Model, KaldiRecognizer, SetLogLevel
+from vosk import Model, KaldiRecognizer
 import pytesseract
-# from execution import execute_app
-import pyttsx3 as pt
 from time import sleep
-import sounddevice as sd
-from execution import execute_app
+# from execution import execute_app
+from speak import Speak
 
 
 class VoskModel:
-    def test(self):
+    def __init__(self) -> None:
+        self.speak = Speak()
         pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
-        engine = pt.init()
-        engine.setProperty(
-            'voice', 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
-
-        model = Model(
+        self.__model = Model(
             r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
+        self.__recognizer = KaldiRecognizer(self.__model, 16000)
+        self.mic = pyaudio.PyAudio()
+        self.__stream = self.mic.open(format=pyaudio.paInt16, channels=1,
+                                      rate=16000, input=True, frames_per_buffer=8192)
 
-        recognizer = KaldiRecognizer(model, 16000)
-        mic = pyaudio.PyAudio()
-        stream = mic.open(format=pyaudio.paInt16, channels=1,
-                          rate=16000, input=True, frames_per_buffer=8192)
-        stream.start_stream()
+    def listen_command(self, commands):
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+        self.__model = Model(
+            r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
+        self.__recognizer = KaldiRecognizer(self.__model, 16000)
+        self.mic = pyaudio.PyAudio()
+        self.__stream = self.mic.open(format=pyaudio.paInt16, channels=1,
+                                      rate=16000, input=True, frames_per_buffer=8192)
+        self.__stream.start_stream()
 
         listening = True
         looking_for_commands = False
 
         while True:
             if listening:
-                data = stream.read(4096, exception_on_overflow=False)
-                if recognizer.AcceptWaveform(data):
-                    text = recognizer.Result()
-                    if len(text[14:-3]):
-                        print('#'*50)
-                        print(text[14:-3])
-                        if text[14:-3] == 'start listening':
-                            looking_for_commands = True
-                            listening = False
-                            sleep(1)
-                            engine.say(
-                                'How can I help you?')
-                            engine.runAndWait()
-                            sleep(2)
-                            listening = True
-                        elif text[14:-3] == 'stop listening':
-                            engine.say('Bye, see you!')
-                            engine.runAndWait()
-                            looking_for_commands = False
-                        elif looking_for_commands:
-                            execute_app(text[14:-3], engine)
-                        # execute_app(text[14:-3])
+                data = self.__stream.read(4096, exception_on_overflow=False)
+                if self.__recognizer.AcceptWaveform(data):
+                    text = self.__recognizer.Result()
+                    res = text[14:-3]
+                    if len(res):
+                        if (commands):
+                            if res == 'start listening':
+                                looking_for_commands = True
+                                listening = False
+                                sleep(1)
+                                self.speak.speak_system('startup', True)
+                                sleep(2)
+                                listening = True
+                            elif res == 'stop listening':
+                                self.speak.speak_system('startup', False)
+                                looking_for_commands = False
+                            elif looking_for_commands:
+                                print('')
+                            # execute_app(res)
+                        # execute_app(res)
+                        else:
+                            print(res)
+
+    def listen(self):
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+        self.__model = Model(
+            r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
+        self.__recognizer = KaldiRecognizer(self.__model, 16000)
+        self.mic = pyaudio.PyAudio()
+        self.__stream = self.mic.open(format=pyaudio.paInt16, channels=1,
+                                      rate=16000, input=True, frames_per_buffer=8192)
+        self.__stream.start_stream()
+        listening = True
+        print('listen funciton')
+        while True:
+            if listening:
+                data = self.__stream.read(4096, exception_on_overflow=False)
+                if self.__recognizer.AcceptWaveform(data):
+                    text = self.__recognizer.Result()
+                    res = text[14:-3]
+                    if len(res):
+                        listening = False
+                        sleep(1)
+                        print(res)
+                        return res
+
+    def listen_write(self):
+        self.__stream.start_stream()
+        listening = True
+        print('listen funciton write')
+        while True:
+            if listening:
+                data = self.__stream.read(4096, exception_on_overflow=False)
+                if self.__recognizer.AcceptWaveform(data):
+                    text = self.__recognizer.Result()
+                    res = text[14:-3]
+                    if len(res):
+                        listening = False
+                        sleep(1)
+                        print(res)
+                        yield res 

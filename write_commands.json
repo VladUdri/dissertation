@@ -1,0 +1,150 @@
+{
+    "bold": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "b",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "bold"
+        ],
+        "pattern_stop": [
+            "stop write bold",
+            "stop bold",
+            "end write bold",
+            "end bold"
+        ],
+        "convertion": "{bold}"
+    },
+    "italic": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "i",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "italic"
+        ],
+        "pattern_stop": [
+            "stop write italic",
+            "stop italic",
+            "end write italic",
+            "end italic"
+        ],
+        "convertion": "{italic}"
+    },
+    "underlined": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "u",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "underlined"
+        ],
+        "pattern_stop": [
+            "stop write underlined",
+            "stop underlined",
+            "end write underlined",
+            "end underlined"
+        ],
+        "convertion": "{underlined}"
+    },
+    "edit_text": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "h",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "edit text"
+        ],
+        "pattern_stop": [
+            "stop edit text"
+        ],
+        "convertion": "{edit_text}"
+    },
+    "align_center": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "e",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "align center"
+        ],
+        "pattern_stop": [
+            "stop align center",
+            "end align center"
+        ],
+        "convertion": "{align_center}"
+    },
+    "align_left": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "l",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "align left"
+        ],
+        "pattern_stop": [
+            "stop align left",
+            "end align left"
+        ],
+        "convertion": "{align_left}"
+    },
+    "align_right": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "r",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "align right"
+        ],
+        "pattern_stop": [
+            "end align right",
+            "stop align right"
+        ],
+        "convertion": "{align_right}"
+    },
+    "align_justify": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "j",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "align justify"
+        ],
+        "pattern_stop": [
+            "end align justify, stop align justify"
+        ],
+        "convertion": "{align_justify}"
+    }
+}

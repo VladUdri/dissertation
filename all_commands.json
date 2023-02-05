@@ -1,5 +1,16 @@
 {
     "default_commands": {
+        "startup": {
+            "start_responses": [
+                "Hello! How can I help?",
+                "Hi!"
+            ],
+            "stop_responses": [
+                "Bye!",
+                "Good bye!",
+                "Have a nice day!"
+            ]
+        },
         "open_app": {
             "patterns": [
                 [

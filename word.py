@@ -2,12 +2,14 @@ from application import IApplications
 import pyautogui as pg
 from time import sleep
 from utils import move_and_click, move_mouse, focus_window
+import time
 
 
 class Word(IApplications):
     def __init__(self, app_name, state):
         super().__init__(app_name, state)
 
+# #########################################################################################
     def create_new(self):
         focus_window(self._app_name)
         if self._state == 'open':
@@ -24,19 +26,26 @@ class Word(IApplications):
         return False
 
     def save_as(self):
-        print('sunt aici ba boule')
-        pg.press('alt')
-        sleep(0.5)
-        pg.press('f')
-        sleep(0.5)
-        pg.press('a')
-        sleep(0.5)
-        pg.press('o')
-        sleep(0.5)
-        name = 'lotus'
+        self.key_action.execute(['press', 'alt', 'press', 'f',
+                                 'press', 'a', 'press', 'o'])
+        self.__save_replace()
+
+    def __save_replace(self):
+        self.speak.simple_speak('What should be the name of the document?')
+        name = self.listen.listen()
         pg.write(name)
         sleep(1)
-        pg.press('enter')
+        self.key_action.execute(['press', 'enter'])
+        sleep(1)
+        if pg.locateOnScreen('images\save_replace.png', grayscale=True) is not None:
+            self.speak.simple_speak(
+                'This already exists! Do you want to replace it?')
+            response = self.listen.listen()
+            if response == 'yes':
+                self.key_action.execute(['press', 'enter'])
+            elif response == 'no':
+                self.key_action.execute(['press', 'down', 'press', 'enter'])
+                self.__save_replace()
 
     def open_font_dialog(self):
         pg.keyDown('ctrl')
@@ -61,7 +70,7 @@ class Word(IApplications):
         sleep(0.5)
         pg.press('enter')
 
-    '''
+        '''
         Function that changes the font size of the writing.
         It uses pyautoguy to execute word keyboard shortcuts
         '''
@@ -76,3 +85,7 @@ class Word(IApplications):
         pg.write(size)
         sleep(0.5)
         pg.press('enter')
+
+# #########################################################################################
+
+    

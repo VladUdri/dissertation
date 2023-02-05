@@ -1,15 +1,18 @@
 import pyautogui as pg
+from time import sleep
 
 
 class KeyAction:
-    def __init__(self, actions) -> None:
-        self.actions = actions
+    def __init__(self) -> None:
+        # self.actions = actions
+        pass
 
-    def execute(self):
-        for index in range(0, len(self.actions), 2):
-            if self.actions[index] == 'press':
-                pg.press(self.actions[index + 1])
-            elif self.actions[index] == 'key_down':
-                pg.keyDown(self.actions[index + 1])
-            elif self.actions[index] == 'key_up':
-                pg.keyUp(self.actions[index + 1])
+    def execute(self, actions):
+        for index in range(0, len(actions), 2):
+            if actions[index] == 'press':
+                pg.press(actions[index + 1])
+            elif actions[index] == 'key_down':
+                pg.keyDown(actions[index + 1])
+            elif actions[index] == 'key_up':
+                pg.keyUp(actions[index + 1])
+            sleep(0.5)
