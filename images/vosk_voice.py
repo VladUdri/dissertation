@@ -86,10 +86,10 @@ class VoskModel:
             if listening:
                 data = self.__stream.read(4096, exception_on_overflow=False)
                 if self.__recognizer.AcceptWaveform(data):
-                    text = self.__recognizer.Result()
-                    res = text[14:-3]
+                    text = self.__recognizer.PartialResult()
+                    res = text
                     if len(res):
                         listening = False
                         sleep(1)
                         print(res)
-                        yield res 
+                        yield res

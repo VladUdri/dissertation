@@ -11,12 +11,6 @@
         "pattern_start": [
             "bold"
         ],
-        "pattern_stop": [
-            "stop write bold",
-            "stop bold",
-            "end write bold",
-            "end bold"
-        ],
         "convertion": "{bold}"
     },
     "italic": {
@@ -30,12 +24,6 @@
         ],
         "pattern_start": [
             "italic"
-        ],
-        "pattern_stop": [
-            "stop write italic",
-            "stop italic",
-            "end write italic",
-            "end italic"
         ],
         "convertion": "{italic}"
     },
@@ -51,12 +39,6 @@
         "pattern_start": [
             "underlined"
         ],
-        "pattern_stop": [
-            "stop write underlined",
-            "stop underlined",
-            "end write underlined",
-            "end underlined"
-        ],
         "convertion": "{underlined}"
     },
     "edit_text": {
@@ -70,9 +52,6 @@
         ],
         "pattern_start": [
             "edit text"
-        ],
-        "pattern_stop": [
-            "stop edit text"
         ],
         "convertion": "{edit_text}"
     },
@@ -88,10 +67,6 @@
         "pattern_start": [
             "align center"
         ],
-        "pattern_stop": [
-            "stop align center",
-            "end align center"
-        ],
         "convertion": "{align_center}"
     },
     "align_left": {
@@ -105,10 +80,6 @@
         ],
         "pattern_start": [
             "align left"
-        ],
-        "pattern_stop": [
-            "stop align left",
-            "end align left"
         ],
         "convertion": "{align_left}"
     },
@@ -124,10 +95,6 @@
         "pattern_start": [
             "align right"
         ],
-        "pattern_stop": [
-            "end align right",
-            "stop align right"
-        ],
         "convertion": "{align_right}"
     },
     "align_justify": {
@@ -142,9 +109,33 @@
         "pattern_start": [
             "align justify"
         ],
-        "pattern_stop": [
-            "end align justify, stop align justify"
-        ],
         "convertion": "{align_justify}"
+    },
+    "period": {
+        "execute": [
+            "press",
+            "."
+        ],
+        "pattern_start": [
+            "period"
+        ],
+        "convertion": "{period}"
+    },
+    "backspace": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "backspace",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern_start": [
+            "backspace",
+            "delete word",
+            "back space",
+            "delete"
+        ],
+        "convertion": "{backspace}"
     }
 }

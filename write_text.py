@@ -1,6 +1,6 @@
 import pyautogui as pg
 from time import sleep
-from vosk_voice import VoskModel
+from images.vosk_voice import VoskModel
 import json
 from key_action import KeyAction
 from nltk.tokenize import word_tokenize
@@ -39,10 +39,6 @@ class WriteText:
                 if self.write_comm[key]['pattern_start'][index] in text:
                     text = text.replace(
                         self.write_comm[key]['pattern_start'][index], self.write_comm[key]['convertion'])
-            for index in range(0, len(self.write_comm[key]['pattern_stop'])):
-                if self.write_comm[key]['pattern_stop'][index] in text:
-                    text = text.replace(
-                        self.write_comm[key]['pattern_stop'][index], self.write_comm[key]['convertion'])
         return text
 
     def write_text(self, text):

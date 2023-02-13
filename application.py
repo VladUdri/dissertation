@@ -4,7 +4,7 @@ from AppOpener import open
 import psutil
 import pygetwindow as gw
 from abc import ABC, abstractmethod
-from vosk_voice import VoskModel
+from images.vosk_voice import VoskModel
 from speak import Speak
 from key_action import KeyAction
 '''
