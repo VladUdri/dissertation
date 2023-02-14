@@ -8,7 +8,7 @@ import queue
 import sounddevice as sd
 import vosk
 from key_action import KeyAction
-
+from comlpex_actions import ComplexAction
 vosk.SetLogLevel(-1)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -20,19 +20,15 @@ class VoskDictation():
         self.q = queue.Queue()
         self.previous_line = ""
         self.previous_length = 0
-        self.mode = mode
         self.safety_word = safety_word
         self.lang = lang
         self.rec = ""
-        self.text_dict = {}
-        self.co_ord_list = []
-        self.last_index = -1
-        self.first_index = -1
-        self.match = False
         with open('write_commands.json') as f:
             self.write_comm = json.load(f)
         self.format = {}
         self.key_action = KeyAction()
+        self.complex_action = ComplexAction()
+        self.listening = True
 
     def setUp(self):
         if not os.path.exists(self.model_path):
@@ -54,18 +50,19 @@ class VoskDictation():
 
                 initial = time.perf_counter()
                 while True:
-                    data = self.q.get()
-                    if rec.AcceptWaveform(data):
-                        d = json.loads(rec.Result())
-                    else:
-                        d = json.loads(rec.PartialResult())
-                    for key in d.keys():
-                        if d[key]:
-                            if d[key] != self.previous_line or key == 'text':
-                                self._write(d)
-                                if d[key] == self.safety_word:
-                                    return
-                                self.previous_line = d[key]
+                    if self.listening == True:
+                        data = self.q.get()
+                        if rec.AcceptWaveform(data):
+                            d = json.loads(rec.Result())
+                        else:
+                            d = json.loads(rec.PartialResult())
+                        for key in d.keys():
+                            if d[key]:
+                                if d[key] != self.previous_line or key == 'text':
+                                    self._write(d)
+                                    if d[key] == self.safety_word:
+                                        return
+                                    self.previous_line = d[key]
 
         except KeyboardInterrupt:
             print('\nDone -- KEYBOARDiNTERRUPT')
@@ -85,11 +82,12 @@ class VoskDictation():
     def search_str(self, text):
         for key in self.write_comm:
             for index in range(0, len(self.write_comm[key]['pattern'])):
-                if self.write_comm[key]['pattern'][index] in text:
+                if self.write_comm[key]['pattern'][index] == text:
                     return key
         return False
 
     def _write(self, phrase):
+
         pg.press('backspace', presses=self.previous_length)
         print(phrase)
         if 'text' in phrase:
@@ -100,7 +98,12 @@ class VoskDictation():
             else:
                 if self.write_comm[search_res]['type'] == 'key':
                     pg.press('backspace')
-                self.execute_keypress(search_res)
+                elif self.write_comm[search_res]['type'] == 'complex_action':
+                    self.listening = False
+                    self.complex_action.execute(self.write_comm, search_res)
+                elif self.write_comm[search_res]['type'] == 'action':
+                    self.listening = False
+                    self.execute_keypress(search_res)
 
         else:
             pg.write(phrase['partial'])

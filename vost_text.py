@@ -7,6 +7,7 @@ import sys
 import queue
 import sounddevice as sd
 import vosk
+
 vosk.SetLogLevel(-1)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -41,7 +42,7 @@ class VoskModell():
         return rec, samplerate
 
 #######################################################################
-    def listen_for_commands(self):
+    def listen_for_commands(self, one_time):
         rec, samplerate = self.setUp()
         try:
 
@@ -73,37 +74,10 @@ class VoskModell():
                     if (fin == new_fin and fin != '' and new_fin != ''):
                         listening = False
                         # use fin
-                        
+                        if one_time == True:
+                            return fin
                         print(fin)
                         fin = new_fin = ''
-
-        except KeyboardInterrupt:
-            print('\nDone -- KEYBOARDiNTERRUPT')
-        except Exception as e:
-            print('exception', e)
-
-    def transcribe(self):
-        rec, samplerate = self.setUp()
-        try:
-
-            with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=None, dtype='int16', channels=1,
-                                   callback=self._callback):
-
-                initial = time.perf_counter()
-                while True:
-                    data = self.q.get()
-                    if rec.AcceptWaveform(data):
-                        d = json.loads(rec.Result())
-                    else:
-                        d = json.loads(rec.PartialResult())
-                    for key in d.keys():
-                        if d[key]:
-                            if d[key] != self.previous_line or key == 'text':
-                                self._write(d)
-                                if d[key] == self.safety_word:
-                                    return
-                                self.previous_line = d[key]
-                                # print(d[key])
 
         except KeyboardInterrupt:
             print('\nDone -- KEYBOARDiNTERRUPT')
@@ -116,19 +90,3 @@ class VoskModell():
             print(status, file=sys.stderr)
             sys.stdout.flush()
         self.q.put(bytes(indata))
-
-    def _write(self, phrase):
-        pyautogui.press('backspace', presses=self.previous_length)
-        print(phrase)
-        if 'text' in phrase:
-            if 'period symbol' in phrase['text']:
-                
-                pyautogui.write('. ')
-                self.previous_length = 0
-                print('hheheheh')
-            else:
-                pyautogui.write(phrase['text'] + ' ')
-                self.previous_length = 0
-        else:
-            pyautogui.write(phrase['partial'])
-            self.previous_length = len(phrase['partial'])

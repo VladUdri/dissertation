@@ -192,5 +192,60 @@
             "delete"
         ],
         "type": "key"
+    },
+    "open_font_editor": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "d",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "open font editor"
+        ],
+        "type": "action"
+    },
+    "font_size": {
+        "steps": [
+            "open_font_editor",
+            "execute",
+            "listen_int"
+        ],
+        "execute": [
+            "key_down",
+            "alt",
+            "press",
+            "s",
+            "key_up",
+            "alt"
+        ],
+        "pattern": [
+            "change font size",
+            "set font size"
+        ],
+        "speak": "What should be the font size?",
+        "type": "complex_action"
+    },
+    "change_font": {
+        "steps": [
+            "open_font_editor",
+            "execute",
+            "listen_word"
+        ],
+        "execute": [
+            "key_down",
+            "alt",
+            "press",
+            "f",
+            "key_up",
+            "alt"
+        ],
+        "pattern": [
+            "change font"
+        ],
+        "speak": "What should be the new font?",
+        "type": "complex_action"
     }
 }
