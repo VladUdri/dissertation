@@ -1,7 +1,7 @@
 import pytesseract
 import time
 import os
-import pyautogui
+import pyautogui as pg
 import json
 import sys
 import queue
@@ -84,20 +84,24 @@ class VoskDictation():
 
     def search_str(self, text):
         for key in self.write_comm:
-            for index in range(0, len(self.write_comm[key]['pattern_start'])):
-                if self.write_comm[key]['pattern_start'][index] in text:
-                    self.execute_keypress(key)
-                    return True
+            for index in range(0, len(self.write_comm[key]['pattern'])):
+                if self.write_comm[key]['pattern'][index] in text:
+                    return key
         return False
 
     def _write(self, phrase):
-        pyautogui.press('backspace', presses=self.previous_length)
+        pg.press('backspace', presses=self.previous_length)
         print(phrase)
         if 'text' in phrase:
+            search_res = self.search_str(phrase['text'])
             self.previous_length = 0
-            if self.search_str(phrase['text']) == False:
-                pyautogui.write(phrase['text'] + ' ')
+            if search_res == False:
+                pg.write(phrase['text'] + ' ')
+            else:
+                if self.write_comm[search_res]['type'] == 'key':
+                    pg.press('backspace')
+                self.execute_keypress(search_res)
 
         else:
-            pyautogui.write(phrase['partial'])
+            pg.write(phrase['partial'])
             self.previous_length = len(phrase['partial'])

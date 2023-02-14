@@ -16,4 +16,4 @@ class KeyAction:
                 pg.keyDown(actions[index + 1])
             elif actions[index] == 'key_up':
                 pg.keyUp(actions[index + 1])
-            sleep(0.5)
+            # sleep(0.5)

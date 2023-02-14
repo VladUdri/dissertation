@@ -8,10 +8,10 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
+        "pattern": [
             "bold"
         ],
-        "convertion": "{bold}"
+        "type": "action"
     },
     "italic": {
         "execute": [
@@ -22,10 +22,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "italic"
+        "pattern": [
+            "italic",
+            "italics"
         ],
-        "convertion": "{italic}"
+        "type": "action"
     },
     "underlined": {
         "execute": [
@@ -36,10 +37,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "underlined"
+        "pattern": [
+            "underlined",
+            "underline"
         ],
-        "convertion": "{underlined}"
+        "type": "action"
     },
     "edit_text": {
         "execute": [
@@ -50,10 +52,10 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
+        "pattern": [
             "edit text"
         ],
-        "convertion": "{edit_text}"
+        "type": "action"
     },
     "align_center": {
         "execute": [
@@ -64,10 +66,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "align center"
+        "pattern": [
+            "align center",
+            "alignment center"
         ],
-        "convertion": "{align_center}"
+        "type": "action"
     },
     "align_left": {
         "execute": [
@@ -78,10 +81,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "align left"
+        "pattern": [
+            "align left",
+            "alignment left"
         ],
-        "convertion": "{align_left}"
+        "type": "action"
     },
     "align_right": {
         "execute": [
@@ -92,10 +96,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "align right"
+        "pattern": [
+            "align right",
+            "alignment right"
         ],
-        "convertion": "{align_right}"
+        "type": "action"
     },
     "align_justify": {
         "execute": [
@@ -106,10 +111,11 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
-            "align justify"
+        "pattern": [
+            "align justify",
+            "alignment justify"
         ],
-        "convertion": "{align_justify}"
+        "type": "action"
     },
     "period": {
         "execute": [
@@ -118,10 +124,57 @@
             "press",
             "space"
         ],
-        "pattern_start": [
-            "period symbol"
+        "pattern": [
+            "period symbol",
+            "dot symbol"
         ],
-        "convertion": "{period}"
+        "type": "key"
+    },
+    "comma": {
+        "execute": [
+            "press",
+            ",",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "commma symbol"
+        ],
+        "type": "key"
+    },
+    "question": {
+        "execute": [
+            "press",
+            "?",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "question mark"
+        ],
+        "type": "key"
+    },
+    "exclamation": {
+        "execute": [
+            "press",
+            "!",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "exclamation mark"
+        ],
+        "type": "key"
+    },
+    "at": {
+        "execute": [
+            "press",
+            "@"
+        ],
+        "pattern": [
+            "at symbol"
+        ],
+        "type": "key"
     },
     "backspace": {
         "execute": [
@@ -132,12 +185,12 @@
             "key_up",
             "ctrl"
         ],
-        "pattern_start": [
+        "pattern": [
             "backspace",
             "delete word",
             "back space",
             "delete"
         ],
-        "convertion": "{backspace}"
+        "type": "key"
     }
 }
