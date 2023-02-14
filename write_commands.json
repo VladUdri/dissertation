@@ -114,10 +114,12 @@
     "period": {
         "execute": [
             "press",
-            "."
+            ".",
+            "press",
+            "space"
         ],
         "pattern_start": [
-            "period"
+            "period symbol"
         ],
         "convertion": "{period}"
     },

@@ -8,6 +8,7 @@ class KeyAction:
         pass
 
     def execute(self, actions):
+
         for index in range(0, len(actions), 2):
             if actions[index] == 'press':
                 pg.press(actions[index + 1])

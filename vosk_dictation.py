@@ -7,12 +7,14 @@ import sys
 import queue
 import sounddevice as sd
 import vosk
+from key_action import KeyAction
+
 vosk.SetLogLevel(-1)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
-class VoskModell():
+class VoskDictation():
     def __init__(self, lang='en', mode='transcription', safety_word='stop listening'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()
@@ -27,9 +29,12 @@ class VoskModell():
         self.last_index = -1
         self.first_index = -1
         self.match = False
+        with open('write_commands.json') as f:
+            self.write_comm = json.load(f)
+        self.format = {}
+        self.key_action = KeyAction()
 
     def setUp(self):
-
         if not os.path.exists(self.model_path):
             print(r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
             print(f"and unpack into {self.model_path}.")
@@ -39,48 +44,6 @@ class VoskModell():
         model = vosk.Model(self.model_path)
         rec = vosk.KaldiRecognizer(model, samplerate)
         return rec, samplerate
-
-#######################################################################
-    def listen_for_commands(self):
-        rec, samplerate = self.setUp()
-        try:
-
-            with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=None, dtype='int16', channels=1,
-                                   callback=self._callback):
-
-                initial = time.perf_counter()
-                fin = new_fin = ''
-                listening = True
-                while True:
-                    if listening == True:
-                        data = self.q.get()
-                        if rec.AcceptWaveform(data):
-                            d = json.loads(rec.Result())
-                        else:
-                            d = json.loads(rec.PartialResult())
-                        for key in d.keys():
-                            if d[key]:
-                                if d[key] != self.previous_line or key == 'text':
-                                    if "text" in d:
-                                        fin = new_fin
-                                        new_fin = d["text"]
-                                    else:
-                                        fin = new_fin
-                                        new_fin = d["partial"]
-                                    if d[key] == self.safety_word:
-                                        return
-                                    self.previous_line = d[key]
-                    if (fin == new_fin and fin != '' and new_fin != ''):
-                        listening = False
-                        # use fin
-                        
-                        print(fin)
-                        fin = new_fin = ''
-
-        except KeyboardInterrupt:
-            print('\nDone -- KEYBOARDiNTERRUPT')
-        except Exception as e:
-            print('exception', e)
 
     def transcribe(self):
         rec, samplerate = self.setUp()
@@ -103,7 +66,6 @@ class VoskModell():
                                 if d[key] == self.safety_word:
                                     return
                                 self.previous_line = d[key]
-                                # print(d[key])
 
         except KeyboardInterrupt:
             print('\nDone -- KEYBOARDiNTERRUPT')
@@ -117,18 +79,25 @@ class VoskModell():
             sys.stdout.flush()
         self.q.put(bytes(indata))
 
+    def execute_keypress(self, key):
+        self.key_action.execute(self.write_comm[key]['execute'])
+
+    def search_str(self, text):
+        for key in self.write_comm:
+            for index in range(0, len(self.write_comm[key]['pattern_start'])):
+                if self.write_comm[key]['pattern_start'][index] in text:
+                    self.execute_keypress(key)
+                    return True
+        return False
+
     def _write(self, phrase):
         pyautogui.press('backspace', presses=self.previous_length)
         print(phrase)
         if 'text' in phrase:
-            if 'period symbol' in phrase['text']:
-                
-                pyautogui.write('. ')
-                self.previous_length = 0
-                print('hheheheh')
-            else:
+            self.previous_length = 0
+            if self.search_str(phrase['text']) == False:
                 pyautogui.write(phrase['text'] + ' ')
-                self.previous_length = 0
+
         else:
             pyautogui.write(phrase['partial'])
             self.previous_length = len(phrase['partial'])
