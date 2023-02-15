@@ -119,6 +119,25 @@
                 "Dictation stopped!",
                 "Stopped!"
             ]
+        },
+        "send_email": {
+            "patterns": [
+                [
+                    "send",
+                    "email"
+                ],
+                [
+                    "compose",
+                    "email"
+                ]
+            ],
+            "start_responses": [
+                "Just a second"
+            ],
+            "stop_responses": [
+                "Email sent!",
+                "The email is sent!"
+            ]
         }
     }
 }

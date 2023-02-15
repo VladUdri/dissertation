@@ -9,14 +9,22 @@ from commands.vosk_dictation import VoskDictation
 from word2number import w2n
 from speak import Speak
 from notepad import Notepad
+from outlook import Outlook
 
 if __name__ == '__main__':
     w = Word('word', 'new_created')
     n = Notepad('notepad', 'closed')
+    o = Outlook()
     # Speak().simple_speak('hello')
     # CommandInterpretor(w).process_command("open_app")
     # CommandInterpretor(w).process_command("create_new_word")
-    CommandInterpretor(n).process_command("open_app")
-    CommandInterpretor(n).process_command("create_new_notepad")
-    print(n._state)
+    print(o._state)
+    CommandInterpretor(o).process_command("open_app")
+    time.sleep(2)
+    CommandInterpretor(o).process_command("send_email")
+
+    # CommandInterpretor(n).process_command("create_new_notepad")
+    # time.sleep(2)
+    # CommandInterpretor(n).process_command("save_as_notepad")
+    print(o._state)
     # VoskDictation().transcribe()
