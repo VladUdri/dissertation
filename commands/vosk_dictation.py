@@ -15,7 +15,7 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 
 
 class VoskDictation():
-    def __init__(self, lang='en', mode='transcription', safety_word='stop listening'):
+    def __init__(self, lang='en', mode='transcription', safety_word='stop dictating'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()
         self.previous_line = ""
@@ -41,7 +41,7 @@ class VoskDictation():
         rec = vosk.KaldiRecognizer(model, samplerate)
         return rec, samplerate
 
-    def transcribe(self):
+    def execute(self):
         rec, samplerate = self.setUp()
         try:
 
@@ -76,10 +76,7 @@ class VoskDictation():
             sys.stdout.flush()
         self.q.put(bytes(indata))
 
-    def execute_keypress(self, key):
-        self.key_action.execute(self.write_comm[key]['execute'])
-
-    def search_str(self, text):
+    def _search_str(self, text):
         for key in self.write_comm:
             for index in range(0, len(self.write_comm[key]['pattern'])):
                 if self.write_comm[key]['pattern'][index] == text:
@@ -91,19 +88,28 @@ class VoskDictation():
         pg.press('backspace', presses=self.previous_length)
         print(phrase)
         if 'text' in phrase:
-            search_res = self.search_str(phrase['text'])
+            search_res = self._search_str(phrase['text'])
             self.previous_length = 0
             if search_res == False:
                 pg.write(phrase['text'] + ' ')
             else:
                 if self.write_comm[search_res]['type'] == 'key':
+                    self.listening = False
                     pg.press('backspace')
+                    execution_res = self.key_action.execute(
+                        self.write_comm[search_res]['execute'])
+                    if execution_res:
+                        pg.write(' ')
+                        self.listening = True
                 elif self.write_comm[search_res]['type'] == 'complex_action':
                     self.listening = False
                     self.complex_action.execute(self.write_comm, search_res)
                 elif self.write_comm[search_res]['type'] == 'action':
                     self.listening = False
-                    self.execute_keypress(search_res)
+                    execution_res = self.key_action.execute(
+                        self.write_comm[search_res]['execute'])
+                    if execution_res:
+                        self.listening = True
 
         else:
             pg.write(phrase['partial'])

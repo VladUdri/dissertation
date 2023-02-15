@@ -92,6 +92,33 @@
                 "Saved!",
                 "<app_name> is saved."
             ]
+        },
+        "start_dictation": {
+            "patterns": [
+                [
+                    "start",
+                    "writing"
+                ],
+                [
+                    "write",
+                    "text"
+                ],
+                [
+                    "start",
+                    "dictation"
+                ],
+                [
+                    "start",
+                    "dictating"
+                ]
+            ],
+            "start_responses": [
+                "You can start dictating"
+            ],
+            "stop_responses": [
+                "Dictation stopped!",
+                "Stopped!"
+            ]
         }
     }
 }

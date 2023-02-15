@@ -43,6 +43,36 @@
         ],
         "type": "action"
     },
+    "increase_font": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "]",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "increase font",
+            "increase font size"
+        ],
+        "type": "action"
+    },
+    "decrease_font": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "[",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "decrease font",
+            "decrease font size"
+        ],
+        "type": "action"
+    },
     "edit_text": {
         "execute": [
             "key_down",
@@ -191,7 +221,7 @@
             "back space",
             "delete"
         ],
-        "type": "key"
+        "type": "action"
     },
     "open_font_editor": {
         "execute": [
@@ -246,6 +276,30 @@
             "change font"
         ],
         "speak": "What should be the new font?",
+        "type": "complex_action"
+    },
+    "write_title": {
+        "steps": [
+            "execute",
+            "align_center",
+            "increase_font",
+            "increase_font",
+            "bold",
+            "listen_word",
+            "execute",
+            "decrease_font",
+            "decrease_font",
+            "bold",
+            "align_left"
+        ],
+        "execute": [
+            "press",
+            "enter"
+        ],
+        "pattern": [
+            "new title"
+        ],
+        "speak": "What should be the title?",
         "type": "complex_action"
     }
 }

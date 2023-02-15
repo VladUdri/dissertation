@@ -8,12 +8,16 @@ class KeyAction:
         pass
 
     def execute(self, actions):
-        print(actions)
-        for index in range(0, len(actions), 2):
-            if actions[index] == 'press':
-                pg.press(actions[index + 1])
-            elif actions[index] == 'key_down':
-                pg.keyDown(actions[index + 1])
-            elif actions[index] == 'key_up':
-                pg.keyUp(actions[index + 1])
-            # sleep(0.5)
+        try:
+            for index in range(0, len(actions), 2):
+                if actions[index] == 'press':
+                    pg.press(actions[index + 1])
+                elif actions[index] == 'key_down':
+                    pg.keyDown(actions[index + 1])
+                elif actions[index] == 'key_up':
+                    pg.keyUp(actions[index + 1])
+                # sleep(0.5)
+            return True
+        except Exception as e:
+            print('exception', e)
+            return False
