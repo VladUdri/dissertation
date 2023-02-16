@@ -7,6 +7,7 @@ from commands.save import Save
 from commands.vosk_dictation import VoskDictation
 from commands.brightness import Brightness
 from commands.volume import Volume
+from commands.new_calendar_event import NewEvent
 
 
 class CommandInterpretor:
@@ -27,6 +28,7 @@ class CommandInterpretor:
             'volume_up': Volume(self.app, 'up'),
             'volume_down': Volume(self.app, 'down'),
             'volume_value': Volume(self.app, 'value'),
+            'create_event': NewEvent(self.app)
         }
 
     def process_command(self, command):

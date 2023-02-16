@@ -23,6 +23,8 @@ class Outlook(IApplications):
         sleep(0.1)
 
     def send_email(self):
+        self.key_action.execute(['key_down', 'ctrl', 'press', '1',
+                                 'key_up', 'ctrl'])
         self.create_new()
         sleep(1)
         self.speak.simple_speak(
@@ -51,3 +53,54 @@ class Outlook(IApplications):
         VoskDictation().execute()
         sleep(1)
         # self.send()
+
+    def open_calendar(self):
+        self.key_action.execute(['key_down', 'ctrl', 'press', '2',
+                                 'key_up', 'ctrl'])
+
+    def create_event(self):
+        # if self._state != 'closed':
+        focus_window(self._app_name)
+        sleep(0.5)
+        self.open_calendar()
+        sleep(0.5)
+        self.create_new()
+        self.speak.simple_speak('What should be the title of the event?')
+        title = VoskModell().listen_for_commands(True)
+        pg.write(title)
+        self.key_action.execute(['press', 'tab'])
+        self.speak.simple_speak(
+            'What should be the starting date of the event?')
+        starting_date = VoskModell().listen_for_commands(True)
+        pg.write(starting_date)
+        self.key_action.execute(['press', 'tab', 'press', 'tab'])
+        self.speak.simple_speak(
+            'What should be the starting time of the event?')
+        starting_time = VoskModell().listen_for_commands(True)
+        pg.write(starting_time)
+
+        self.key_action.execute(['press', 'tab'])
+        self.speak.simple_speak(
+            'What should the the ending date of the event?')
+        ending_date = VoskModell().listen_for_commands(True)
+        pg.write(ending_date)
+        self.key_action.execute(['press', 'tab', 'press', 'tab'])
+        self.speak.simple_speak(
+            'What should be the ending time of the event?')
+        ending_time = VoskModell().listen_for_commands(True)
+        pg.write(ending_time)
+
+        self.key_action.execute(
+            ['press', 'tab', 'press', 'tab', 'press', 'tab', 'press', 'tab', 'press', 'tab'])
+        self.speak.simple_speak(
+            'What should be the location the event?')
+        location = VoskModell().listen_for_commands(True)
+        pg.write(location)
+        sleep(0.5)
+        self.key_action.execute(['press', 'enter', 'press', 'tab'])
+        self.speak.simple_speak(
+            'Please tell me more about the event!')  # todo stop word
+        VoskDictation().execute()
+
+        self.key_action.execute(
+            ['key_down', 'alt', 'press', 's', 'key_up', 'alt'])

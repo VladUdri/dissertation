@@ -24,12 +24,7 @@ if __name__ == '__main__':
     # time.sleep(2)
     # CommandInterpretor(c).process_command("brightness_down")
     # time.sleep(2)
-    CommandInterpretor(c).process_command("volume_up")
-    time.sleep(2)
-    CommandInterpretor(c).process_command("volume_down")
-    time.sleep(2)
-    CommandInterpretor(c).process_command("volume_value")
-    # CommandInterpretor(o).process_command("send_email")
+    CommandInterpretor(o).process_command("create_event")
 
     # CommandInterpretor(n).process_command("create_new_notepad")
     # time.sleep(2)

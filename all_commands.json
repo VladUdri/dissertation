@@ -252,6 +252,26 @@
                 "Volume set",
                 "Done"
             ]
+        },
+        "new_event": {
+            "patterns": [
+                [
+                    "create",
+                    "new",
+                    "event"
+                ],
+                [
+                    "add",
+                    "calendar"
+                ]
+            ],
+            "start_responses": [
+                "Creating new event"
+            ],
+            "stop_responses": [
+                "Event created",
+                "Done"
+            ]
         }
     }
 }
