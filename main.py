@@ -10,7 +10,7 @@ from word2number import w2n
 from speak import Speak
 from notepad import Notepad
 from outlook import Outlook
-
+from computer_actions import ComputerActions
 if __name__ == '__main__':
     w = Word('word', 'new_created')
     n = Notepad('notepad', 'closed')
@@ -18,13 +18,21 @@ if __name__ == '__main__':
     # Speak().simple_speak('hello')
     # CommandInterpretor(w).process_command("open_app")
     # CommandInterpretor(w).process_command("create_new_word")
-    print(o._state)
-    CommandInterpretor(o).process_command("open_app")
+    # print(o._state)
+    c = ComputerActions()
+    # CommandInterpretor(c).process_command("brightness_up")
+    # time.sleep(2)
+    # CommandInterpretor(c).process_command("brightness_down")
+    # time.sleep(2)
+    CommandInterpretor(c).process_command("volume_up")
     time.sleep(2)
-    CommandInterpretor(o).process_command("send_email")
+    CommandInterpretor(c).process_command("volume_down")
+    time.sleep(2)
+    CommandInterpretor(c).process_command("volume_value")
+    # CommandInterpretor(o).process_command("send_email")
 
     # CommandInterpretor(n).process_command("create_new_notepad")
     # time.sleep(2)
     # CommandInterpretor(n).process_command("save_as_notepad")
-    print(o._state)
+    # print(o._state)
     # VoskDictation().transcribe()

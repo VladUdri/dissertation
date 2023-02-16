@@ -138,6 +138,120 @@
                 "Email sent!",
                 "The email is sent!"
             ]
+        },
+        "brightness_up": {
+            "patterns": [
+                [
+                    "brightness",
+                    "up"
+                ],
+                [
+                    "increase",
+                    "brightness"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Brightness set",
+                "Done"
+            ]
+        },
+        "brightness_down": {
+            "patterns": [
+                [
+                    "brightness",
+                    "down"
+                ],
+                [
+                    "decrease",
+                    "brightness"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Brightness set",
+                "Done"
+            ]
+        },
+        "brightness_value": {
+            "patterns": [
+                [
+                    "change",
+                    "brightness"
+                ],
+                [
+                    "new",
+                    "brightness"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Brightness set",
+                "Done"
+            ]
+        },
+        "volume_up": {
+            "patterns": [
+                [
+                    "volume",
+                    "up"
+                ],
+                [
+                    "volume",
+                    "brightness"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "VOlume set",
+                "Done"
+            ]
+        },
+        "volume_down": {
+            "patterns": [
+                [
+                    "volume",
+                    "down"
+                ],
+                [
+                    "volume",
+                    "brightness"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Volume set",
+                "Done"
+            ]
+        },
+        "volume_value": {
+            "patterns": [
+                [
+                    "change",
+                    "volume"
+                ],
+                [
+                    "set",
+                    "volume"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Volume set",
+                "Done"
+            ]
         }
     }
 }

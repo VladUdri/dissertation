@@ -1,0 +1,82 @@
+Date : 2023-02-16 11:24:12
+Directory : d:\pythonProject1
+Total : 42 files,  1620 codes, 73 comments, 201 blanks, all 1894 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Python     |         26 |      1,034 |         72 |        194 |      1,300 |
+| JSON       |          2 |        505 |          0 |          0 |        505 |
+| XML        |          9 |         62 |          0 |          2 |         64 |
+| Properties |          4 |         18 |          1 |          4 |         23 |
+| Markdown   |          1 |          1 |          0 |          1 |          2 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                               | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                  |         42 |      1,620 |         73 |        201 |      1,894 |
+| . (Files)                                                                                          |         19 |      1,217 |         47 |        138 |      1,402 |
+| .idea                                                                                              |          7 |         60 |          0 |          0 |         60 |
+| .idea (Files)                                                                                      |          5 |         35 |          0 |          0 |         35 |
+| .idea\inspectionProfiles                                                                           |          2 |         25 |          0 |          0 |         25 |
+| assets                                                                                             |          6 |         20 |          1 |          6 |         27 |
+| assets\vosk-model-en-us-daanzu-20200905-lgraph                                                     |          6 |         20 |          1 |          6 |         27 |
+| assets\vosk-model-en-us-daanzu-20200905-lgraph\conf                                                |          2 |         16 |          0 |          2 |         18 |
+| assets\vosk-model-en-us-daanzu-20200905-lgraph\graph                                               |          2 |          2 |          0 |          2 |          4 |
+| assets\vosk-model-en-us-daanzu-20200905-lgraph\graph\phones                                        |          2 |          2 |          0 |          2 |          4 |
+| assets\vosk-model-en-us-daanzu-20200905-lgraph\ivector                                             |          2 |          2 |          1 |          2 |          5 |
+| commands                                                                                           |          9 |        238 |         22 |         50 |        310 |
+| images                                                                                             |          1 |         85 |          3 |          7 |         95 |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                           | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\pythonProject1\.idea\inspectionProfiles\Project_Default.xml                                     | XML        |         19 |          0 |          0 |         19 |
+| d:\pythonProject1\.idea\inspectionProfiles\profiles_settings.xml                                   | XML        |          6 |          0 |          0 |          6 |
+| d:\pythonProject1\.idea\misc.xml                                                                   | XML        |          4 |          0 |          0 |          4 |
+| d:\pythonProject1\.idea\modules.xml                                                                | XML        |          8 |          0 |          0 |          8 |
+| d:\pythonProject1\.idea\other.xml                                                                  | XML        |          6 |          0 |          0 |          6 |
+| d:\pythonProject1\.idea\pythonProject1.iml                                                         | XML        |         10 |          0 |          0 |         10 |
+| d:\pythonProject1\.idea\vcs.xml                                                                    | XML        |          7 |          0 |          0 |          7 |
+| d:\pythonProject1\README.md                                                                        | Markdown   |          1 |          0 |          1 |          2 |
+| d:\pythonProject1\all_commands.json                                                                | JSON       |        200 |          0 |          0 |        200 |
+| d:\pythonProject1\application.py                                                                   | Python     |         49 |          8 |          9 |         66 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\conf\mfcc.conf                    | Properties |          6 |          0 |          1 |          7 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\conf\model.conf                   | Properties |         10 |          0 |          1 |         11 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\graph\phones\optional_silence.csl | XML        |          1 |          0 |          1 |          2 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\graph\phones\silence.csl          | XML        |          1 |          0 |          1 |          2 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\ivector\online_cmvn.conf          | Properties |          0 |          1 |          1 |          2 |
+| d:\pythonProject1\assets\vosk-model-en-us-daanzu-20200905-lgraph\ivector\splice.conf               | Properties |          2 |          0 |          1 |          3 |
+| d:\pythonProject1\comlpex_actions.py                                                               | Python     |         26 |          3 |          4 |         33 |
+| d:\pythonProject1\command.py                                                                       | Python     |          8 |          0 |          5 |         13 |
+| d:\pythonProject1\command_interpretor.py                                                           | Python     |         24 |          0 |          4 |         28 |
+| d:\pythonProject1\commands\brightness.py                                                           | Python     |         24 |          0 |          5 |         29 |
+| d:\pythonProject1\commands\close.py                                                                | Python     |         12 |          4 |          4 |         20 |
+| d:\pythonProject1\commands\new_notepad.py                                                          | Python     |         16 |          1 |          4 |         21 |
+| d:\pythonProject1\commands\new_word.py                                                             | Python     |         17 |         15 |          7 |         39 |
+| d:\pythonProject1\commands\open.py                                                                 | Python     |         17 |          0 |          4 |         21 |
+| d:\pythonProject1\commands\save.py                                                                 | Python     |         17 |          0 |          4 |         21 |
+| d:\pythonProject1\commands\send_email.py                                                           | Python     |         17 |          0 |          4 |         21 |
+| d:\pythonProject1\commands\vosk_dictation.py                                                       | Python     |        101 |          2 |         14 |        117 |
+| d:\pythonProject1\commands\write.py                                                                | Python     |         17 |          0 |          4 |         21 |
+| d:\pythonProject1\computer_actions.py                                                              | Python     |         58 |          0 |         12 |         70 |
+| d:\pythonProject1\convert_text.py                                                                  | Python     |         48 |         14 |         11 |         73 |
+| d:\pythonProject1\execution.py                                                                     | Python     |         89 |          3 |         21 |        113 |
+| d:\pythonProject1\images\vosk_voice.py                                                             | Python     |         85 |          3 |          7 |         95 |
+| d:\pythonProject1\key_action.py                                                                    | Python     |         18 |          2 |          4 |         24 |
+| d:\pythonProject1\main.py                                                                          | Python     |         20 |          8 |          3 |         31 |
+| d:\pythonProject1\notepad.py                                                                       | Python     |         44 |          2 |          7 |         53 |
+| d:\pythonProject1\outlook.py                                                                       | Python     |         47 |          1 |          6 |         54 |
+| d:\pythonProject1\speak.py                                                                         | Python     |         50 |          0 |         10 |         60 |
+| d:\pythonProject1\utils.py                                                                         | Python     |         32 |          0 |          7 |         39 |
+| d:\pythonProject1\vost_text.py                                                                     | Python     |         77 |          4 |         12 |         93 |
+| d:\pythonProject1\word.py                                                                          | Python     |         77 |          2 |         14 |         93 |
+| d:\pythonProject1\write_commands.json                                                              | JSON       |        305 |          0 |          0 |        305 |
+| d:\pythonProject1\write_text.py                                                                    | Python     |         44 |          0 |          8 |         52 |
+| Total                                                                                              |            |      1,620 |         73 |        201 |      1,894 |
++----------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

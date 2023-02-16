@@ -1,34 +1,57 @@
 import screen_brightness_control as sbc
 from time import sleep
 import pyautogui as pg
+from vost_text import VoskModell
+from word2number import w2n
+from speak import Speak
+from application import IApplications
 
 
-class ComputerActions:
-    def change_brightness_to(self, value):
-        sbc.set_brightness(value)
+class ComputerActions(IApplications):
+    def __init__(self, app_name='computer', state=''):
+        super().__init__(app_name, state)
+
+    def create_new(self):
+        return super().create_new()
+
+    def brightness_value(self):
+        Speak().simple_speak('What should be the brightness value?')
+        value = VoskModell().listen_for_commands(True)
+        int_value = w2n.word_to_num(value)
+        sbc.set_brightness(int_value)
         print('Brightness changed to ' + value + '!')
+        return True
 
     def brightness_down(self):
         current_value = sbc.get_brightness()
         if current_value[0] == 0:
+            Speak().simple_speak('Brightness value is already at minimum')
             print('Brightness value is already at min')
+            return False
         else:
             sbc.set_brightness(current_value[0] - 10)
             sleep(1)
             print('Brightness down!')
+            return True
 
     def brightness_up(self):
         current_value = sbc.get_brightness()
         if current_value[0] == 100:
             print('Brightness value is already at max')
+            Speak().simple_speak('Brightness value is already at maximum')
+            return False
         else:
             sbc.set_brightness(current_value[0] + 10)
             sleep(1)
             print('Brightness up!')
+            return True
 
-    def change_volume_to(self, value):
+    def volume_value(self):
+        Speak().simple_speak('What should be the volume value?')
+        value = VoskModell().listen_for_commands(True)
         pg.press('volumedown', presses=50)
-        pg.press('volumeup', presses=int(value / 2))
+        int_value = w2n.word_to_num(value)
+        pg.press('volumeup', presses=int(int_value / 2))
         print('Volume set at ' + value + '%!')
 
     def volume_up(self):
@@ -36,18 +59,11 @@ class ComputerActions:
         sleep(0.2)
         if pg.locateCenterOnScreen('img\\volume_max.png'):
             print('Maximum volume')
+            Speak().simple_speak('Volume is at maximum!')
 
     def volume_down(self):
         pg.press('volumedown', presses=5)
         sleep(0.2)
         if pg.locateCenterOnScreen('img\\volume_zero.png'):
             print('Minimum volume')
-
-    def next_track(self):
-        pg.press('nexttrack')
-
-    def prev_track(self):
-        pg.press('prevtrack')
-
-    def play_pause(self):
-        pg.press('playpause')
+            Speak().simple_speak('Volume is at minimum!')

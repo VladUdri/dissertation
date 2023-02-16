@@ -20,12 +20,12 @@ class Speak:
 
 
     def speak(self, action, app, start):
-        text = self.__decode_speech_feedback(action, app._app_name, start)
+        text = self._decode_speech_feedback(action, app._app_name, start)
         self.engine.say(text)
         self.engine.runAndWait()
         return True
 
-    def __decode_speech_feedback(self, action, last_app, start):
+    def _decode_speech_feedback(self, action, last_app, start):
         with open('all_commands.json') as f:
             comm = json.load(f)
         if start == True:
@@ -40,11 +40,11 @@ class Speak:
             print('#todo')
 
     def speak_system(self, action, start):
-        text = self.__decode_speech_feedback_system(action, start)
+        text = self._decode_speech_feedback_system(action, start)
         self.engine.say(text)
         self.engine.runAndWait()
 
-    def __decode_speech_feedback_system(self, action, start):
+    def _decode_speech_feedback_system(self, action, start):
         with open('all_commands.json') as f:
             comm = json.load(f)
         if start == True:
