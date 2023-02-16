@@ -272,6 +272,26 @@
                 "Event created",
                 "Done"
             ]
+        },
+        "search": {
+            "patterns": [
+                [
+                    "search",
+                    "internet",
+                    "event"
+                ],
+                [
+                    "search",
+                    "google"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "This is what I found on Google",
+                "Here are the results"
+            ]
         }
     }
 }
