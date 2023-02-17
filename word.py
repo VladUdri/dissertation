@@ -3,11 +3,11 @@ import pyautogui as pg
 from time import sleep
 from utils import move_and_click, move_mouse, focus_window
 import time
-from vost_text import VoskModell
+from voicev import Voicev
 
 
 class Word(IApplications):
-    def __init__(self, app_name, state):
+    def __init__(self, app_name='word', state='closed'):
         super().__init__(app_name, state)
 
 # #########################################################################################
@@ -33,7 +33,7 @@ class Word(IApplications):
 
     def __save_replace(self):
         self.speak.simple_speak('What should be the name of the document?')
-        name = VoskModell().listen_for_commands(True)
+        name = Voicev().listen_for_commands(True)
 
         pg.write(name)
         sleep(1)
@@ -42,7 +42,7 @@ class Word(IApplications):
         if pg.locateOnScreen('images\save_replace.png', grayscale=True) is not None:
             self.speak.simple_speak(
                 'This already exists! Do you want to replace it?')
-            response = VoskModell().listen_for_commands(True)
+            response = Voicev().listen_for_commands(True)
 
             if response == 'yes':
                 self.key_action.execute(['press', 'enter'])

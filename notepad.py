@@ -3,7 +3,7 @@ import pyautogui as pg
 from time import sleep
 from utils import move_and_click, move_mouse, focus_window
 import time
-from vost_text import VoskModell
+from voicev import Voicev
 
 
 class Notepad(IApplications):
@@ -31,7 +31,7 @@ class Notepad(IApplications):
 
     def _save_replace(self):
         self.speak.simple_speak('What should be the name of the note?')
-        name = VoskModell().listen_for_commands(True)
+        name = Voicev().listen_for_commands(True)
         pg.write(name)
         sleep(1)
         self.key_action.execute(['press', 'enter'])
@@ -39,7 +39,7 @@ class Notepad(IApplications):
         if pg.locateOnScreen('images\warning.png') is not None:
             self.speak.simple_speak(
                 'This already exists! Do you want to replace it?')
-            response = VoskModell().listen_for_commands(True)
+            response = Voicev().listen_for_commands(True)
             if response == 'yes':
                 self.key_action.execute(['press', 'left', 'press', 'enter'])
             elif response == 'no':

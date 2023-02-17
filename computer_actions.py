@@ -1,7 +1,7 @@
 import screen_brightness_control as sbc
 from time import sleep
 import pyautogui as pg
-from vost_text import VoskModell
+from voicev import Voicev
 from word2number import w2n
 from speak import Speak
 from application import IApplications
@@ -16,7 +16,7 @@ class ComputerActions(IApplications):
 
     def brightness_value(self):
         Speak().simple_speak('What should be the brightness value?')
-        value = VoskModell().listen_for_commands(True)
+        value = Voicev().listen_for_commands(True)
         int_value = w2n.word_to_num(value)
         sbc.set_brightness(int_value)
         print('Brightness changed to ' + value + '!')
@@ -48,7 +48,7 @@ class ComputerActions(IApplications):
 
     def volume_value(self):
         Speak().simple_speak('What should be the volume value?')
-        value = VoskModell().listen_for_commands(True)
+        value = Voicev().listen_for_commands(True)
         pg.press('volumedown', presses=50)
         int_value = w2n.word_to_num(value)
         pg.press('volumeup', presses=int(int_value / 2))

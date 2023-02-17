@@ -9,11 +9,11 @@ from commands.brightness import Brightness
 from commands.volume import Volume
 from commands.new_calendar_event import NewEvent
 from commands.search import Search
-
+from google import Google
 
 class CommandInterpretor:
-    def __init__(self, app) -> None:
-        self.app = app
+    def __init__(self) -> None:
+        self.app = Google()
         self.commands = {
             'open_app': Open(self.app),
             'close_app': Close(self.app),

@@ -3,7 +3,7 @@ import pyautogui as pg
 from time import sleep
 from utils import move_and_click, move_mouse, focus_window
 import time
-from vost_text import VoskModell
+from voicev import Voicev
 import webbrowser
 
 
@@ -19,7 +19,7 @@ class Google(IApplications):
         url = 'https://www.google.com/search?q='
         self.speak.simple_speak(
             'What do you want to search?')
-        res = VoskModell().listen_for_commands(True)
+        res = Voicev().listen_for_commands(True)
         url += res
         webbrowser.get().open(url)
 

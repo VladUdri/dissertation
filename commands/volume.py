@@ -1,4 +1,4 @@
-from command import ICommand
+from commands.command import ICommand
 from speak import Speak
 from computer_actions import ComputerActions
 
