@@ -1,12 +1,10 @@
 import pytesseract
 import time
-import os
 import json
 import sys
 import queue
 import sounddevice as sd
 import vosk
-from init_voice import VoiceInit
 
 vosk.SetLogLevel(-1)
 
@@ -25,10 +23,7 @@ class Voicev():
 
 #######################################################################
     def listen_for_commands(self, one_time=False):
-        # rec, samplerate = self.__setUp()
         from main import REC, SAMPLERATE
-        print(REC)
-        print(SAMPLERATE)
         try:
 
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,

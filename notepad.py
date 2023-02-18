@@ -7,8 +7,8 @@ from voicev import Voicev
 
 
 class Notepad(IApplications):
-    def __init__(self, app_name, state):
-        super().__init__(app_name, state)
+    def __init__(self, _app_name='notepad', state='closed'):
+        super().__init__(_app_name, state)
 
 # #########################################################################################
     def create_new(self):

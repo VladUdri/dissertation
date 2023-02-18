@@ -45,20 +45,10 @@ class VoiceInterpretor():
         if action is not None:
             app = self.get_app(text_to_compare)
             print(app)
-            if app is not None:
-                last_app = app
-            else:
-                if last_app != '':
-                    app = last_app
-                else:
-                    # todo maybe something else
-                    # speak(engine=engine,
-                    #       text='Please say the command again, but specify the app!')
-                    return
         else:
             # speak(engine=engine, text='Sorry! I don\'t know that.')
             return
-        CommandInterpretor().process_command(action)
+        CommandInterpretor(app).process_command(action)
         # self.startup_app(app)
         # res = self.execute_app(app=app, action=action, engine=engine)
         # if res == False:
