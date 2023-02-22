@@ -32,11 +32,13 @@ class SaveJson:
             json.dump(self.json_data, f)
 
     def execute(self):
-        action_list = self.create_action_list()
-        print(self.json_data)
-        self.json_data[self.data['voice_command']] = {}
-        self.json_data[self.data['voice_command']]['execute'] = action_list
-        self.json_data[self.data['voice_command']
-                       ]['apps'] = self.data['apps_command']
-        self.__write_json()
-        print(self.json_data)
+        try:
+            action_list = self.create_action_list()
+            self.json_data[self.data['voice_command']] = {}
+            self.json_data[self.data['voice_command']]['execute'] = action_list
+            self.json_data[self.data['voice_command']
+                           ]['apps'] = self.data['apps_command']
+            self.__write_json()
+            return True
+        except:
+            return False
