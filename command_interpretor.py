@@ -9,12 +9,13 @@ from commands.brightness import Brightness
 from commands.volume import Volume
 from commands.new_calendar_event import NewEvent
 from commands.search import Search
-from google import Google
-from word import Word
-from outlook import Outlook
-from computer_actions import ComputerActions
-from notepad import Notepad
-
+from apps.google import Google
+from apps.word import Word
+from apps.outlook import Outlook
+from apps.computer_actions import ComputerActions
+from apps.notepad import Notepad
+from commands.interface import Interface
+from commands.custom_command import CustomCommand
 
 class CommandInterpretor:
 
@@ -23,12 +24,14 @@ class CommandInterpretor:
         'outlook': Outlook(),
         'google': Google(),
         'notepad': Notepad(),
-        'computer': ComputerActions()
+        'computer': ComputerActions(),
+        'custom': ''
     }
 
-    def __init__(self, app) -> None:
+    def __init__(self, app, custom='') -> None:
         self.app = ''
         self.last_app = ''
+        self.custom = custom
         self.startup_app(app)
         self.commands = {
             'open_app': Open(self.start_apps[self.app]),
@@ -46,7 +49,9 @@ class CommandInterpretor:
             'volume_down': Volume(self.start_apps[self.app], 'down'),
             'volume_value': Volume(self.start_apps[self.app], 'value'),
             'create_event': NewEvent(self.start_apps[self.app]),
-            'search': Search(self.start_apps[self.app])
+            'search': Search(self.start_apps[self.app]),
+            'run_interface': Interface(self.start_apps[self.app]),
+            'custom': CustomCommand(self.start_apps[self.app], custom)
         }
 
     def process_command(self, command):

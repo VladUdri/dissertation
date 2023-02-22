@@ -1,6 +1,4 @@
 import pytesseract
-import time
-import os
 import json
 import sys
 import queue
@@ -14,30 +12,11 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 
 
 class VoiceCommandListener():
-    def __init__(self, lang='en', mode='transcription', safety_word='stop listening'):
+    def __init__(self, safety_word='stop listening'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()
         self.previous_line = ""
-        self.previous_length = 0
-        self.mode = mode
         self.safety_word = safety_word
-        self.lang = lang
-        self.rec = ''
-        self.samplerate = ''
-
-    def __setUp(self):
-
-        if not os.path.exists(self.model_path):
-            print(r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
-            print(f"and unpack into {self.model_path}.")
-        # print(self.model_path)
-        device_info = sd.query_devices(kind='input')
-        samplerate = int(device_info['default_samplerate'])
-        model = vosk.Model(self.model_path)
-        rec = vosk.KaldiRecognizer(model, samplerate)
-        self.rec = rec
-        return rec, samplerate
-
 
 #######################################################################
 
@@ -50,7 +29,6 @@ class VoiceCommandListener():
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
                                    callback=self.__callback):
 
-                initial = time.perf_counter()
                 fin = new_fin = ''
                 listening = True
                 while True:

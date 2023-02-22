@@ -1,5 +1,5 @@
-from interface import AppInt
-# from voice_interpretor import VoiceInterpretor
+# from app_interface import AppInt
+from voice_interpretor import VoiceInterpretor
 # from voice_commands_listener import VoiceCommandListener
 # from speak import Speak
 # from voicev import Voicev
@@ -14,10 +14,10 @@ if __name__ == '__main__':
     # VoiceInit().setUp()
     # print(REC)
     # res = VoiceCommandListener().listen_for_commands()
-    # res = VoiceInterpretor()
-    # res.execute('open microsoft word')
+    res = VoiceInterpretor()
+    res.execute('select all')
 
     # except Exception as e:
     # print('exception', e)
     # todo add error speak
-    AppInt().run()
+    # AppInt().run()

@@ -23,7 +23,7 @@ class VoskDictation():
         self.safety_word = safety_word
         self.lang = lang
         self.rec = ""
-        with open('write_commands.json') as f:
+        with open('jsons/write_commands.json') as f:
             self.write_comm = json.load(f)
         self.format = {}
         self.key_action = KeyAction()

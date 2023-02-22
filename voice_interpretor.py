@@ -12,8 +12,10 @@ start_apps = {}
 
 class VoiceInterpretor():
     def __init__(self) -> None:
-        with open('all_commands.json') as f:
+        with open('jsons/all_commands.json') as f:
             self.comm = json.load(f)
+        with open('jsons/custom_commands.json') as g:
+            self.custom_comm = json.load(g)
 
     def get_app(self, text):
         for word in text.split(' '):
@@ -28,10 +30,11 @@ class VoiceInterpretor():
                     return key
         return None
 
-    def execute_app(self, app, action, engine):
-        if action not in default_apps[app]:
-            return False
-        self.default_actions(start_apps[app], action, app, engine)
+    def search_custom(self, text):
+        for key in self.custom_comm:
+            if key == text:
+                return key
+        return None
 
     def execute(self, phrase):
         convertion = ConvertText(phrase)
@@ -41,14 +44,19 @@ class VoiceInterpretor():
         print(text_to_compare)
 
         action = self.search_str(text_to_compare)
+        custom = ''
         print(action)
         if action is not None:
             app = self.get_app(text_to_compare)
             print(app)
         else:
             # speak(engine=engine, text='Sorry! I don\'t know that.')
-            return
-        CommandInterpretor(app).process_command(action)
+            custom = self.search_custom(phrase)
+            if custom is not None:
+                app = action = 'custom'
+            else:
+                return
+        CommandInterpretor(app, custom).process_command(action)
         # self.startup_app(app)
         # res = self.execute_app(app=app, action=action, engine=engine)
         # if res == False:

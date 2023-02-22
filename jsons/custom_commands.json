@@ -1,0 +1,13 @@
+{
+    "select all": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "a",
+            "key_up",
+            "ctrl"
+        ],
+        "apps": "word"
+    }
+}

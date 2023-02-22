@@ -2,11 +2,11 @@ import pyautogui as pg
 from time import sleep
 import json
 
-
+file_path = 'jsons/custom_commands.json'
 class SaveJson:
     def __init__(self, data) -> None:
         self.data = data
-        with open('custom_commands.json') as f:
+        with open(file_path) as f:
             self.json_data = json.load(f)
 
     def __translate(self, action):
@@ -28,7 +28,7 @@ class SaveJson:
         # todo do here
 
     def __write_json(self):
-        with open('custom_commands.json', 'w') as f:
+        with open(file_path, 'w') as f:
             json.dump(self.json_data, f)
 
     def execute(self):

@@ -280,6 +280,36 @@
                 "This is what I found on Google",
                 "Here are the results"
             ]
+        },
+        "run_interface": {
+            "patterns": [
+                [
+                    "open",
+                    "application",
+                    "interface"
+                ],
+                [
+                    "open",
+                    "app",
+                    "interface"
+                ],
+                [
+                    "add",
+                    "new",
+                    "commands"
+                ],
+                [
+                    "add",
+                    "new",
+                    "shortcuts"
+                ]
+            ],
+            "start_responses": [
+                "Opening applicaiton interface"
+            ],
+            "stop_responses": [
+                "Application interface closed"
+            ]
         }
     }
 }
