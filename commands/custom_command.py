@@ -17,10 +17,10 @@ class CustomCommand(ICommand):
         try:
             # speaker.speak('new_event', self.app, True)
             # if self.app._state == 'open':
-            KeyAction().execute(self.custom_comm[self.custom]['execute'])
+            KeyAction().execute(self.custom_comm[self.custom])
         except:
             # speaker.speak('new_event', self.app, None)
             print('exception custom')
         else:
             # speaker.speak('new_event', self.app, False)
-            print('exception custom')
+            print('done')

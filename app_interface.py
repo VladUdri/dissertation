@@ -21,10 +21,6 @@ class AppInt():
         self.text_voice_command = customtkinter.CTkEntry(self.frame, width=650, height=40,
                                                          border_width=1, placeholder_text="Add voice command",
                                                          text_color="silver")
-        self.apps_for_command = customtkinter.CTkEntry(self.frame, width=650, height=40,
-                                                       border_width=1,
-                                                       placeholder_text="Apps for which should work (optional)",
-                                                       text_color="silver")
         self.error = ''
         self.error_text = StringVar()
         self.error_label = customtkinter.CTkLabel(master=self.frame,
@@ -33,8 +29,7 @@ class AppInt():
                                                   height=25,
                                                   corner_radius=8)
 
-        self.data = {'voice_command': '',
-                     'apps_command': '', 'actions': [], 'keys': []}
+        self.data = {'voice_command': '', 'actions': [], 'keys': []}
 
     def get_val(self):
         if self.gl == 0:
@@ -100,17 +95,16 @@ class AppInt():
         self.error_label.grid_remove()
 
         for i in range(0, self.gl):
-            # if self.data['actions'][i] != None and self.data['keys'][i] != '':
             self.data['actions'][i] = self.checkboxes[i].get()
             self.data['keys'][i] = self.textboxes[i].get()
         self.data['voice_command'] = self.text_voice_command.get()
-        self.data['apps_command'] = self.apps_for_command.get()
 
         if len(self.data['actions']) == 0 or len(self.data['keys']) == 0 or self.data['actions'][0] == '' or self.data['keys'][0] == '' or self.data['voice_command'] == '':
             self.error = 'You must complete the field'
         if self.error != '':
             self.refresh()
             return
+        print(self.data)
         res = SaveJson(self.data).execute()
         print(res)
         if res == True:
@@ -122,7 +116,6 @@ class AppInt():
     def button_fnc(self):
         if self.gl > 0:
             self.data['voice_command'] = self.text_voice_command.get()
-            self.data['apps_command'] = self.apps_for_command.get()
         self.gl += 1
         self.add_checkbox()
         self.add_textbox()
@@ -151,9 +144,6 @@ class AppInt():
         if self.gl > 0:
             self.text_voice_command.grid(
                 row=0, column=0, padx=10, pady=10, columnspan=3)
-
-            self.apps_for_command.grid(
-                row=1, column=0, padx=10, pady=10, columnspan=3)
 
             self.new_button.grid(row=self.get_val(), column=2, padx=10,
                                  pady=10)

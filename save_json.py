@@ -3,6 +3,8 @@ from time import sleep
 import json
 
 file_path = 'jsons/custom_commands.json'
+
+
 class SaveJson:
     def __init__(self, data) -> None:
         self.data = data
@@ -19,8 +21,9 @@ class SaveJson:
     def create_action_list(self):
         action_list = []
         for i in range(0, len(self.data['actions'])):
-            action_list.append(self.__translate(self.data['actions'][i]))
-            action_list.append(self.data['keys'][i])
+            if self.data['actions'][i] != '' and self.data['keys'][i] != '':
+                action_list.append(self.__translate(self.data['actions'][i]))
+                action_list.append(self.data['keys'][i])
             if i > 0 and self.data['actions'][i - 1] == 'Keep pressed' and self.data['actions'][i] == 'Press':
                 action_list.append('key_up')
                 action_list.append(self.data['keys'][i - 1])
@@ -35,9 +38,7 @@ class SaveJson:
         try:
             action_list = self.create_action_list()
             self.json_data[self.data['voice_command']] = {}
-            self.json_data[self.data['voice_command']]['execute'] = action_list
-            self.json_data[self.data['voice_command']
-                           ]['apps'] = self.data['apps_command']
+            self.json_data[self.data['voice_command']] = action_list
             self.__write_json()
             return True
         except:

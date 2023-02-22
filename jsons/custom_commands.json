@@ -1,13 +1,16 @@
 {
-    "select all": {
-        "execute": [
-            "key_down",
-            "ctrl",
-            "press",
-            "a",
-            "key_up",
-            "ctrl"
-        ],
-        "apps": "word"
-    }
+    "copy all": [
+        "key_down",
+        "ctrl",
+        "press",
+        "a",
+        "key_up",
+        "ctrl",
+        "key_down",
+        "ctrl",
+        "press",
+        "c",
+        "key_up",
+        "ctrl"
+    ]
 }

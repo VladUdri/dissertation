@@ -15,9 +15,10 @@ if __name__ == '__main__':
     # print(REC)
     # res = VoiceCommandListener().listen_for_commands()
     res = VoiceInterpretor()
-    res.execute('select all')
+    res.execute('copy all')
 
     # except Exception as e:
     # print('exception', e)
     # todo add error speak
     # AppInt().run()
+    
