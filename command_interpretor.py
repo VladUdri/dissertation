@@ -2,6 +2,9 @@ from commands.open import Open
 from commands.close import Close
 from commands.new_word import NewWord
 from commands.new_notepad import NewNotepad
+from commands.outlook_event_add_title import OutlookEventAddTitle
+from commands.outlook_event_add_start_time import OutlookEventAddStartTime
+
 from commands.send_email import SendEmail
 from commands.save import Save
 from commands.vosk_dictation import VoskDictation
@@ -28,11 +31,15 @@ class CommandInterpretor:
         'custom': ''
     }
 
+
     def __init__(self, app, custom='') -> None:
-        self.app = ''
-        self.last_app = ''
+        self.app = app
+        if app is not None:
+            global last_app
+            last_app = app
+        print(last_app)
         self.custom = custom
-        self.startup_app(app)
+        self.startup_app(app, last_app)
         self.commands = {
             'open_app': Open(self.start_apps[self.app]),
             'close_app': Close(self.start_apps[self.app]),
@@ -49,6 +56,8 @@ class CommandInterpretor:
             'volume_down': Volume(self.start_apps[self.app], 'down'),
             'volume_value': Volume(self.start_apps[self.app], 'value'),
             'create_event': NewEvent(self.start_apps[self.app]),
+            'outlook_event_add_title': OutlookEventAddTitle(self.start_apps[self.app]),
+            'event_add_start_time': OutlookEventAddStartTime(self.start_apps[self.app]),
             'search': Search(self.start_apps[self.app]),
             'run_interface': Interface(self.start_apps[self.app]),
             'custom': CustomCommand(self.start_apps[self.app], custom)
@@ -60,10 +69,10 @@ class CommandInterpretor:
         else:
             print('not known')
 
-    def startup_app(self, app):
+    def startup_app(self, app, last_app):
         print(app)
         if app is not None:
-            self.last_app = self.app = app
+            last_app = self.app = app
         else:
-            if self.last_app != '':
-                self.app = self.last_app
+            if last_app != '':
+                self.app = last_app

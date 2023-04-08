@@ -242,11 +242,10 @@
                 "Done"
             ]
         },
-        "new_event": {
+        "create_event": {
             "patterns": [
                 [
                     "create",
-                    "new",
                     "event"
                 ],
                 [
@@ -259,6 +258,44 @@
             ],
             "stop_responses": [
                 "Event created",
+                "Done"
+            ]
+        },
+        "outlook_event_add_title": {
+            "patterns": [
+                [
+                    "add",
+                    "title"
+                ],
+                [
+                    "write",
+                    "title"
+                ]
+            ],
+            "start_responses": [
+                "What is the title"
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "event_add_start_time": {
+            "patterns": [
+                [
+                    "add",
+                    "start",
+                    "time"
+                ],
+                [
+                    "change",
+                    "start",
+                    "time"
+                ]
+            ],
+            "start_responses": [
+                "What is the start date"
+            ],
+            "stop_responses": [
                 "Done"
             ]
         },

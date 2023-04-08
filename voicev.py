@@ -29,7 +29,7 @@ class Voicev():
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
                                    callback=self.__callback):
 
-                initial = time.perf_counter()
+                # initial = time.perf_counter()
                 fin = new_fin = ''
                 listening = True
                 while True:

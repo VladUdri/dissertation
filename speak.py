@@ -26,7 +26,7 @@ class Speak:
         return True
 
     def _decode_speech_feedback(self, action, last_app, start):
-        with open('all_commands.json') as f:
+        with open('jsons/all_commands.json') as f:
             comm = json.load(f)
         if start == True:
             index = randint(
@@ -45,7 +45,7 @@ class Speak:
         self.engine.runAndWait()
 
     def _decode_speech_feedback_system(self, action, start):
-        with open('all_commands.json') as f:
+        with open('jsons/all_commands.json') as f:
             comm = json.load(f)
         if start == True:
             index = randint(
