@@ -41,14 +41,14 @@ class VoiceInterpretor():
         converted_text = convertion.process_text()
         # print(converted_text)
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
-        print('Voice_interpretor: text_to_compare = ', text_to_compare, '\n')
+        print('Voice_interpretor: text_to_compare = ', text_to_compare)
 
         action = self.search_str(text_to_compare)
         custom = ''
-        print('Voice_interpretor: action = ', action, '\n')
+        # print('Voice_interpretor: action = ', action, '\n')
         if action is not None:
             app = self.get_app(text_to_compare)
-            print('Voice_interpretor: app = ', app, '\n')
+            # print('Voice_interpretor: app = ', app, '\n')
         else:
             # speak(engine=engine, text='Sorry! I don\'t know that.')
             custom = self.search_custom(phrase)

@@ -16,6 +16,8 @@ class KeyAction:
                     pg.keyDown(actions[index + 1])
                 elif actions[index] == 'key_up':
                     pg.keyUp(actions[index + 1])
+                elif isinstance(actions[index], int):
+                    pg.press(keys=actions[index + 1], presses=actions[index])
                 # sleep(0.5)
             return True
         except Exception as e:

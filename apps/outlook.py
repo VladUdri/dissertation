@@ -56,38 +56,64 @@ class Outlook(IApplications):
                                  'key_up', 'ctrl'])
         sleep(0.5)
 
+    # added
     def add_title_event(self):
-        print('sunt aici!')
-        print(self._app_name)
-        # focus_window(self._app_name)
-
         self.key_action.execute(['key_down', 'alt', 'press', 'l',
                                  'key_up', 'alt'])
-        sleep(1)
         title = Voicev().listen_for_commands(True)
         pg.write(title)
         print('done')
 
+    # added
     def event_add_start_time(self):
         self.key_action.execute(['key_down', 'alt', 'press', 't',
                                  'key_up', 'alt'])
-        # sleep(1)
-        start_time = Voicev().listen_for_commands(True)
-        pg.write(start_time)
-
+        start_date = Voicev().listen_for_commands(True)
+        pg.write(start_date)
         self.key_action.execute(['press', 'enter'])
-        # sleep(1)
         start_time = Voicev().listen_for_commands(True)
         pg.write(start_time)
         self.key_action.execute(['press', 'enter'])
-
         print('done')
 
-    def add_end_time_event(self):
+    # added
+    def event_add_end_time(self):
         self.key_action.execute(['key_down', 'alt', 'press', 'd',
                                  'key_up', 'alt'])
-        sleep(1)
-        
+        end_date = Voicev().listen_for_commands(True)
+        pg.write(end_date)
+        self.key_action.execute(['press', 'enter'])
+        end_time = Voicev().listen_for_commands(True)
+        pg.write(end_time)
+        self.key_action.execute(['press', 'enter'])
+        print('done')
+
+    # added
+    def event_save(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 's',
+                                 'key_up', 'alt'])
+        print('done')
+
+    # added
+    def event_make_event_all_day(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'y',
+                                 'key_up', 'alt'])
+        print('done')
+
+    #
+    def event_make_event_all_day(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'y',
+                                 'key_up', 'alt'])
+        print('done')
+
+    def event_add_body(self):
+        print('sunt aici!!!!!!!!!!!!!!!!!!!!!')
+
+        self.key_action.execute(['key_down', 'alt', 'press', 'l',
+                                 'key_up', 'alt', 12, 'tab'])
+        pg.write('asdasdasdasdasd')
+
+        print('done')
 
     def create_event(self):
         # if self._state != 'closed':

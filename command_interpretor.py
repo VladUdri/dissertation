@@ -4,6 +4,10 @@ from commands.new_word import NewWord
 from commands.new_notepad import NewNotepad
 from commands.outlook_event_add_title import OutlookEventAddTitle
 from commands.outlook_event_add_start_time import OutlookEventAddStartTime
+from commands.outlook_event_add_end_time import OutlookEventAddEndTime
+from commands.outlook_event_make_event_all_day import OutlookEventMakeEventAllDay
+from commands.outlook_event_save import OutlookEventSave
+from commands.outlook_event_add_body import OutlookEventAddBody
 
 from commands.send_email import SendEmail
 from commands.save import Save
@@ -20,6 +24,7 @@ from apps.notepad import Notepad
 from commands.interface import Interface
 from commands.custom_command import CustomCommand
 
+
 class CommandInterpretor:
 
     start_apps = {
@@ -30,7 +35,6 @@ class CommandInterpretor:
         'computer': ComputerActions(),
         'custom': ''
     }
-
 
     def __init__(self, app, custom='') -> None:
         self.app = app
@@ -55,9 +59,15 @@ class CommandInterpretor:
             'volume_up': Volume(self.start_apps[self.app], 'up'),
             'volume_down': Volume(self.start_apps[self.app], 'down'),
             'volume_value': Volume(self.start_apps[self.app], 'value'),
+            # outlook - calendar
             'create_event': NewEvent(self.start_apps[self.app]),
             'outlook_event_add_title': OutlookEventAddTitle(self.start_apps[self.app]),
-            'event_add_start_time': OutlookEventAddStartTime(self.start_apps[self.app]),
+            'outlook_event_add_start_time': OutlookEventAddStartTime(self.start_apps[self.app]),
+            'outlook_event_add_end_time': OutlookEventAddEndTime(self.start_apps[self.app]),
+            'outlook_event_make_event_all_day': OutlookEventMakeEventAllDay(self.start_apps[self.app]),
+            'outlook_event_save': OutlookEventSave(self.start_apps[self.app]),
+            'outlook_event_add_body': OutlookEventAddBody(self.start_apps[self.app]),
+
             'search': Search(self.start_apps[self.app]),
             'run_interface': Interface(self.start_apps[self.app]),
             'custom': CustomCommand(self.start_apps[self.app], custom)
@@ -65,6 +75,7 @@ class CommandInterpretor:
 
     def process_command(self, command):
         if command in self.commands:
+            print('command: ', command)
             self.commands[command].execute()
         else:
             print('not known')

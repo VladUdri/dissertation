@@ -68,9 +68,6 @@
                 [
                     "save",
                     "document"
-                ],
-                [
-                    "save"
                 ]
             ],
             "start_responses": [
@@ -279,7 +276,7 @@
                 "Done"
             ]
         },
-        "event_add_start_time": {
+        "outlook_event_add_start_time": {
             "patterns": [
                 [
                     "add",
@@ -290,10 +287,109 @@
                     "change",
                     "start",
                     "time"
+                ],
+                [
+                    "edit",
+                    "start",
+                    "time"
                 ]
             ],
             "start_responses": [
                 "What is the start date"
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_event_add_end_time": {
+            "patterns": [
+                [
+                    "add",
+                    "end",
+                    "time"
+                ],
+                [
+                    "change",
+                    "end",
+                    "time"
+                ],
+                [
+                    "edit",
+                    "end",
+                    "time"
+                ]
+            ],
+            "start_responses": [
+                "What is the end date"
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_event_make_event_all_day": {
+            "patterns": [
+                [
+                    "make",
+                    "day"
+                ],
+                [
+                    "day",
+                    "event"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_event_save": {
+            "patterns": [
+                [
+                    "save",
+                    "event"
+                ],
+                [
+                    "press",
+                    "save",
+                    "continue"
+                ],
+                [
+                    "save",
+                    "continue"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_event_add_body": {
+            "patterns": [
+                [
+                    "add",
+                    "body"
+                ],
+                [
+                    "add",
+                    "body",
+                    "text"
+                ],
+                [
+                    "write",
+                    "body",
+                    "text"
+                ],
+                [
+                    "write",
+                    "body"
+                ]
+            ],
+            "start_responses": [
+                ""
             ],
             "stop_responses": [
                 "Done"
