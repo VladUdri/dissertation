@@ -4,7 +4,6 @@ import json
 from utils import speak
 from random import randint
 from command_interpretor import CommandInterpretor
-
 default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
 
 start_apps = {}
@@ -12,22 +11,33 @@ start_apps = {}
 
 class VoiceInterpretor():
     def __init__(self) -> None:
+        # todo vezi daca poti face sa nu citasca astia de fiecare data
         with open('jsons/all_commands.json') as f:
             self.comm = json.load(f)
         with open('jsons/custom_commands.json') as g:
             self.custom_comm = json.load(g)
+        with open('jsons/last_app/last_app.txt') as h:
+            self.last_app = h.readlines()
+            # print('last app: ', self.last_app)
 
     def get_app(self, text):
         for word in text.split(' '):
             if word in default_apps:
+                self.last_app = word
+                with open('jsons/last_app/last_app.txt', 'w') as h:
+                    h.write(self.last_app)
                 return word
-        return None
+        if isinstance(self.last_app, list):
+            return self.last_app[0]
+        return self.last_app
+        
 
-    def search_str(self, text):
-        for key in self.comm['default_commands']:
-            for i in range(0, len(self.comm['default_commands'][key]['patterns'])):
-                if all(substring in text.lower() for substring in self.comm['default_commands'][key]['patterns'][i]):
-                    return key
+    def search_str(self, text, app):
+        for key in self.comm:
+            for i in range(0, len(self.comm[key]['patterns'])):
+                if all(substring in text.lower() for substring in self.comm[key]['patterns'][i]):
+                    if app in self.comm[key]['apps'] or not self.comm[key]['apps']:
+                        return key
         return None
 
     def search_custom(self, text):
@@ -41,22 +51,23 @@ class VoiceInterpretor():
         converted_text = convertion.process_text()
         # print(converted_text)
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
-        print('Voice_interpretor: text_to_compare = ', text_to_compare)
-
-        action = self.search_str(text_to_compare)
+        # print('Voice_interpretor: text_to_compare = ', text_to_compare)
+        app = self.get_app(text_to_compare)
+        print('app: ', app)
         custom = ''
         # print('Voice_interpretor: action = ', action, '\n')
-        if action is not None:
-            app = self.get_app(text_to_compare)
+        action = self.search_str(text_to_compare, app)
+        print('action', action)
+        if action is None:
+            print('yep, e none')
             # print('Voice_interpretor: app = ', app, '\n')
-        else:
             # speak(engine=engine, text='Sorry! I don\'t know that.')
             custom = self.search_custom(phrase)
             if custom is not None:
                 app = action = 'custom'
             else:
                 return
-        CommandInterpretor(app, custom).process_command(action)
+        CommandInterpretor(app, self.last_app, custom).process_command(action)
         # self.startup_app(app)
         # res = self.execute_app(app=app, action=action, engine=engine)
         # if res == False:

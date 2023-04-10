@@ -10,11 +10,9 @@ class Save(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('save_as', self.app, True)
-            if self.app._state == 'new_created':
-                self.app.save_as()
+            self.app.save_as()
         except:
             speaker.speak('save_as', self.app, None)
             print('exception save')
-        else:
-            speaker.speak('save_as', self.app, False)
+        # else:
+            # speaker.speak('save_as', self.app, False)

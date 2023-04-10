@@ -15,47 +15,37 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 
 
 class VoskDictation():
-    def __init__(self, lang='en', mode='transcription', safety_word='stop dictating'):
-        self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
+    def __init__(self, safety_word='stop dictating'):
         self.q = queue.Queue()
         self.previous_line = ""
         self.previous_length = 0
         self.safety_word = safety_word
-        self.lang = lang
-        self.rec = ""
         with open('jsons/write_commands.json') as f:
             self.write_comm = json.load(f)
-        self.format = {}
         self.key_action = KeyAction()
         self.complex_action = ComplexAction()
         self.listening = True
 
-    def setUp(self):
-        if not os.path.exists(self.model_path):
-            print(r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
-            print(f"and unpack into {self.model_path}.")
-        # print(self.model_path)
-        device_info = sd.query_devices(kind='input')
-        samplerate = int(device_info['default_samplerate'])
-        model = vosk.Model(self.model_path)
-        rec = vosk.KaldiRecognizer(model, samplerate)
-        return rec, samplerate
-
     def execute(self):
-        rec, samplerate = self.setUp()
+        print('executing..................')
+        from main import REC, SAMPLERATE
+
         try:
 
-            with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=None, dtype='int16', channels=1,
+            with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
                                    callback=self._callback):
 
                 initial = time.perf_counter()
+
                 while True:
                     if self.listening == True:
                         data = self.q.get()
-                        if rec.AcceptWaveform(data):
-                            d = json.loads(rec.Result())
+                        if REC.AcceptWaveform(data):
+
+                            d = json.loads(REC.Result())
                         else:
-                            d = json.loads(rec.PartialResult())
+                            d = json.loads(REC.PartialResult())
+
                         for key in d.keys():
                             if d[key]:
                                 if d[key] != self.previous_line or key == 'text':

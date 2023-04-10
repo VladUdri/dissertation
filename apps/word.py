@@ -13,18 +13,14 @@ class Word(IApplications):
 # #########################################################################################
     def create_new(self):
         focus_window(self._app_name)
-        if self._state == 'open':
-            pg.press('enter')
-            sleep(1)
-            print('New doc created.')
-            self._state = 'new_created'
-            return True
-        elif self._state == 'new_created':
-            self.create_new_default()
-            sleep(1)
-            print('New doc created.')
-            return True
-        return False
+        self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
+                                 'key_up', 'ctrl'])
+
+    def word_create_new_blank(self):
+        focus_window(self._app_name)
+        self.key_action.execute(['press', 'alt', 'press', 'n',
+                                 'press', 'l'])
+        sleep(2)
 
     def save_as(self):
         self.key_action.execute(['press', 'alt', 'press', 'f',
@@ -65,7 +61,7 @@ class Word(IApplications):
         print('Changing font...')
         sleep(1)
         self.open_font_dialog()
-        font = pg.prompt(title='font')
+        font = Voicev().listen_for_commands(True)
         sleep(0.5)
         pg.write(font)
         sleep(0.5)

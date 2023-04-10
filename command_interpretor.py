@@ -30,6 +30,7 @@ from apps.computer_actions import ComputerActions
 from apps.notepad import Notepad
 from commands.interface import Interface
 from commands.custom_command import CustomCommand
+from commands.word_create_new_blank import WordCreateNewBlank
 
 
 class CommandInterpretor:
@@ -43,23 +44,26 @@ class CommandInterpretor:
         'custom': ''
     }
 
-    def __init__(self, app, custom='') -> None:
+    def __init__(self, app, last_app, custom='') -> None:
         self.app = app
-        if app is not None:
-            global last_app
-            last_app = app
-        print(last_app)
+        self.last_app = last_app
         self.custom = custom
-        self.startup_app(app, last_app)
+        self.startup_app(app, self.last_app)
         self.commands = {
             'open_app': Open(self.start_apps[self.app]),
             'close_app': Close(self.start_apps[self.app]),
+            
+            # word
             'create_new_word': NewWord(self.start_apps[self.app]),
+            'word_create_new_blank': WordCreateNewBlank(self.start_apps[self.app]),
             'save_as_word': Save(self.start_apps[self.app]),
             'start_dictation': VoskDictation(),
+
+
+            # notepad
             'create_new_notepad': NewNotepad(self.start_apps[self.app]),
-            'save_as_notepad': Save(self.start_apps[self.app]),
-            'send_email': SendEmail(self.start_apps[self.app]),
+            'notepad_save_as': Save(self.start_apps[self.app]),
+            # computer
             'brightness_up': Brightness(self.start_apps[self.app], 'up'),
             'brightness_down': Brightness(self.start_apps[self.app], 'down'),
             'brightness_value': Brightness(self.start_apps[self.app], 'value'),
@@ -80,7 +84,7 @@ class CommandInterpretor:
             'outlook_email_add_to': OutlookEmailAddTo(self.start_apps[self.app]),
             'outlook_email_add_cc': OutlookEmailAddCc(self.start_apps[self.app]),
             'outlook_email_add_body': OutlookEmailAddBody(self.start_apps[self.app]),
-            'outlook_email_add_send': OutlookEmailSend(self.start_apps[self.app]),
+            'send_email': SendEmail(self.start_apps[self.app]),
             # google search
             'search': Search(self.start_apps[self.app]),
             'google_wikipedia_search': GoogleWikipediaSearch(self.start_apps[self.app]),
@@ -99,7 +103,7 @@ class CommandInterpretor:
     def startup_app(self, app, last_app):
         print(app)
         if app is not None:
-            last_app = self.app = app
+            self.last_app = self.app = app
         else:
             if last_app != '':
-                self.app = last_app
+                self.app = self.last_app

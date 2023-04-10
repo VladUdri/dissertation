@@ -10,19 +10,10 @@ class Notepad(IApplications):
     def __init__(self, _app_name='notepad', state='closed'):
         super().__init__(_app_name, state)
 
-# #########################################################################################
     def create_new(self):
         focus_window(self._app_name)
-        if self._state == 'open':
-            self._state = "new_created"
-            return True
-        elif self._state == 'edited':
-            self.create_new_edited()
-            sleep(1)
-            self._state = "new_created"
-            print('New doc created.')
-            return True
-        return False
+        self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
+                                 'key_up', 'ctrl'])
 
     def save_as(self):
         self.key_action.execute(['press', 'alt', 'press', 'f',
@@ -49,4 +40,6 @@ class Notepad(IApplications):
     def create_new_edited(self):
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
                                  'key_up', 'ctrl'])
+
+                                 
         # #########################################################################################
