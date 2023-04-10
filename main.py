@@ -8,7 +8,7 @@ from init_voice import VoiceInit
 REC, SAMPLERATE = VoiceInit().setUp()
 
 global last_app
-last_app = ''
+last_app = 'google'
 
 if __name__ == '__main__':
     
@@ -20,20 +20,27 @@ if __name__ == '__main__':
     # print(REC)
     # res = VoiceCommandListener().listen_for_commands()
     res = VoiceInterpretor()
-    res.execute('open outlook')
-    res.execute('create event')
-    # print('sunt in start time')
-
-    # res.execute('add start time')
-    # print('sunt in end time')
-    sleep(5)
+    # res.execute('open outlook')
+    # res.execute('compose email outlook')
+    # sleep(5)
     # res.execute('add end time')
-    print('sunt in add body')
+    # print('SUNT IN add subject')
 
-    res.execute('add body text')
+    # res.execute('add subject')
+    # print('SUNT IN add recipient')
 
+    # res.execute('add recipient')
+    # print('SUNT IN add cc')
 
+    res.execute('computer decrease brightness')
+    res.execute('decrease brightness')
+    res.execute('decrease brightness')
+    res.execute('decrease brightness')
+    res.execute('decrease brightness')
 
+    # print('SUNT IN write email')
+
+    # res.execute('write email')
 
     # except Exception as e:
     # print('exception', e)

@@ -19,37 +19,67 @@ class Outlook(IApplications):
                                  'key_up', 'alt'])
         sleep(0.1)
 
-    def send_email(self):
-        self.key_action.execute(['key_down', 'ctrl', 'press', '1',
-                                 'key_up', 'ctrl'])
-        self.create_new()
-        sleep(1)
-        self.speak.simple_speak(
-            'Who do you want to send the email to?')
-        to = Voicev().listen_for_commands(True)
-        pg.write(to)
-        sleep(1)
-        pg.press('tab')
-        sleep(0.5)
-        pg.press('tab')
-        self.speak.simple_speak(
-            'Who shoud be as cc\'s')
-        cc = Voicev().listen_for_commands(True)
-        if cc != 'none' and cc != 'nobody':
-            pg.write(cc)
-        sleep(0.5)
-        pg.press('tab')
-        self.speak.simple_speak(
-            'What should be the subject?')
+    def outlook_email_add_subject(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'u',
+                                 'key_up', 'alt'])
         subject = Voicev().listen_for_commands(True)
         pg.write(subject)
-        sleep(0.5)
-        pg.press('tab')
-        self.speak.simple_speak(
-            'Please start dictating. When you are done, just say stop dictating!')
+        print('done')
+
+    def outlook_email_add_to(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'u',
+                                 'key_up', 'alt', 'key_down', 'shift', 'press', 'tab',
+                                 'key_up', 'shift', 'key_down', 'shift', 'press', 'tab',
+                                 'key_up', 'shift'])
         VoskDictation().execute()
-        sleep(1)
-        # self.send()
+        # pg.write(to)??
+        print('done')
+
+    def outlook_email_add_cc(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'u',
+                                 'key_up', 'alt', 'key_down', 'shift', 'press', 'tab',
+                                 'key_up', 'shift'])
+        cc = Voicev().listen_for_commands(True)
+        pg.write(cc)
+        print('done')
+
+    def outlook_email_add_body(self):
+        self.key_action.execute(['key_down', 'alt', 'press', 'u',
+                                 'key_up', 'alt', 'press', 'tab'])
+        VoskDictation().execute()
+        print('done')
+
+    # def send_email(self):
+    #     self.key_action.execute(['key_down', 'ctrl', 'press', '1',
+    #                              'key_up', 'ctrl'])
+    #     self.create_new()
+    #     sleep(1)
+    #     self.speak.simple_speak(
+    #         'Who do you want to send the email to?')
+    #     to = Voicev().listen_for_commands(True)
+    #     pg.write(to)
+    #     sleep(1)
+    #     pg.press('tab')
+    #     sleep(0.5)
+    #     pg.press('tab')
+    #     self.speak.simple_speak(
+    #         'Who shoud be as cc\'s')
+    #     cc = Voicev().listen_for_commands(True)
+    #     if cc != 'none' and cc != 'nobody':
+    #         pg.write(cc)
+    #     sleep(0.5)
+    #     pg.press('tab')
+    #     self.speak.simple_speak(
+    #         'What should be the subject?')
+    #     subject = Voicev().listen_for_commands(True)
+    #     pg.write(subject)
+    #     sleep(0.5)
+    #     pg.press('tab')
+    #     self.speak.simple_speak(
+    #         'Please start dictating. When you are done, just say stop dictating!')
+    #     VoskDictation().execute()
+    #     sleep(1)
+    #     # self.send()
 
     def open_calendar(self):
         self.key_action.execute(['key_down', 'ctrl', 'press', '2',
@@ -107,8 +137,6 @@ class Outlook(IApplications):
         print('done')
 
     def event_add_body(self):
-        print('sunt aici!!!!!!!!!!!!!!!!!!!!!')
-
         self.key_action.execute(['key_down', 'alt', 'press', 'l',
                                  'key_up', 'alt', 12, 'tab'])
         pg.write('asdasdasdasdasd')

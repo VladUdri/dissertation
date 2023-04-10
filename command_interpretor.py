@@ -1,7 +1,14 @@
+from commands.google_wikipedia_search import GoogleWikipediaSearch
 from commands.open import Open
 from commands.close import Close
 from commands.new_word import NewWord
 from commands.new_notepad import NewNotepad
+from commands.outlook_email_add_body import OutlookEmailAddBody
+from commands.outlook_email_add_cc import OutlookEmailAddCc
+from commands.outlook_email_add_subject import OutlookEmailAddSubject
+from commands.outlook_email_add_to import OutlookEmailAddTo
+from commands.outlook_email_create_new import OutlookEmailCreateNew
+from commands.outlook_email_send import OutlookEmailSend
 from commands.outlook_event_add_title import OutlookEventAddTitle
 from commands.outlook_event_add_start_time import OutlookEventAddStartTime
 from commands.outlook_event_add_end_time import OutlookEventAddEndTime
@@ -67,8 +74,17 @@ class CommandInterpretor:
             'outlook_event_make_event_all_day': OutlookEventMakeEventAllDay(self.start_apps[self.app]),
             'outlook_event_save': OutlookEventSave(self.start_apps[self.app]),
             'outlook_event_add_body': OutlookEventAddBody(self.start_apps[self.app]),
-
+            # outlook - email
+            'outlook_email_create_new': OutlookEmailCreateNew(self.start_apps[self.app]),
+            'outlook_email_add_subject': OutlookEmailAddSubject(self.start_apps[self.app]),
+            'outlook_email_add_to': OutlookEmailAddTo(self.start_apps[self.app]),
+            'outlook_email_add_cc': OutlookEmailAddCc(self.start_apps[self.app]),
+            'outlook_email_add_body': OutlookEmailAddBody(self.start_apps[self.app]),
+            'outlook_email_add_send': OutlookEmailSend(self.start_apps[self.app]),
+            # google search
             'search': Search(self.start_apps[self.app]),
+            'google_wikipedia_search': GoogleWikipediaSearch(self.start_apps[self.app]),
+
             'run_interface': Interface(self.start_apps[self.app]),
             'custom': CustomCommand(self.start_apps[self.app], custom)
         }

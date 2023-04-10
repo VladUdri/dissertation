@@ -50,10 +50,6 @@
                     "create",
                     "new",
                     "document"
-                ],
-                [
-                    "compose",
-                    "new"
                 ]
             ],
             "start_responses": [
@@ -104,25 +100,6 @@
             "stop_responses": [
                 "Dictation stopped!",
                 "Stopped!"
-            ]
-        },
-        "send_email": {
-            "patterns": [
-                [
-                    "send",
-                    "email"
-                ],
-                [
-                    "compose",
-                    "email"
-                ]
-            ],
-            "start_responses": [
-                "Just a second"
-            ],
-            "stop_responses": [
-                "Email sent!",
-                "The email is sent!"
             ]
         },
         "brightness_up": {
@@ -395,15 +372,110 @@
                 "Done"
             ]
         },
+        "outlook_email_create_new": {
+            "patterns": [
+                [
+                    "compose",
+                    "email"
+                ],
+                [
+                    "new",
+                    "email"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_email_add_subject": {
+            "patterns": [
+                [
+                    "add",
+                    "subject"
+                ],
+                [
+                    "write",
+                    "subject"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_email_add_to": {
+            "patterns": [
+                [
+                    "add",
+                    "destination",
+                    "email"
+                ],
+                [
+                    "add",
+                    "recipient"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "outlook_email_add_cc": {
+            "patterns": [
+                [
+                    "add",
+                    "cc"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Done"
+            ]
+        },
+        "send_email": {
+            "patterns": [
+                [
+                    "send",
+                    "email"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Email sent!",
+                "The email is sent!"
+            ]
+        },
+        "outlook_email_add_body": {
+            "patterns": [
+                [
+                    "write",
+                    "email"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                "Email sent!",
+                "The email is sent!"
+            ]
+        },
         "search": {
             "patterns": [
                 [
                     "search",
                     "internet"
-                ],
-                [
-                    "search",
-                    "google"
                 ]
             ],
             "start_responses": [
@@ -412,6 +484,20 @@
             "stop_responses": [
                 "This is what I found on Google",
                 "Here are the results"
+            ]
+        },
+        "google_wikipedia_search": {
+            "patterns": [
+                [
+                    "search",
+                    "wikipedia"
+                ]
+            ],
+            "start_responses": [
+                ""
+            ],
+            "stop_responses": [
+                ""
             ]
         },
         "run_interface": {

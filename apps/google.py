@@ -11,7 +11,6 @@ class Google(IApplications):
     def __init__(self, app_name='google', state='closed'):
         super().__init__(app_name, state)
 
-# #########################################################################################
     def create_new(self):
         pass
 
@@ -22,5 +21,12 @@ class Google(IApplications):
         res = Voicev().listen_for_commands(True)
         url += res
         webbrowser.get().open(url)
+    
+    def google_wikipedia_search(self):
+        url = 'https://en.wikipedia.org/wiki/'
+        self.speak.simple_speak(
+            'What do you want to search on Wikipedia?')
+        res = Voicev().listen_for_commands(True)
+        url += res
+        webbrowser.get().open(url)
 
-# #########################################################################################
