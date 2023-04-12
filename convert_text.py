@@ -13,7 +13,7 @@ class ConvertText:
     Function that removes stop words from a text
     """
 
-    def __remove_stopwords(self, text):
+    def _remove_stopwords(self, text):
         res = text.translate(str.maketrans('', '', string.punctuation))
         stop_words = set(stopwords.words("english"))
         words = word_tokenize(res)
@@ -23,7 +23,6 @@ class ConvertText:
                 filtered.append(word)
         filtered = [word for word in words if word.casefold()
                     not in stop_words]
-        # print(filtered)
         return filtered
 
     """
@@ -32,13 +31,13 @@ class ConvertText:
     - returns result (a text having the words lemmetized)
     """
 
-    def __lemm(self, text):
+    def _lemm(self, text):
         words = word_tokenize(text)
         words_prop = nk.pos_tag(words)
         lemmatizer = WordNetLemmatizer()
         result = ''
         for index in range(0, len(words_prop)):
-            part = self.__part_of_speech(words_prop[index])
+            part = self._part_of_speech(words_prop[index])
             if part != '':
                 res = lemmatizer.lemmatize(words_prop[index][0], pos=part)
             else:
@@ -53,7 +52,7 @@ class ConvertText:
     e.g. NN -> n; VBG -> v
     """
 
-    def __part_of_speech(self, touple):
+    def _part_of_speech(self, touple):
         if touple[1][0] == 'N':
             return 'n'
         elif touple[1][0] == 'V':
@@ -66,7 +65,6 @@ class ConvertText:
             return ''
 
     def process_text(self):
-        lemm_text = self.__lemm(self.text)
-        result = self.__remove_stopwords(lemm_text)
-        # print(result)
+        lemm_text = self._lemm(self.text)
+        result = self._remove_stopwords(lemm_text)
         return result
