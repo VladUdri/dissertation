@@ -51,9 +51,10 @@ class VoskDictation():
                                 if d[key] != self.previous_line or key == 'text':
                                     self._write(d)
                                     if d[key] == self.safety_word:
+                                        self.key_action.execute(
+                                            ['key_down', 'ctrl', 2, 'backspace', 'key_up', 'ctrl'])
                                         return
                                     self.previous_line = d[key]
-
         except KeyboardInterrupt:
             print('\nDone -- KEYBOARDiNTERRUPT')
         except Exception as e:
@@ -74,12 +75,15 @@ class VoskDictation():
         return False
 
     def _write(self, phrase):
-
         pg.press('backspace', presses=self.previous_length)
-        print(phrase)
+        # print(phrase)
+        print('check 2')
+
         if 'text' in phrase:
             search_res = self._search_str(phrase['text'])
             self.previous_length = 0
+            print('check 3')
+
             if search_res == False:
                 pg.write(phrase['text'] + ' ')
             else:
@@ -89,17 +93,14 @@ class VoskDictation():
                     execution_res = self.key_action.execute(
                         self.write_comm[search_res]['execute'])
                     if execution_res:
-                        pg.write(' ')
                         self.listening = True
                 elif self.write_comm[search_res]['type'] == 'complex_action':
-                    self.listening = False
-                    self.complex_action.execute(self.write_comm, search_res)
+                    self.listening = self.complex_action.execute(
+                        self.write_comm, search_res)
                 elif self.write_comm[search_res]['type'] == 'action':
                     self.listening = False
-                    execution_res = self.key_action.execute(
+                    self.listening = self.key_action.execute(
                         self.write_comm[search_res]['execute'])
-                    if execution_res:
-                        self.listening = True
 
         else:
             pg.write(phrase['partial'])

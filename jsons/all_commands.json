@@ -80,7 +80,7 @@
             "Done!"
         ]
     },
-    "save_as": {
+    "save_as_word": {
         "apps": [
             "word"
         ],
@@ -97,6 +97,42 @@
             "Done!",
             "Saved!",
             "<app_name> is saved."
+        ]
+    },
+    "word_change_font": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "change",
+                "font"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Dictation stopped!",
+            "Stopped!"
+        ]
+    },
+    "word_change_size": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "change",
+                "size"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Dictation stopped!",
+            "Stopped!"
         ]
     },
     "create_new_notepad": {

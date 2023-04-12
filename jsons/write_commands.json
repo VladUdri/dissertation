@@ -301,5 +301,16 @@
         ],
         "speak": "What should be the title?",
         "type": "complex_action"
+    },
+    "stop_dictationg": {
+        "steps": [
+            "backspace",
+            "backspace"
+        ],
+        "pattern": [
+            "stop dictating"
+        ],
+        "speak": "",
+        "type": "action"
     }
 }

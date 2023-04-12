@@ -25,10 +25,10 @@ if __name__ == '__main__':
 #     #     # res.execute('add end time')
 #     #     # print('SUNT IN add subject')
 
-    res.execute('open word')
-    res.execute('create new blank')
-    sleep(5)
-    res.execute('create new document')
+    # res.execute('open word')
+    # res.execute('create new blank')
+    # sleep(5)
+    res.execute('start dictate')
     # res.execute('save notepad')
 #     #     # print('SUNT IN add recipient')
 

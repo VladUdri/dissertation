@@ -30,6 +30,8 @@ from apps.computer_actions import ComputerActions
 from apps.notepad import Notepad
 from commands.interface import Interface
 from commands.custom_command import CustomCommand
+from commands.word_change_font import WordChangeFont
+from commands.word_change_size import WordChangeSize
 from commands.word_create_new_blank import WordCreateNewBlank
 
 
@@ -52,14 +54,14 @@ class CommandInterpretor:
         self.commands = {
             'open_app': Open(self.start_apps[self.app]),
             'close_app': Close(self.start_apps[self.app]),
-            
+
             # word
             'create_new_word': NewWord(self.start_apps[self.app]),
             'word_create_new_blank': WordCreateNewBlank(self.start_apps[self.app]),
             'save_as_word': Save(self.start_apps[self.app]),
             'start_dictation': VoskDictation(),
-
-
+            'word_change_font': WordChangeFont(self.start_apps[self.app]),
+            'word_change_size': WordChangeSize(self.start_apps[self.app]),
             # notepad
             'create_new_notepad': NewNotepad(self.start_apps[self.app]),
             'notepad_save_as': Save(self.start_apps[self.app]),
