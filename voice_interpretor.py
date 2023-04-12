@@ -21,16 +21,18 @@ class VoiceInterpretor():
             # print('last app: ', self.last_app)
 
     def get_app(self, text):
-        for word in text.split(' '):
-            if word in default_apps:
-                self.last_app = word
-                with open('jsons/last_app/last_app.txt', 'w') as h:
-                    h.write(self.last_app)
-                return word
-        if isinstance(self.last_app, list):
-            return self.last_app[0]
-        return self.last_app
-        
+        try:
+            for word in text.split(' '):
+                if word in default_apps:
+                    self.last_app = word
+                    with open('jsons/last_app/last_app.txt', 'w') as h:
+                        h.write(self.last_app)
+                    return word
+            if isinstance(self.last_app, list):
+                return self.last_app[0]
+            return self.last_app
+        except:
+            return None
 
     def search_str(self, text, app):
         for key in self.comm:
@@ -49,18 +51,12 @@ class VoiceInterpretor():
     def execute(self, phrase):
         convertion = ConvertText(phrase)
         converted_text = convertion.process_text()
-        # print(converted_text)
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
-        # print('Voice_interpretor: text_to_compare = ', text_to_compare)
         app = self.get_app(text_to_compare)
-        print('app: ', app)
+        # daca app e none zi ca e none si sa specifice aplicatia
         custom = ''
-        # print('Voice_interpretor: action = ', action, '\n')
         action = self.search_str(text_to_compare, app)
-        print('action', action)
         if action is None:
-            print('yep, e none')
-            # print('Voice_interpretor: app = ', app, '\n')
             # speak(engine=engine, text='Sorry! I don\'t know that.')
             custom = self.search_custom(phrase)
             if custom is not None:

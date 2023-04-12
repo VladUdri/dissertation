@@ -50,7 +50,7 @@ class CommandInterpretor:
         self.app = app
         self.last_app = last_app
         self.custom = custom
-        self.startup_app(app, self.last_app)
+        self.startup_app(app, last_app)
         self.commands = {
             'open_app': Open(self.start_apps[self.app]),
             'close_app': Close(self.start_apps[self.app]),
@@ -99,13 +99,30 @@ class CommandInterpretor:
         if command in self.commands:
             print('command: ', command)
             self.commands[command].execute()
+            return command
         else:
             print('not known')
+            return None
+
+    # def startup_app(self, app):
+    #     print(app, self.app, self.last_app)
+    #     if app is not None:
+    #         self.last_app = self.app = app
+    #     else:
+    #         if self.last_app != '':
+    #             self.app = self.last_app
+    #         else:
+    #             print('\n# ', self.last_app, ' #')
+
+    #             return None
+    #     return self.app
 
     def startup_app(self, app, last_app):
-        print(app)
         if app is not None:
             self.last_app = self.app = app
         else:
             if last_app != '':
-                self.app = self.last_app
+                self.app = last_app
+            else:
+                return None
+        return self.app
