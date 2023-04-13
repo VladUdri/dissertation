@@ -668,19 +668,9 @@
         "apps": [],
         "patterns": [
             [
-                "open",
-                "application",
-                "interface"
-            ],
-            [
-                "open",
-                "app",
-                "interface"
-            ],
-            [
                 "add",
                 "new",
-                "commands"
+                "command"
             ],
             [
                 "add",

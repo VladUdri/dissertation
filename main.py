@@ -28,7 +28,9 @@ if __name__ == '__main__':
     # res.execute('open word')
     # res.execute('create new blank')
     # sleep(5)
-    res.execute('start dictate')
+    res.execute('add new command')
+    res.execute('select all')
+
     # res.execute('save notepad')
 #     #     # print('SUNT IN add recipient')
 

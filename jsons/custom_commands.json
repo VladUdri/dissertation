@@ -12,5 +12,13 @@
         "c",
         "key_up",
         "ctrl"
+    ],
+    "select all": [
+        "key_down",
+        "ctrl",
+        "press",
+        "a",
+        "key_up",
+        "ctrl"
     ]
 }

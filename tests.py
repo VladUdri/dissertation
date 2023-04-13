@@ -235,10 +235,126 @@ class TestVoiceInterpretor(unittest.TestCase):
 
 #########################################################
     def test_7(self):
-        text = 'search on google'
-        function_result = VoiceInterpretor().get_app(text)
-        expected_result = 'google'
+        text = 'search on internet'
+        app = 'google'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'search'
         self.assertEqual(function_result, expected_result)
+
+    def test_8(self):
+        text = 'search on internet'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        self.assertIsNone(function_result)
+
+    def test_9(self):
+        text = 'search on wikipedia'
+        app = 'google'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'google_wikipedia_search'
+        self.assertEqual(function_result, expected_result)
+
+    def test_10(self):
+        text = 'i want to send an email'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'send_email'
+        self.assertEqual(function_result, expected_result)
+
+    def test_11(self):
+        text = 'add the destination email'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'outlook_email_add_to'
+        self.assertEqual(function_result, expected_result)
+
+    def test_12(self):
+        text = 'add the destination email'
+        app = 'notepad'
+        function_result = VoiceInterpretor().search_str(text, app)
+        self.assertIsNone(function_result)
+
+    def test_13(self):
+        text = 'open outlook'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'open_app'
+        self.assertEqual(function_result, expected_result)
+
+    def test_14(self):
+        text = 'close outlook'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'close_app'
+        self.assertEqual(function_result, expected_result)
+
+    def test_15(self):
+        text = 'i need to create a new word document'
+        app = 'word'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'create_new_word'
+        self.assertEqual(function_result, expected_result)
+
+    def test_16(self):
+        text = 'create new blank'
+        app = 'word'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'word_create_new_blank'
+        self.assertEqual(function_result, expected_result)
+
+    def test_17(self):
+        text = 'create new blank document'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        self.assertIsNone(function_result)
+
+    def test_18(self):
+        text = 'start writing'
+        app = 'word'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'start_dictation'
+        self.assertEqual(function_result, expected_result)
+
+    def test_19(self):
+        text = 'start writing'
+        app = 'notepad'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'start_dictation'
+        self.assertEqual(function_result, expected_result)
+
+    def test_20(self):
+        text = 'increase brightness'
+        app = 'computer'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'brightness_up'
+        self.assertEqual(function_result, expected_result)
+
+    def test_21(self):
+        text = 'change brightness'
+        app = 'computer'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'brightness_value'
+        self.assertEqual(function_result, expected_result)
+
+    def test_22(self):
+        text = 'add new event to calendar'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'create_event'
+        self.assertEqual(function_result, expected_result)
+
+    def test_23(self):
+        text = 'add start time'
+        app = 'outlook'
+        function_result = VoiceInterpretor().search_str(text, app)
+        expected_result = 'outlook_event_add_start_time'
+        self.assertEqual(function_result, expected_result)
+
+    def test_24(self):
+        text = 'add start time'
+        app = 'computer'
+        function_result = VoiceInterpretor().search_str(text, app)
+        self.assertIsNone(function_result)
 
 
 if __name__ == '__main__':

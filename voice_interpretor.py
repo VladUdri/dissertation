@@ -54,8 +54,11 @@ class VoiceInterpretor():
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
         app = self.get_app(text_to_compare)
         # daca app e none zi ca e none si sa specifice aplicatia
+        if app is None:
+            app = 'computer'
         custom = ''
         action = self.search_str(text_to_compare, app)
+        print('action: ', action)
         if action is None:
             # speak(engine=engine, text='Sorry! I don\'t know that.')
             custom = self.search_custom(phrase)
@@ -63,6 +66,7 @@ class VoiceInterpretor():
                 app = action = 'custom'
             else:
                 return
+        print('app: ', app) 
         CommandInterpretor(app, self.last_app, custom).process_command(action)
         # self.startup_app(app)
         # res = self.execute_app(app=app, action=action, engine=engine)
