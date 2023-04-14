@@ -14,7 +14,7 @@ class OutlookEmailAddSubject(ICommand):
             # if self.app._state == 'open':
             self.app.outlook_email_add_subject()
         except:
-            # speaker.speak('create_event', self.app, None)
+            # speaker.speak('outlook_create_event', self.app, None)
             print('exception OutlookEmailAddSubject')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)

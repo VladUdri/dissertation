@@ -1,7 +1,7 @@
 # from app_interface import AppInt
 import json
 from voice_interpretor import VoiceInterpretor
-# from voice_commands_listener import VoiceCommandListener
+from voice_commands_listener import VoiceCommandListener
 # from speak import Speak
 from time import sleep
 from voicev import Voicev
@@ -10,14 +10,16 @@ REC, SAMPLERATE = VoiceInit().setUp()
 
 
 if __name__ == '__main__':
-
+    with open('jsons/all_commands.json') as f:
+        comm = json.load(f)
     #     # try:
     #     # todo add init speak
 
     #     # VoiceInit().setUp()
     #     # print(REC)
-    #     # res = VoiceCommandListener().listen_for_commands()
-    res = VoiceInterpretor()
+    # res = VoiceCommandListener().listen_for_commands()
+
+    res = VoiceInterpretor(comm)
 #     #     res.execute('open outlook')
 #     #     res.execute('create new email')
 #     #     res.execute('compose email outlook')
@@ -28,29 +30,11 @@ if __name__ == '__main__':
     # res.execute('open word')
     # res.execute('create new blank')
     # sleep(5)
-    res.execute('add new command')
-    res.execute('select all')
-
-    # res.execute('save notepad')
-#     #     # print('SUNT IN add recipient')
-
-#     #     res.execute('add recipient')
-#     #     # print('SUNT IN add cc')
-
-#     #     res.execute('open notepad')
-#     #     res.execute('open word')
+    res.execute('sleep well')
+    # res.execute('select all')
 
 #     with open('jsons/last_app/last_app.txt', 'w') as h:
 #         h.write('')
 #     #     # sleep(3)
 #     #     # res.execute('start dictating')
 #     #     # res.execute('save notepad')
-
-#     #     # print('SUNT IN write email')
-
-    #     # res.execute('write email')
-
-    #     # except Exception as e:
-    #     # print('exception', e)
-    #     # todo add error speak
-    #     # AppInt().run()

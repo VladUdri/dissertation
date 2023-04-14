@@ -8,7 +8,6 @@ from word2number import w2n
 
 class ComplexAction:
     def __init__(self) -> None:
-        # self.actions = actions
         self.key_action = KeyAction()
 
     def execute(self, commands, key):
@@ -32,5 +31,3 @@ class ComplexAction:
             return True
         except:
             return False
-        # print(commands)
-        # self.key_action.execute()

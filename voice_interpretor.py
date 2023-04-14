@@ -1,24 +1,21 @@
-from time import sleep
 from convert_text import ConvertText
 import json
+from speak import Speak
 from utils import speak
-from random import randint
 from command_interpretor import CommandInterpretor
 default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
 
 start_apps = {}
 
 
-class VoiceInterpretor():
-    def __init__(self) -> None:
-        # todo vezi daca poti face sa nu citasca astia de fiecare data
-        with open('jsons/all_commands.json') as f:
-            self.comm = json.load(f)
+class VoiceInterpretor:
+    def __init__(self, comm) -> None:
+        self.comm = comm
         with open('jsons/custom_commands.json') as g:
             self.custom_comm = json.load(g)
         with open('jsons/last_app/last_app.txt') as h:
             self.last_app = h.readlines()
-            # print('last app: ', self.last_app)
+        self.speaker = Speak()
 
     def get_app(self, text):
         try:
@@ -53,25 +50,16 @@ class VoiceInterpretor():
         converted_text = convertion.process_text()
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
         app = self.get_app(text_to_compare)
-        # daca app e none zi ca e none si sa specifice aplicatia
         if app is None:
             app = 'computer'
         custom = ''
         action = self.search_str(text_to_compare, app)
-        print('action: ', action)
         if action is None:
-            # speak(engine=engine, text='Sorry! I don\'t know that.')
             custom = self.search_custom(phrase)
             if custom is not None:
                 app = action = 'custom'
             else:
+                self.speaker.simple_speak(
+                    'Sorry! I don\'t know that.')
                 return
-        print('app: ', app) 
         CommandInterpretor(app, self.last_app, custom).process_command(action)
-        # self.startup_app(app)
-        # res = self.execute_app(app=app, action=action, engine=engine)
-        # if res == False:
-        #     speak('Action not available for this app.')
-        #     return
-        # return last_app
-        # todo add command interpretor

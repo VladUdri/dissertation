@@ -25,12 +25,6 @@ def move_mouse(path):
         print('Could not find item on screen!  ' + path)
     return res
 
-
-def speak(engine, text):
-    engine.say(text)
-    engine.runAndWait()
-    return True
-
 def focus_window(name):
     res = gw.getWindowsWithTitle(name)[0]
     res.restore()

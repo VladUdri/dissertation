@@ -16,7 +16,6 @@ class WriteText:
     def run_write(self):
         listen = VoskModel()
         needs_response = True
-        print(self.write_comm['bold'])
         while needs_response:
             response = next(listen.listen_write())
             if response == 'stop writing':

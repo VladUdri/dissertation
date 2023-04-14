@@ -14,7 +14,7 @@ class OutlookEventAddTitle(ICommand):
             # if self.app._state == 'open':
             self.app.add_title_event()
         except:
-            # speaker.speak('create_event', self.app, None)
+            # speaker.speak('outlook_create_event', self.app, None)
             print('exception OutlookEventAddTitle')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)

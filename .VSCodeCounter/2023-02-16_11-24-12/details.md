@@ -36,7 +36,7 @@ Total : 42 files,  1620 codes, 73 comments, 201 blanks, all 1894 lines
 | [commands/new_word.py](/commands/new_word.py) | Python | 17 | 15 | 7 | 39 |
 | [commands/open.py](/commands/open.py) | Python | 17 | 0 | 4 | 21 |
 | [commands/save.py](/commands/save.py) | Python | 17 | 0 | 4 | 21 |
-| [commands/send_email.py](/commands/send_email.py) | Python | 17 | 0 | 4 | 21 |
+| [commands/outlook_send_email.py](/commands/outlook_send_email.py) | Python | 17 | 0 | 4 | 21 |
 | [commands/vosk_dictation.py](/commands/vosk_dictation.py) | Python | 101 | 2 | 14 | 117 |
 | [commands/write.py](/commands/write.py) | Python | 17 | 0 | 4 | 21 |
 | [computer_actions.py](/computer_actions.py) | Python | 58 | 0 | 12 | 70 |

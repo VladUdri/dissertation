@@ -10,11 +10,11 @@ class NewEvent(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('create_event', self.app, True)
+            speaker.speak('outlook_create_event', self.app, True)
             # if self.app._state == 'open':
-            self.app.create_event()
+            self.app.outlook_create_event()
         except:
-            speaker.speak('create_event', self.app, None)
-            print('exception create_event')
+            speaker.speak('outlook_create_event', self.app, None)
+            print('exception outlook_create_event')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)

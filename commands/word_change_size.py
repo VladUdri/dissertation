@@ -14,7 +14,7 @@ class WordChangeSize(ICommand):
             # if self.app._state == 'open':
             self.app.word_change_size()
         except:
-            # speaker.speak('create_event', self.app, None)
+            # speaker.speak('outlook_create_event', self.app, None)
             print('exception WordChangeSize')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)

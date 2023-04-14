@@ -10,7 +10,7 @@ class Speak:
             'voice', 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
 
     def onEnd(name, completed):
-        print ('finished')
+        print('finished')
 
     def simple_speak(self, text):
         self.engine.connect('finished-utterance', self.onEnd)
@@ -18,9 +18,8 @@ class Speak:
         self.engine.runAndWait()
         return True
 
-
-    def speak(self, action, app, start):
-        text = self._decode_speech_feedback(action, app._app_name, start)
+    def speak(self, action, start):
+        text = self._decode_speech_feedback(action, start)
         self.engine.say(text)
         self.engine.runAndWait()
         return True
@@ -29,13 +28,9 @@ class Speak:
         with open('jsons/all_commands.json') as f:
             comm = json.load(f)
         if start == True:
-            index = randint(
-                0, len(comm['default_commands'][action]['start_responses']) - 1)
-            return comm['default_commands'][action]['start_responses'][index].replace('<app_name>', last_app)
+            return comm[action]['start_responses'][0]
         elif start == False:
-            index = randint(
-                0, len(comm['default_commands'][action]['stop_responses']) - 1)
-            return comm['default_commands'][action]['stop_responses'][index].replace('<app_name>', last_app)
+            return comm[action]['stop_responses'][0]
         elif start == None:
             print('#todo')
 
@@ -48,12 +43,8 @@ class Speak:
         with open('jsons/all_commands.json') as f:
             comm = json.load(f)
         if start == True:
-            index = randint(
-                0, len(comm['default_commands'][action]['start_responses']) - 1)
-            return comm['default_commands'][action]['start_responses'][index]
+            return comm[action]['start_responses'][0]
         elif start == False:
-            index = randint(
-                0, len(comm['default_commands'][action]['stop_responses']) - 1)
-            return comm['default_commands'][action]['stop_responses'][index]
+            return comm[action]['stop_responses'][0]
         elif start == None:
             print('#todo')

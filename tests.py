@@ -258,7 +258,7 @@ class TestVoiceInterpretor(unittest.TestCase):
         text = 'i want to send an email'
         app = 'outlook'
         function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'send_email'
+        expected_result = 'outlook_send_email'
         self.assertEqual(function_result, expected_result)
 
     def test_11(self):
@@ -292,7 +292,7 @@ class TestVoiceInterpretor(unittest.TestCase):
         text = 'i need to create a new word document'
         app = 'word'
         function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'create_new_word'
+        expected_result = 'word_create_new'
         self.assertEqual(function_result, expected_result)
 
     def test_16(self):
@@ -326,21 +326,21 @@ class TestVoiceInterpretor(unittest.TestCase):
         text = 'increase brightness'
         app = 'computer'
         function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'brightness_up'
+        expected_result = 'computer_brightness_up'
         self.assertEqual(function_result, expected_result)
 
     def test_21(self):
         text = 'change brightness'
         app = 'computer'
         function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'brightness_value'
+        expected_result = 'computer_brightness_value'
         self.assertEqual(function_result, expected_result)
 
     def test_22(self):
         text = 'add new event to calendar'
         app = 'outlook'
         function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'create_event'
+        expected_result = 'outlook_create_event'
         self.assertEqual(function_result, expected_result)
 
     def test_23(self):

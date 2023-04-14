@@ -11,7 +11,7 @@ class SaveJson:
         with open(file_path) as f:
             self.json_data = json.load(f)
 
-    def __translate(self, action):
+    def _translate(self, action):
         match action:
             case 'Press':
                 return 'press'
@@ -22,7 +22,7 @@ class SaveJson:
         action_list = []
         for i in range(0, len(self.data['actions'])):
             if self.data['actions'][i] != '' and self.data['keys'][i] != '':
-                action_list.append(self.__translate(self.data['actions'][i]))
+                action_list.append(self._translate(self.data['actions'][i]))
                 action_list.append(self.data['keys'][i])
             if i > 0 and self.data['actions'][i - 1] == 'Keep pressed' and self.data['actions'][i] == 'Press':
                 action_list.append('key_up')

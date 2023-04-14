@@ -13,12 +13,10 @@
             ]
         ],
         "start_responses": [
-            "Opening  <app_name>",
-            "Please wait, I am opening <app_name>"
+            "Opening"
         ],
         "stop_responses": [
-            "<app_name> is open.",
-            "Done opening <app_name>"
+            "Done opening"
         ]
     },
     "close_app": {
@@ -29,15 +27,13 @@
             ]
         ],
         "start_responses": [
-            "Closing  <app_name>",
-            "Please wait, I am closing <app_name>"
+            "Closing"
         ],
         "stop_responses": [
-            "<app_name> is closed.",
-            "Done closing <app_name>"
+            "Done closing"
         ]
     },
-    "create_new_word": {
+    "word_create_new": {
         "apps": [
             "word"
         ],
@@ -53,7 +49,7 @@
             ]
         ],
         "start_responses": [
-            "Please wait."
+            "Please wait. I am creating a new word document!"
         ],
         "stop_responses": [
             "Done!"
@@ -74,13 +70,13 @@
             ]
         ],
         "start_responses": [
-            "Please wait."
+            "Please wait. I am creating a new word document!"
         ],
         "stop_responses": [
             "Done!"
         ]
     },
-    "save_as_word": {
+    "word_save_as": {
         "apps": [
             "word"
         ],
@@ -94,9 +90,7 @@
             "Please wait. I am saving!"
         ],
         "stop_responses": [
-            "Done!",
-            "Saved!",
-            "<app_name> is saved."
+            "Done!"
         ]
     },
     "word_change_font": {
@@ -110,11 +104,10 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Please wait!"
         ],
         "stop_responses": [
-            "Dictation stopped!",
-            "Stopped!"
+            "Font changed!"
         ]
     },
     "word_change_size": {
@@ -128,14 +121,13 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Please wait!"
         ],
         "stop_responses": [
-            "Dictation stopped!",
-            "Stopped!"
+            "Size changed!"
         ]
     },
-    "create_new_notepad": {
+    "notepad_create_new": {
         "apps": [
             "notepad"
         ],
@@ -146,7 +138,7 @@
             ]
         ],
         "start_responses": [
-            "Please wait."
+            "Creating new notepad"
         ],
         "stop_responses": [
             "Done!"
@@ -163,12 +155,10 @@
             ]
         ],
         "start_responses": [
-            "Please wait. I am saving!"
+            "Saving"
         ],
         "stop_responses": [
-            "Done!",
-            "Saved!",
-            "<app_name> is saved."
+            "Done!"
         ]
     },
     "start_dictation": {
@@ -199,11 +189,10 @@
             "You can start dictating"
         ],
         "stop_responses": [
-            "Dictation stopped!",
-            "Stopped!"
+            "Dictation stopped!"
         ]
     },
-    "brightness_up": {
+    "computer_brightness_up": {
         "apps": [
             "computer"
         ],
@@ -221,11 +210,10 @@
             ""
         ],
         "stop_responses": [
-            "Brightness set",
-            "Done"
+            ""
         ]
     },
-    "brightness_down": {
+    "computer_brightness_down": {
         "apps": [
             "computer"
         ],
@@ -243,11 +231,10 @@
             ""
         ],
         "stop_responses": [
-            "Brightness set",
-            "Done"
+            ""
         ]
     },
-    "brightness_value": {
+    "computer_brightness_value": {
         "apps": [
             "computer"
         ],
@@ -262,14 +249,13 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Just a second!"
         ],
         "stop_responses": [
-            "Brightness set",
-            "Done"
+            "Brightness set"
         ]
     },
-    "volume_up": {
+    "computer_volume_up": {
         "apps": [
             "computer"
         ],
@@ -287,11 +273,10 @@
             ""
         ],
         "stop_responses": [
-            "Volume set",
-            "Done"
+            ""
         ]
     },
-    "volume_down": {
+    "computer_volume_down": {
         "apps": [
             "computer"
         ],
@@ -309,11 +294,10 @@
             ""
         ],
         "stop_responses": [
-            "Volume set",
-            "Done"
+            ""
         ]
     },
-    "volume_value": {
+    "computer_volume_value": {
         "apps": [
             "computer"
         ],
@@ -328,14 +312,13 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Just a second!"
         ],
         "stop_responses": [
-            "Volume set",
-            "Done"
+            "Volume set"
         ]
     },
-    "create_event": {
+    "outlook_create_event": {
         "apps": [
             "outlook"
         ],
@@ -353,7 +336,6 @@
             "Creating new event"
         ],
         "stop_responses": [
-            "Event created",
             "Done"
         ]
     },
@@ -452,7 +434,7 @@
             ""
         ],
         "stop_responses": [
-            "Done"
+            "Ok"
         ]
     },
     "outlook_event_save": {
@@ -475,7 +457,7 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Saving"
         ],
         "stop_responses": [
             "Done"
@@ -527,7 +509,7 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Creating new email"
         ],
         "stop_responses": [
             "Done"
@@ -548,10 +530,10 @@
             ]
         ],
         "start_responses": [
-            ""
+            "What should be the subject"
         ],
         "stop_responses": [
-            "Done"
+            "Ok"
         ]
     },
     "outlook_email_add_to": {
@@ -573,7 +555,7 @@
             ""
         ],
         "stop_responses": [
-            "Done"
+            "Added"
         ]
     },
     "outlook_email_add_cc": {
@@ -590,10 +572,10 @@
             ""
         ],
         "stop_responses": [
-            "Done"
+            "Added"
         ]
     },
-    "send_email": {
+    "outlook_send_email": {
         "apps": [
             "outlook"
         ],
@@ -604,11 +586,10 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Sending"
         ],
         "stop_responses": [
-            "Email sent!",
-            "The email is sent!"
+            "Email sent!"
         ]
     },
     "outlook_email_add_body": {
@@ -622,14 +603,13 @@
             ]
         ],
         "start_responses": [
-            ""
+            "Adding body"
         ],
         "stop_responses": [
-            "Email sent!",
-            "The email is sent!"
+            "Done"
         ]
     },
-    "search": {
+    "google_search": {
         "apps": [
             "google"
         ],
@@ -643,8 +623,7 @@
             ""
         ],
         "stop_responses": [
-            "This is what I found on Google",
-            "Here are the results"
+            "This is what I found on Google"
         ]
     },
     "google_wikipedia_search": {
@@ -661,7 +640,7 @@
             ""
         ],
         "stop_responses": [
-            ""
+            "This is what I found on Google"
         ]
     },
     "run_interface": {

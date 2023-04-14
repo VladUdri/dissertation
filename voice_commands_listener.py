@@ -22,8 +22,6 @@ class VoiceCommandListener():
 
     def listen_for_commands(self, one_time=False):
         from main import REC, SAMPLERATE
-        print(REC)
-        print(SAMPLERATE)
         try:
 
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
@@ -48,6 +46,8 @@ class VoiceCommandListener():
                                         fin = new_fin
                                         new_fin = d["partial"]
                                     if d[key] == self.safety_word:
+                                        with open('jsons/last_app/last_app.txt', 'w') as h:
+                                            h.write('')
                                         return
                                     self.previous_line = d[key]
                     if (fin == new_fin and fin != '' and new_fin != ''):

@@ -12,14 +12,14 @@ class Volume(ICommand):
         speaker = Speak()
         try:
             if self.type_of_action == 'up':
-                self.app.volume_up()
-                speaker.speak('volume_up', self.app, True)
+                self.app.computer_volume_up()
+                speaker.speak('computer_volume_up', self.app, True)
             elif self.type_of_action == 'down':
-                self.app.volume_down()
-                speaker.speak('volume_down', self.app, True)
+                self.app.computer_volume_down()
+                speaker.speak('computer_volume_down', self.app, True)
             elif self.type_of_action == 'value':
-                self.app.volume_value()
-                speaker.speak('volume_value', self.app, True)
+                self.app.computer_volume_value()
+                speaker.speak('computer_volume_value', self.app, True)
 
         except:
             speaker.speak('create_new', self.app, None)

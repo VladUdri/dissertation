@@ -12,17 +12,16 @@ class Brightness(ICommand):
         speaker = Speak()
         try:
             if self.type_of_action == 'up':
-                self.app.brightness_up()
-                speaker.speak('brightness_up', self.app, True)
+                self.app.computer_brightness_up()
+                speaker.speak('computer_brightness_up', True)
             elif self.type_of_action == 'down':
-                self.app.brightness_down()
-                speaker.speak('brightness_down', self.app, True)
+                self.app.computer_brightness_down()
+                speaker.speak('computer_brightness_down', True)
             elif self.type_of_action == 'value':
-                self.app.brightness_value()
-                speaker.speak('brightness_value', self.app, True)
+                self.app.computer_brightness_value()
+                speaker.speak('computer_brightness_value', True)
 
         except:
-            speaker.speak('create_new', self.app, None)
-            print('exception create new')
+            speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('create_new', self.app, False)
+            speaker.speak('create_new', False)

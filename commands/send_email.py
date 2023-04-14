@@ -10,11 +10,11 @@ class SendEmail(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('send_email', self.app, True)
+            speaker.speak('outlook_send_email', self.app, True)
             if self.app._state == 'open':
-                self.app.send_email()
+                self.app.outlook_send_email()
         except:
-            speaker.speak('send_email', self.app, None)
+            speaker.speak('outlook_send_email', self.app, None)
             print('exception send email')
         else:
-            speaker.speak('send_email', self.app, False)
+            speaker.speak('outlook_send_email', self.app, False)

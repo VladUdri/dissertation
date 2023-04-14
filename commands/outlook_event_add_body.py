@@ -14,7 +14,7 @@ class OutlookEventAddBody(ICommand):
             # if self.app._state == 'open':
             self.app.event_add_body()
         except:
-            # speaker.speak('create_event', self.app, None)
+            # speaker.speak('outlook_create_event', self.app, None)
             print('exception OutlookEventAddBody')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)

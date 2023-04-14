@@ -14,7 +14,7 @@ class OutlookEmailCreateNew(ICommand):
             # if self.app._state == 'open':
             self.app.create_new()
         except:
-            # speaker.speak('create_event', self.app, None)
+            # speaker.speak('outlook_create_event', self.app, None)
             print('exception OutlookEmailCreateNew')
         # else:
-        #     speaker.speak('create_event', self.app, False)
+        #     speaker.speak('outlook_create_event', self.app, False)
