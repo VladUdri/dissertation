@@ -10,11 +10,9 @@ class OutlookEmailSend(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('event_add_title', self.app, True)
-            # if self.app._state == 'open':
-            self.app.send()
+            speaker.speak('outlook_email_send', True)
+            self.app.outlook_email_send()
         except:
-            # speaker.speak('outlook_create_event', self.app, None)
-            print('exception OutlookEmailSend')
-        # else:
-        #     speaker.speak('outlook_create_event', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('outlook_email_send', False)

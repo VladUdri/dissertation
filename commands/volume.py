@@ -11,18 +11,22 @@ class Volume(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            if self.type_of_action == 'up':
+            if self.type_of_action == 'computer_volume_up':
                 self.app.computer_volume_up()
-                speaker.speak('computer_volume_up', self.app, True)
-            elif self.type_of_action == 'down':
+                speaker.speak('computer_volume_up', True)
+            elif self.type_of_action == 'computer_volume_down':
                 self.app.computer_volume_down()
-                speaker.speak('computer_volume_down', self.app, True)
-            elif self.type_of_action == 'value':
+                speaker.speak('computer_volume_down', True)
+            elif self.type_of_action == 'computer_volume_value':
                 self.app.computer_volume_value()
-                speaker.speak('computer_volume_value', self.app, True)
+                speaker.speak('computer_volume_value', True)
 
         except:
-            speaker.speak('create_new', self.app, None)
-            print('exception create new')
+            speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('create_new', self.app, False)
+            if self.type_of_action == 'computer_volume_up':
+                speaker.speak('computer_volume_up', True)
+            elif self.type_of_action == 'computer_volume_down':
+                speaker.speak('computer_volume_down', True)
+            elif self.type_of_action == 'computer_volume_value':
+                speaker.speak('computer_volume_value', True)

@@ -11,7 +11,7 @@ class Word(IApplications):
         super().__init__(app_name, state)
 
 # #########################################################################################
-    def create_new(self):
+    def word_create_new(self):
         focus_window(self._app_name)
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
                                  'key_up', 'ctrl'])

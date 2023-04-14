@@ -10,11 +10,9 @@ class OutlookEventMakeEventAllDay(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('event_add_title', self.app, True)
-            # if self.app._state == 'open':
-            self.app.event_make_event_all_day()
+            speaker.speak('outlook_event_make_event_all_day', True)
+            self.app.outlook_event_make_event_all_day()
         except:
-            # speaker.speak('outlook_create_event', self.app, None)
-            print('exception OutlookEventMakeEventAllDay')
-        # else:
-        #     speaker.speak('outlook_create_event', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('outlook_event_make_event_all_day', False)

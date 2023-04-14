@@ -1,8 +1,8 @@
 from commands.google_wikipedia_search import GoogleWikipediaSearch
 from commands.open import Open
 from commands.close import Close
-from commands.new_word import NewWord
-from commands.new_notepad import NewNotepad
+from commands.word_create_new import NewWord
+from commands.notepad_create_new import NewNotepad
 from commands.outlook_email_add_body import OutlookEmailAddBody
 from commands.outlook_email_add_cc import OutlookEmailAddCc
 from commands.outlook_email_add_subject import OutlookEmailAddSubject
@@ -16,13 +16,12 @@ from commands.outlook_event_make_event_all_day import OutlookEventMakeEventAllDa
 from commands.outlook_event_save import OutlookEventSave
 from commands.outlook_event_add_body import OutlookEventAddBody
 
-from commands.outlook_send_email import SendEmail
-from commands.save import Save
+from commands.word_save_as import Save
 from commands.vosk_dictation import VoskDictation
 from commands.brightness import Brightness
 from commands.volume import Volume
-from commands.new_calendar_event import NewEvent
-from commands.search import Search
+from commands.outlook_event_create import OutlookEventCreate
+from commands.google_search import Search
 from apps.google import Google
 from apps.word import Word
 from apps.outlook import Outlook
@@ -66,14 +65,14 @@ class CommandInterpretor:
             'notepad_create_new': NewNotepad(self.start_apps[self.app]),
             'notepad_save_as': Save(self.start_apps[self.app]),
             # computer
-            'computer_brightness_up': Brightness(self.start_apps[self.app], 'up'),
-            'computer_brightness_down': Brightness(self.start_apps[self.app], 'down'),
-            'computer_brightness_value': Brightness(self.start_apps[self.app], 'value'),
-            'computer_volume_up': Volume(self.start_apps[self.app], 'up'),
-            'computer_volume_down': Volume(self.start_apps[self.app], 'down'),
-            'computer_volume_value': Volume(self.start_apps[self.app], 'value'),
+            'computer_brightness_up': Brightness(self.start_apps[self.app], 'computer_brightness_up'),
+            'computer_brightness_down': Brightness(self.start_apps[self.app], 'computer_brightness_down'),
+            'computer_brightness_value': Brightness(self.start_apps[self.app], 'computer_brightness_value'),
+            'computer_volume_up': Volume(self.start_apps[self.app], 'computer_volume_up'),
+            'computer_volume_down': Volume(self.start_apps[self.app], 'computer_volume_down'),
+            'computer_volume_value': Volume(self.start_apps[self.app], 'computer_volume_value'),
             # outlook - calendar
-            'outlook_create_event': NewEvent(self.start_apps[self.app]),
+            'outlook_event_create': OutlookEventCreate(self.start_apps[self.app]),
             'outlook_event_add_title': OutlookEventAddTitle(self.start_apps[self.app]),
             'outlook_event_add_start_time': OutlookEventAddStartTime(self.start_apps[self.app]),
             'outlook_event_add_end_time': OutlookEventAddEndTime(self.start_apps[self.app]),
@@ -86,7 +85,7 @@ class CommandInterpretor:
             'outlook_email_add_to': OutlookEmailAddTo(self.start_apps[self.app]),
             'outlook_email_add_cc': OutlookEmailAddCc(self.start_apps[self.app]),
             'outlook_email_add_body': OutlookEmailAddBody(self.start_apps[self.app]),
-            'outlook_send_email': SendEmail(self.start_apps[self.app]),
+            'outlook_email_send': OutlookEmailSend(self.start_apps[self.app]),
             # google search
             'google_search': Search(self.start_apps[self.app]),
             'google_wikipedia_search': GoogleWikipediaSearch(self.start_apps[self.app]),

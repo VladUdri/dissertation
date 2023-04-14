@@ -10,7 +10,7 @@ class Notepad(IApplications):
     def __init__(self, _app_name='notepad', state='closed'):
         super().__init__(_app_name, state)
 
-    def create_new(self):
+    def notepad_create_new(self):
         focus_window(self._app_name)
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
                                  'key_up', 'ctrl'])

@@ -23,10 +23,6 @@ class IApplications(ABC):
         self.speak = Speak()
         self.key_action = KeyAction()
 
-    @abstractmethod
-    def create_new(self):
-        pass
-
     # to use
     def is_app_open(self):
         for p in psutil.process_iter():

@@ -2,7 +2,7 @@ from commands.command import ICommand
 from speak import Speak
 
 
-class NewWord(ICommand):
+class WordCreateNew(ICommand):
     def __init__(self, app) -> None:
         super().__init__(app)
         self.app = app
@@ -10,10 +10,9 @@ class NewWord(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('create_new', self.app, True)
+            speaker.speak('word_create_new', True)
             self.app.create_new()
         except:
-            # speaker.speak('create_new', self.app, None)
-            print('exception create new')
-        # else:
-            # speaker.speak('create_new', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('word_create_new', False)

@@ -9,12 +9,11 @@ class Interface(ICommand):
         self.app = app
 
     def execute(self):
-        # speaker = Speak()
+        speaker = Speak()
         try:
-            # speaker.speak('new_event', self.app, True)
+            speaker.speak('run_interface', True)
             AppInt().run()
         except:
-            # speaker.speak('new_event', self.app, None)
-            print('exception new_event')
+            speaker.simple_speak('Something went wrong, please try again!')
         # else:
-        #     speaker.speak('new_event', self.app, False)
+            speaker.speak('run_interface', False)

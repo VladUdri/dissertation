@@ -2,7 +2,7 @@ from commands.command import ICommand
 from speak import Speak
 
 
-class WordCreateNewBlank(ICommand):
+class OutlookEventCreate(ICommand):
     def __init__(self, app) -> None:
         super().__init__(app)
         self.app = app
@@ -10,9 +10,10 @@ class WordCreateNewBlank(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('word_create_new_blank', self.app, True)
-            self.app.word_create_new_blank()
+            speaker.speak('outlook_event_create', True)
+            self.app.outlook_create_event()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
+
         else:
-            speaker.speak('word_create_new_blank', self.app, False)
+            speaker.speak('outlook_event_create', False)

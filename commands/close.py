@@ -1,5 +1,4 @@
 from commands.command import ICommand
-from utils import speak
 
 
 class Close(ICommand):

@@ -13,14 +13,8 @@ class CustomCommand(ICommand):
             self.custom_comm = json.load(f)
 
     def execute(self):
-        # speaker = Speak()
+        speaker = Speak()
         try:
-            # speaker.speak('new_event', self.app, True)
-            # if self.app._state == 'open':
             KeyAction().execute(self.custom_comm[self.custom])
         except:
-            # speaker.speak('new_event', self.app, None)
-            print('exception custom')
-        else:
-            # speaker.speak('new_event', self.app, False)
-            print('done')
+            speaker.simple_speak('Something went wrong, please try again!')

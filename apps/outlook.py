@@ -14,7 +14,7 @@ class Outlook(IApplications):
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
                                  'key_up', 'ctrl'])
 
-    def send(self):
+    def outlook_email_send(self):
         self.key_action.execute(['key_down', 'alt', 'press', 's',
                                  'key_up', 'alt'])
         sleep(0.1)

@@ -1,7 +1,6 @@
 from convert_text import ConvertText
 import json
 from speak import Speak
-from utils import speak
 from command_interpretor import CommandInterpretor
 default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
 

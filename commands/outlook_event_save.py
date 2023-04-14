@@ -10,11 +10,9 @@ class OutlookEventSave(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('event_add_title', self.app, True)
-            # if self.app._state == 'open':
-            self.app.event_save()
+            speaker.speak('outlook_event_save', True)
+            self.app.outlook_event_save()
         except:
-            # speaker.speak('outlook_create_event', self.app, None)
-            print('exception OutlookEventSave')
-        # else:
-        #     speaker.speak('outlook_create_event', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('outlook_event_save', False)

@@ -10,11 +10,9 @@ class OutlookEventAddStartTime(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('event_add_title', self.app, True)
-            # if self.app._state == 'open':
-            self.app.event_add_start_time()
+            speaker.speak('outlook_event_add_start_time', True)
+            self.app.outlook_event_add_start_time()
         except:
-            # speaker.speak('outlook_create_event', self.app, None)
-            print('exception OutlookEventAddTitle')
-        # else:
-        #     speaker.speak('outlook_create_event', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('outlook_event_add_start_time', False)

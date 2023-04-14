@@ -2,7 +2,7 @@ from commands.command import ICommand
 from speak import Speak
 
 
-class Search(ICommand):
+class GoogleSearch(ICommand):
     def __init__(self, app) -> None:
         super().__init__(app)
         self.app = app
@@ -10,10 +10,9 @@ class Search(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('google_search', self.app, True)
+            speaker.speak('google_search', True)
             self.app.google_search()
         except:
-            speaker.speak('google_search', self.app, None)
-            print('exception google_search')
+            speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('google_search', self.app, False)
+            speaker.speak('google_search', False)

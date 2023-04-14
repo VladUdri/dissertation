@@ -10,10 +10,9 @@ class GoogleWikipediaSearch(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            # speaker.speak('google_search', self.app, True)
+            speaker.speak('google_search', True)
             self.app.google_wikipedia_search()
         except:
-            # speaker.speak('google_search', self.app, None)
-            print('exception GoogleWikipediaSearch')
-        # else:
-            # speaker.speak('google_search', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('google_search', False)

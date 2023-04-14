@@ -318,7 +318,7 @@
             "Volume set"
         ]
     },
-    "outlook_create_event": {
+    "outlook_event_create": {
         "apps": [
             "outlook"
         ],
@@ -575,7 +575,7 @@
             "Added"
         ]
     },
-    "outlook_send_email": {
+    "outlook_email_send": {
         "apps": [
             "outlook"
         ],

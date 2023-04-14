@@ -10,9 +10,9 @@ class Save(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            self.app.save_as()
+            speaker.speak('word_save_as', True)
+            self.app.word_save_as()
         except:
-            speaker.speak('save_as', self.app, None)
-            print('exception save')
-        # else:
-            # speaker.speak('save_as', self.app, False)
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('word_save_as', False)
