@@ -1,8 +1,8 @@
 from commands.google_wikipedia_search import GoogleWikipediaSearch
 from commands.open import Open
 from commands.close import Close
-from commands.word_create_new import NewWord
-from commands.notepad_create_new import NewNotepad
+from commands.word_create_new import WordCreateNew
+from commands.notepad_create_new import NotepadCreateNew
 from commands.outlook_email_add_body import OutlookEmailAddBody
 from commands.outlook_email_add_cc import OutlookEmailAddCc
 from commands.outlook_email_add_subject import OutlookEmailAddSubject
@@ -21,7 +21,7 @@ from commands.vosk_dictation import VoskDictation
 from commands.brightness import Brightness
 from commands.volume import Volume
 from commands.outlook_event_create import OutlookEventCreate
-from commands.google_search import Search
+from commands.google_search import GoogleSearch
 from apps.google import Google
 from apps.word import Word
 from apps.outlook import Outlook
@@ -55,14 +55,14 @@ class CommandInterpretor:
             'close_app': Close(self.start_apps[self.app]),
 
             # word
-            'word_create_new': NewWord(self.start_apps[self.app]),
+            'word_create_new': WordCreateNew(self.start_apps[self.app]),
             'word_create_new_blank': WordCreateNewBlank(self.start_apps[self.app]),
             'word_save_as': Save(self.start_apps[self.app]),
             'start_dictation': VoskDictation(),
             'word_change_font': WordChangeFont(self.start_apps[self.app]),
             'word_change_size': WordChangeSize(self.start_apps[self.app]),
             # notepad
-            'notepad_create_new': NewNotepad(self.start_apps[self.app]),
+            'notepad_create_new': NotepadCreateNew(self.start_apps[self.app]),
             'notepad_save_as': Save(self.start_apps[self.app]),
             # computer
             'computer_brightness_up': Brightness(self.start_apps[self.app], 'computer_brightness_up'),
@@ -87,7 +87,7 @@ class CommandInterpretor:
             'outlook_email_add_body': OutlookEmailAddBody(self.start_apps[self.app]),
             'outlook_email_send': OutlookEmailSend(self.start_apps[self.app]),
             # google search
-            'google_search': Search(self.start_apps[self.app]),
+            'google_search': GoogleSearch(self.start_apps[self.app]),
             'google_wikipedia_search': GoogleWikipediaSearch(self.start_apps[self.app]),
 
             'run_interface': Interface(self.start_apps[self.app]),

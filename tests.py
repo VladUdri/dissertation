@@ -3,7 +3,10 @@ import unittest
 from convert_text import ConvertText
 from command_interpretor import CommandInterpretor
 from voice_interpretor import VoiceInterpretor
+import json
 
+with open('jsons/all_commands.json') as f:
+    comm = json.load(f)
 
 class TestConvertText(unittest.TestCase):
 
@@ -198,31 +201,31 @@ class TestVoiceInterpretor(unittest.TestCase):
 
     def test_1(self):
         text = 'open word'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         expected_result = 'word'
         self.assertEqual(function_result, expected_result)
 
     def test_2(self):
         text = 'create new word document'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         expected_result = 'word'
         self.assertEqual(function_result, expected_result)
 
     def test_3(self):
         text = 'send outlook email'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         expected_result = 'outlook'
         self.assertEqual(function_result, expected_result)
 
     def test_4(self):
         text = 'computer increase brightness'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         expected_result = 'computer'
         self.assertEqual(function_result, expected_result)
 
     def test_5(self):
         text = 'search on google'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         expected_result = 'google'
         self.assertEqual(function_result, expected_result)
 
@@ -230,130 +233,130 @@ class TestVoiceInterpretor(unittest.TestCase):
         with open('jsons/last_app/last_app.txt', 'w') as h:
             h.write('')
         text = 'search on reddit'
-        function_result = VoiceInterpretor().get_app(text)
+        function_result = VoiceInterpretor(comm).get_app(text)
         self.assertIsNone(function_result)
 
 #########################################################
     def test_7(self):
         text = 'search on internet'
         app = 'google'
-        function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'search'
+        function_result = VoiceInterpretor(comm).search_str(text, app)
+        expected_result = 'google_search'
         self.assertEqual(function_result, expected_result)
 
     def test_8(self):
         text = 'search on internet'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         self.assertIsNone(function_result)
 
     def test_9(self):
         text = 'search on wikipedia'
         app = 'google'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'google_wikipedia_search'
         self.assertEqual(function_result, expected_result)
 
     def test_10(self):
         text = 'i want to send an email'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'outlook_send_email'
+        function_result = VoiceInterpretor(comm).search_str(text, app)
+        expected_result = 'outlook_email_send'
         self.assertEqual(function_result, expected_result)
 
     def test_11(self):
         text = 'add the destination email'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'outlook_email_add_to'
         self.assertEqual(function_result, expected_result)
 
     def test_12(self):
         text = 'add the destination email'
         app = 'notepad'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         self.assertIsNone(function_result)
 
     def test_13(self):
         text = 'open outlook'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'open_app'
         self.assertEqual(function_result, expected_result)
 
     def test_14(self):
         text = 'close outlook'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'close_app'
         self.assertEqual(function_result, expected_result)
 
     def test_15(self):
         text = 'i need to create a new word document'
         app = 'word'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'word_create_new'
         self.assertEqual(function_result, expected_result)
 
     def test_16(self):
         text = 'create new blank'
         app = 'word'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'word_create_new_blank'
         self.assertEqual(function_result, expected_result)
 
     def test_17(self):
         text = 'create new blank document'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         self.assertIsNone(function_result)
 
     def test_18(self):
         text = 'start writing'
         app = 'word'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'start_dictation'
         self.assertEqual(function_result, expected_result)
 
     def test_19(self):
         text = 'start writing'
         app = 'notepad'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'start_dictation'
         self.assertEqual(function_result, expected_result)
 
     def test_20(self):
         text = 'increase brightness'
         app = 'computer'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'computer_brightness_up'
         self.assertEqual(function_result, expected_result)
 
     def test_21(self):
         text = 'change brightness'
         app = 'computer'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'computer_brightness_value'
         self.assertEqual(function_result, expected_result)
 
     def test_22(self):
         text = 'add new event to calendar'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
-        expected_result = 'outlook_create_event'
+        function_result = VoiceInterpretor(comm).search_str(text, app)
+        expected_result = 'outlook_event_create'
         self.assertEqual(function_result, expected_result)
 
     def test_23(self):
         text = 'add start time'
         app = 'outlook'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'outlook_event_add_start_time'
         self.assertEqual(function_result, expected_result)
 
     def test_24(self):
         text = 'add start time'
         app = 'computer'
-        function_result = VoiceInterpretor().search_str(text, app)
+        function_result = VoiceInterpretor(comm).search_str(text, app)
         self.assertIsNone(function_result)
 
 
