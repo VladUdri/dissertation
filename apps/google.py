@@ -15,6 +15,7 @@ class Google(IApplications):
         pass
 
     def google_search(self):
+        print('here')
         url = 'https://www.google.com/search?q='
         self.speak.simple_speak(
             'What do you want to search?')

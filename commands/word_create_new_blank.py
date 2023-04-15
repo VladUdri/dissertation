@@ -10,9 +10,9 @@ class WordCreateNewBlank(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('word_create_new_blank', self.app, True)
+            speaker.speak('word_create_new_blank', True)
             self.app.word_create_new_blank()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('word_create_new_blank', self.app, False)
+            speaker.speak('word_create_new_blank', False)

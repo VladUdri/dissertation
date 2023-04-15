@@ -3,7 +3,6 @@ import json
 from speak import Speak
 from command_interpretor import CommandInterpretor
 default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
-
 start_apps = {}
 
 

@@ -5,18 +5,18 @@ import queue
 import sounddevice as sd
 import vosk
 from voice_interpretor import VoiceInterpretor
-
 vosk.SetLogLevel(-1)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
 class VoiceCommandListener():
-    def __init__(self, safety_word='stop listening'):
+    def __init__(self, comm, safety_word='stop listening'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()
         self.previous_line = ""
         self.safety_word = safety_word
+        self.comm = comm
 
 #######################################################################
 
@@ -51,8 +51,7 @@ class VoiceCommandListener():
                                         return
                                     self.previous_line = d[key]
                     if (fin == new_fin and fin != '' and new_fin != ''):
-                        # listening = False
-                        res = VoiceInterpretor().execute(fin)
+                        res = VoiceInterpretor(self.comm).execute(fin)
                         print(fin)
                         if res:
                             listening = True

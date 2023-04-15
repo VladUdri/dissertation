@@ -3,41 +3,28 @@ import json
 from speak import Speak
 from voice_interpretor import VoiceInterpretor
 from voice_commands_listener import VoiceCommandListener
-# from speak import Speak
-from time import sleep
+from speak import Speak
 from voicev import Voicev
 from init_voice import VoiceInit
 REC, SAMPLERATE = VoiceInit().setUp()
-
+with open('jsons/all_commands.json') as f:
+    comm = json.load(f)
 
 if __name__ == '__main__':
-#     with open('jsons/all_commands.json') as f:
-#         comm = json.load(f)
-#     #     # try:
-#     #     # todo add init speak
 
-#     #     # VoiceInit().setUp()
-#     #     # print(REC)
-#     # res = VoiceCommandListener().listen_for_commands()
+    ########################## - final - #####################################
 
-#     res = VoiceInterpretor(comm)
-# #     #     res.execute('open outlook')
-# #     #     res.execute('create new email')
-# #     #     res.execute('compose email outlook')
-# #     #     # sleep(5)
-# #     #     # res.execute('add end time')
-# #     #     # print('SUNT IN add subject')
+    try:
+        VoiceCommandListener(comm).listen_for_commands()
+        # res = VoiceInterpretor(comm)
+        # res.execute('search on google')
+    except:
+        speaker = Speak()
+        speaker.simple_speak('Something went wrong? please try again!')
+        with open('jsons/last_app/last_app.txt', 'w') as h:
+            h.write('')
+    else:
+        with open('jsons/last_app/last_app.txt', 'w') as h:
+            h.write('')
 
-#     # res.execute('open word')
-#     # res.execute('create new blank')
-#     # sleep(5)
-#     res.execute('sleep well')
-    # res.execute('select all')
-
-#     with open('jsons/last_app/last_app.txt', 'w') as h:
-#         h.write('')
-#     #     # sleep(3)
-#     #     # res.execute('start dictating')
-#     #     # res.execute('save notepad')
-    speaker = Speak()
-    speaker.simple_speak('')
+    ##########################################################################

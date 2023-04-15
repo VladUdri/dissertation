@@ -15,4 +15,4 @@ class OutlookEmailCreateNew(ICommand):
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('outlook_email_create_new', self.app, False)
+            speaker.speak('outlook_email_create_new', False)

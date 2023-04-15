@@ -95,6 +95,8 @@ class CommandInterpretor:
         }
 
     def process_command(self, command):
+        print(command)
+        print(self.app)
         if command in self.commands:
             print('command: ', command)
             self.commands[command].execute()

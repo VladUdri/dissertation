@@ -24,7 +24,7 @@ class Speak:
         self.engine.runAndWait()
         return True
 
-    def _decode_speech_feedback(self, action, last_app, start):
+    def _decode_speech_feedback(self, action, start):
         with open('jsons/all_commands.json') as f:
             comm = json.load(f)
         if start == True:

@@ -10,9 +10,9 @@ class OutlookEmailAddTo(ICommand):
     def execute(self):
         speaker = Speak()
         try:
-            speaker.speak('outlook_email_add_to', self.app, True)
+            speaker.speak('outlook_email_add_to', True)
             self.app.outlook_email_add_to()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:
-            speaker.speak('outlook_email_add_to', self.app, False)
+            speaker.speak('outlook_email_add_to', False)
