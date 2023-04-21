@@ -3,8 +3,8 @@ import json
 from time import sleep
 from speak import Speak
 from command_interpretor import CommandInterpretor
-default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
-start_apps = {}
+default_apps = {'word': ['word', 'microsoft word'], 'outlook': ['outlook', 'microsoft outlook'], 'computer': [
+    'computer'], 'notepad': ['notepad', 'microsoft notepad'], 'google': ['google', 'wikipedia']}
 
 
 class VoiceInterpretor:
@@ -19,11 +19,12 @@ class VoiceInterpretor:
     def get_app(self, text):
         try:
             for word in text.split(' '):
-                if word in default_apps:
-                    self.last_app = word
-                    with open('jsons/last_app/last_app.txt', 'w') as h:
-                        h.write(self.last_app)
-                    return word
+                for key, app in default_apps.items():
+                    if word in app:
+                        self.last_app = key
+                        with open('jsons/last_app/last_app.txt', 'w') as h:
+                            h.write(self.last_app)
+                        return key
             if isinstance(self.last_app, list):
                 return self.last_app[0]
             return self.last_app

@@ -6,30 +6,36 @@ import queue
 import sounddevice as sd
 import vosk
 
+from speak import Speak
+
 vosk.SetLogLevel(-1)
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
 class Voicev():
-    def __init__(self, lang='en', mode='transcription', safety_word='stop listening'):
+    def __init__(self, speech = '', safety_word='stop listening'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()
         self.previous_line = ""
         self.previous_length = 0
-        self.mode = mode
         self.safety_word = safety_word
-        self.lang = lang
+        self.speech = speech
+        self.speaker = Speak()
+
 
 #######################################################################
+
     def listen_for_commands(self, one_time=False):
         from main import REC, SAMPLERATE
+        self.speaker.simple_speak(self.speech)
+
         try:
 
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
                                    callback=self.__callback):
 
-                # initial = time.perf_counter()
+
                 fin = new_fin = ''
                 listening = True
                 while True:

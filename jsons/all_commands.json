@@ -624,7 +624,7 @@
             ""
         ],
         "stop_responses": [
-            "This is what I found on Google"
+            "This is what I found on Wikipedia"
         ]
     },
     "run_interface": {

@@ -2,7 +2,7 @@
 import json
 from speak import Speak
 from voice_interpretor import VoiceInterpretor
-from voice_commands_listener import VoiceCommandListener
+from speech_commands_listener import VoiceCommandListener
 from speak import Speak
 from voicev import Voicev
 from init_voice import VoiceInit
