@@ -1,5 +1,4 @@
 import pytesseract
-import time
 import pyautogui as pg
 import json
 import sys
@@ -24,17 +23,16 @@ class VoskDictation():
         self.key_action = KeyAction()
         self.complex_action = ComplexAction()
         self.listening = True
+        with open('jsons/last_app/last_app.txt') as h:
+            self.last_app = h.readlines()
 
     def execute(self):
-        print('executing..................')
         from main import REC, SAMPLERATE
 
         try:
 
             with sd.RawInputStream(samplerate=SAMPLERATE, blocksize=8000, device=None, dtype='int16', channels=1,
                                    callback=self._callback):
-
-                initial = time.perf_counter()
 
                 while True:
                     if self.listening == True:
@@ -49,6 +47,14 @@ class VoskDictation():
                             if d[key]:
                                 if d[key] != self.previous_line or key == 'text':
                                     self._write(d)
+                                    if isinstance(self.last_app, list):
+                                        if self.last_app[0] == 'notepad':
+                                            pg.write(' ')
+                                            pg.press('backspace')
+                                    else:
+                                        if self.last_app == 'notepad':
+                                            pg.write(' ')
+                                            pg.press('backspace')
                                     if d[key] == self.safety_word:
                                         self.key_action.execute(
                                             ['key_down', 'ctrl', 2, 'backspace', 'key_up', 'ctrl'])
@@ -75,13 +81,10 @@ class VoskDictation():
 
     def _write(self, phrase):
         pg.press('backspace', presses=self.previous_length)
-        # print(phrase)
-        print('check 2')
 
         if 'text' in phrase:
             search_res = self._search_str(phrase['text'])
             self.previous_length = 0
-            print('check 3')
 
             if search_res == False:
                 pg.write(phrase['text'] + ' ')
@@ -100,6 +103,7 @@ class VoskDictation():
                     self.listening = False
                     self.listening = self.key_action.execute(
                         self.write_comm[search_res]['execute'])
+            self.q.queue.clear()
 
         else:
             pg.write(phrase['partial'])

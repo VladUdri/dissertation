@@ -11,7 +11,7 @@ class WordCreateNew(ICommand):
         speaker = Speak()
         try:
             speaker.speak('word_create_new', True)
-            self.app.create_new()
+            self.app.word_create_new()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:

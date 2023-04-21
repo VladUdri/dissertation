@@ -53,7 +53,6 @@
             "ctrl"
         ],
         "pattern": [
-            "increase font",
             "increase font size"
         ],
         "type": "action"
@@ -68,22 +67,7 @@
             "ctrl"
         ],
         "pattern": [
-            "decrease font",
             "decrease font size"
-        ],
-        "type": "action"
-    },
-    "edit_text": {
-        "execute": [
-            "key_down",
-            "ctrl",
-            "press",
-            "h",
-            "key_up",
-            "ctrl"
-        ],
-        "pattern": [
-            "edit text"
         ],
         "type": "action"
     },
@@ -98,7 +82,11 @@
         ],
         "pattern": [
             "align center",
-            "alignment center"
+            "align centre",
+            "alignment center",
+            "alignment centre",
+            "position center",
+            "position centre"
         ],
         "type": "action"
     },
@@ -113,7 +101,8 @@
         ],
         "pattern": [
             "align left",
-            "alignment left"
+            "alignment left",
+            "position left"
         ],
         "type": "action"
     },
@@ -128,7 +117,8 @@
         ],
         "pattern": [
             "align right",
-            "alignment right"
+            "alignment right",
+            "position right"
         ],
         "type": "action"
     },
@@ -143,7 +133,8 @@
         ],
         "pattern": [
             "align justify",
-            "alignment justify"
+            "alignment justify",
+            "position justify"
         ],
         "type": "action"
     },
@@ -156,7 +147,8 @@
         ],
         "pattern": [
             "period symbol",
-            "dot symbol"
+            "dot symbol",
+            "full stop"
         ],
         "type": "key"
     },
@@ -168,7 +160,8 @@
             "space"
         ],
         "pattern": [
-            "commma symbol"
+            "commma symbol",
+            "pause mark"
         ],
         "type": "key"
     },
@@ -220,6 +213,25 @@
             "delete word",
             "back space",
             "delete"
+        ],
+        "type": "action"
+    },
+    "delete_row": {
+        "execute": [
+            "press",
+            "end",
+            "key_down",
+            "shift",
+            "press",
+            "home",
+            "key_up",
+            "shift",
+            "press",
+            "backspace"
+        ],
+        "pattern": [
+            "erase line",
+            "delete line"
         ],
         "type": "action"
     },
@@ -277,6 +289,16 @@
         ],
         "speak": "What should be the new font?",
         "type": "complex_action"
+    },
+    "new_line": {
+        "execute": [
+            "press",
+            "enter"
+        ],
+        "pattern": [
+            "new line"
+        ],
+        "type": "action"
     },
     "write_title": {
         "steps": [
