@@ -11,7 +11,7 @@ class OutlookEmailCreateNew(ICommand):
         speaker = Speak()
         try:
             speaker.speak('outlook_email_create_new', True)
-            self.app.create_new()
+            self.app.outlook_email_create_new()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:

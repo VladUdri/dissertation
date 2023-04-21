@@ -8,6 +8,7 @@ class KeyAction:
         pass
 
     def execute(self, actions):
+        print(actions)
         try:
             for index in range(0, len(actions), 2):
                 if actions[index] == 'press':
@@ -17,6 +18,7 @@ class KeyAction:
                 elif actions[index] == 'key_up':
                     pg.keyUp(actions[index + 1])
                 elif isinstance(actions[index], int):
+                    print(actions[index])
                     pg.press(keys=actions[index + 1], presses=actions[index])
                 sleep(0.1)
             return True

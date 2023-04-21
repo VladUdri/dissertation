@@ -320,7 +320,7 @@
             "Creating new event"
         ],
         "stop_responses": [
-            "Done"
+            "Event created"
         ]
     },
     "outlook_event_add_title": {
@@ -335,10 +335,14 @@
             [
                 "write",
                 "title"
+            ],
+            [
+                "change",
+                "title"
             ]
         ],
         "start_responses": [
-            "What is the title"
+            ""
         ],
         "stop_responses": [
             "Done"
@@ -366,7 +370,7 @@
             ]
         ],
         "start_responses": [
-            "What is the start date"
+            "Ok"
         ],
         "stop_responses": [
             "Done"
@@ -379,22 +383,22 @@
         "patterns": [
             [
                 "add",
-                "end",
+                "finish",
                 "time"
             ],
             [
                 "change",
-                "end",
+                "finish",
                 "time"
             ],
             [
                 "edit",
-                "end",
+                "finish",
                 "time"
             ]
         ],
         "start_responses": [
-            "What is the end date"
+            "Ok"
         ],
         "stop_responses": [
             "Done"
@@ -505,16 +509,11 @@
         ],
         "patterns": [
             [
-                "add",
-                "subject"
-            ],
-            [
-                "write",
                 "subject"
             ]
         ],
         "start_responses": [
-            "What should be the subject"
+    ""
         ],
         "stop_responses": [
             "Ok"
@@ -526,7 +525,6 @@
         ],
         "patterns": [
             [
-                "add",
                 "destination",
                 "email"
             ],
@@ -539,7 +537,7 @@
             ""
         ],
         "stop_responses": [
-            "Added"
+            ""
         ]
     },
     "outlook_email_add_cc": {
@@ -548,15 +546,14 @@
         ],
         "patterns": [
             [
-                "add",
-                "cc"
+                "cc", "email"
             ]
         ],
         "start_responses": [
             ""
         ],
         "stop_responses": [
-            "Added"
+            ""
         ]
     },
     "outlook_email_send": {
@@ -582,7 +579,7 @@
         ],
         "patterns": [
             [
-                "write",
+                "body",
                 "email"
             ]
         ],
