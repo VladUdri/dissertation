@@ -4,7 +4,7 @@ from time import sleep
 from speak import Speak
 from command_interpretor import CommandInterpretor
 default_apps = {'word': ['word', 'microsoft word'], 'outlook': ['outlook', 'microsoft outlook'], 'computer': [
-    'computer'], 'notepad': ['notepad', 'microsoft notepad'], 'google': ['google', 'wikipedia']}
+    'computer'], 'notepad': ['notepad', 'microsoft notepad', 'note'], 'google': ['google', 'wikipedia']}
 
 
 class VoiceInterpretor:

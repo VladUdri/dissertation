@@ -4,8 +4,8 @@ import webbrowser
 
 
 class Google(IApplications):
-    def __init__(self, app_name='google', state='closed'):
-        super().__init__(app_name, state)
+    def __init__(self, app_name='google'):
+        super().__init__(app_name)
 
     def create_new(self):
         pass

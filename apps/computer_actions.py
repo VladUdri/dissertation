@@ -8,8 +8,8 @@ from application import IApplications
 
 
 class ComputerActions(IApplications):
-    def __init__(self, _app_name='computer_action', state=''):
-        super().__init__(_app_name, state)
+    def __init__(self, _app_name='computer_action'):
+        super().__init__(_app_name)
 
     def create_new(self):
         return super().create_new()

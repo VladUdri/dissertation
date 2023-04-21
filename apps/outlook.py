@@ -7,8 +7,8 @@ from commands.vosk_dictation import VoskDictation
 
 
 class Outlook(IApplications):
-    def __init__(self, app_name='outlook', state='closed'):
-        super().__init__(app_name, state)
+    def __init__(self, app_name='outlook'):
+        super().__init__(app_name)
 
     def create_new(self):
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',

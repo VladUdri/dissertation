@@ -7,8 +7,8 @@ from word2number import w2n
 
 
 class Word(IApplications):
-    def __init__(self, app_name='word', state='closed'):
-        super().__init__(app_name, state)
+    def __init__(self, app_name='word'):
+        super().__init__(app_name)
 
 # #########################################################################################
     def word_create_new(self):

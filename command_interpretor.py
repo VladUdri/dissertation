@@ -1,4 +1,5 @@
 from commands.google_wikipedia_search import GoogleWikipediaSearch
+from commands.notepad_save_as import NotepadSaveAs
 from commands.open import Open
 from commands.close import Close
 from commands.word_create_new import WordCreateNew
@@ -58,12 +59,11 @@ class CommandInterpretor:
             'word_create_new': WordCreateNew(self.start_apps[self.app]),
             'word_create_new_blank': WordCreateNewBlank(self.start_apps[self.app]),
             'word_save_as': Save(self.start_apps[self.app]),
-            'start_dictation': VoskDictation(),
             'word_change_font': WordChangeFont(self.start_apps[self.app]),
             'word_change_size': WordChangeSize(self.start_apps[self.app]),
             # notepad
             'notepad_create_new': NotepadCreateNew(self.start_apps[self.app]),
-            'notepad_save_as': Save(self.start_apps[self.app]),
+            'notepad_save_as': NotepadSaveAs(self.start_apps[self.app]),
             # computer
             'computer_brightness_up': Brightness(self.start_apps[self.app], 'computer_brightness_up'),
             'computer_brightness_down': Brightness(self.start_apps[self.app], 'computer_brightness_down'),
@@ -89,6 +89,8 @@ class CommandInterpretor:
             # google search
             'google_search': GoogleSearch(self.start_apps[self.app]),
             'google_wikipedia_search': GoogleWikipediaSearch(self.start_apps[self.app]),
+
+            'start_dictation': VoskDictation(),
 
             'run_interface': Interface(self.start_apps[self.app]),
             'custom': CustomCommand(self.start_apps[self.app], custom)

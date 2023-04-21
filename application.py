@@ -16,9 +16,8 @@ State rules:
 
 
 class IApplications(ABC):
-    def __init__(self, app_name, state='closed'):
+    def __init__(self, app_name):
         self._app_name = app_name
-        self._state = state
         self.listen = VoskModel()
         self.speak = Speak()
         self.key_action = KeyAction()
@@ -37,7 +36,6 @@ class IApplications(ABC):
 
     def open_app(self):
         open(self._app_name)
-        self._state = 'open'
         sleep(2)
         return True
 
@@ -53,7 +51,6 @@ class IApplications(ABC):
         if self.is_app_open():
             res = gw.getWindowsWithTitle(self._app_name)[0]
             res.close()
-            self._state = 'closed'
             print('App closed')
             return True
         else:
