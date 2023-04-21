@@ -198,10 +198,6 @@
         ],
         "patterns": [
             [
-                "brightness",
-                "up"
-            ],
-            [
                 "increase",
                 "brightness"
             ]
@@ -210,7 +206,7 @@
             ""
         ],
         "stop_responses": [
-            ""
+            "Brightness increased by 10 percent"
         ]
     },
     "computer_brightness_down": {
@@ -218,10 +214,6 @@
             "computer"
         ],
         "patterns": [
-            [
-                "brightness",
-                "down"
-            ],
             [
                 "decrease",
                 "brightness"
@@ -231,7 +223,7 @@
             ""
         ],
         "stop_responses": [
-            ""
+            "Brightness decreased by 10 percent"
         ]
     },
     "computer_brightness_value": {
@@ -244,12 +236,12 @@
                 "brightness"
             ],
             [
-                "new",
+                "set",
                 "brightness"
             ]
         ],
         "start_responses": [
-            "Just a second!"
+            ""
         ],
         "stop_responses": [
             "Brightness set"
@@ -262,18 +254,14 @@
         "patterns": [
             [
                 "volume",
-                "up"
-            ],
-            [
-                "volume",
-                "brightness"
+                "increase"
             ]
         ],
         "start_responses": [
             ""
         ],
         "stop_responses": [
-            ""
+            "Volume increased"
         ]
     },
     "computer_volume_down": {
@@ -283,18 +271,14 @@
         "patterns": [
             [
                 "volume",
-                "down"
-            ],
-            [
-                "volume",
-                "brightness"
+                "decrease"
             ]
         ],
         "start_responses": [
             ""
         ],
         "stop_responses": [
-            ""
+            "Volume decreased"
         ]
     },
     "computer_volume_value": {
@@ -312,7 +296,7 @@
             ]
         ],
         "start_responses": [
-            "Just a second!"
+            ""
         ],
         "stop_responses": [
             "Volume set"

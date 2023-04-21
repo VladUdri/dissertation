@@ -1,5 +1,6 @@
 from convert_text import ConvertText
 import json
+from time import sleep
 from speak import Speak
 from command_interpretor import CommandInterpretor
 default_apps = ['word', 'outlook', 'computer', 'notepad', 'google']
@@ -59,5 +60,7 @@ class VoiceInterpretor:
             else:
                 self.speaker.simple_speak(
                     'Sorry! I don\'t know that.')
-                return
+
+                return None
         CommandInterpretor(app, self.last_app, custom).process_command(action)
+        return None

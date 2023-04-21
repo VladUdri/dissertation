@@ -25,8 +25,8 @@ class Volume(ICommand):
             speaker.simple_speak('Something went wrong, please try again!')
         else:
             if self.type_of_action == 'computer_volume_up':
-                speaker.speak('computer_volume_up', True)
+                speaker.speak('computer_volume_up', False)
             elif self.type_of_action == 'computer_volume_down':
-                speaker.speak('computer_volume_down', True)
+                speaker.speak('computer_volume_down', False)
             elif self.type_of_action == 'computer_volume_value':
-                speaker.speak('computer_volume_value', True)
+                speaker.speak('computer_volume_value', False)

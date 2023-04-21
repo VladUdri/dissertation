@@ -10,23 +10,26 @@ class Brightness(ICommand):
 
     def execute(self):
         speaker = Speak()
+        res = None
         try:
             if self.type_of_action == 'computer_brightness_up':
-                self.app.computer_brightness_up()
+                res = self.app.computer_brightness_up()
                 speaker.speak('computer_brightness_up', True)
             elif self.type_of_action == 'computer_brightness_down':
-                self.app.computer_brightness_down()
+                res = self.app.computer_brightness_down()
                 speaker.speak('computer_brightness_down', True)
-            elif self.type_of_action == 'computer_brightness_value':
-                self.app.computer_brightness_value()
+            else:
+                res = self.app.computer_brightness_value()
                 speaker.speak('computer_brightness_value', True)
 
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:
             if self.type_of_action == 'computer_brightness_up':
-                speaker.speak('computer_brightness_up', False)
+                if res == True:
+                    speaker.speak('computer_brightness_up', False)
             elif self.type_of_action == 'computer_brightness_down':
-                speaker.speak('computer_brightness_down', False)
-            elif self.type_of_action == 'computer_brightness_value':
+                if res == True:
+                    speaker.speak('computer_brightness_down', False)
+            else:
                 speaker.speak('computer_brightness_value', False)

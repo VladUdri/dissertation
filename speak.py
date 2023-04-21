@@ -15,7 +15,7 @@ class Speak:
     def simple_speak(self, text):
         self.engine.connect('finished-utterance', self.onEnd)
         self.engine.say(text)
-        self.engine.runAndWait()
+        print(self.engine.runAndWait())
         return True
 
     def speak(self, action, start):

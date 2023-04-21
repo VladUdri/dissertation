@@ -15,7 +15,7 @@ if __name__ == '__main__':
     ########################## - final - #####################################
 
     try:
-        VoiceCommandListener(comm).listen_for_commands()
+        VoiceCommandListener(comm).listen_for_commands(REC, SAMPLERATE)
         # res = VoiceInterpretor(comm)
         # res.execute('search on google')
     except:
@@ -28,3 +28,5 @@ if __name__ == '__main__':
             h.write('')
 
     ##########################################################################
+    # res = VoiceInterpretor(comm)
+    # print('4 ' + str(res.execute('huiyguh on google')))   

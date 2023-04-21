@@ -1,6 +1,5 @@
 import pytesseract
 import time
-import os
 import pyautogui as pg
 import json
 import sys

@@ -238,7 +238,7 @@ class TestVoiceInterpretor(unittest.TestCase):
 
 #########################################################
     def test_7(self):
-        text = 'search on internet'
+        text = 'search on google'
         app = 'google'
         function_result = VoiceInterpretor(comm).search_str(text, app)
         expected_result = 'google_search'
