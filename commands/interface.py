@@ -15,5 +15,5 @@ class Interface(ICommand):
             AppInt().run()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
-        # else:
+        else:
             speaker.speak('run_interface', False)

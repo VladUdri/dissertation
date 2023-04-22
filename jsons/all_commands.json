@@ -1,6 +1,10 @@
 {
     "open_app": {
-        "apps": [],
+        "apps": [
+            "notepad",
+            "outlook",
+            "word"
+        ],
         "patterns": [
             [
                 "open"
@@ -20,7 +24,12 @@
         ]
     },
     "close_app": {
-        "apps": [],
+        "apps": [
+            "notepad",
+            "google",
+            "outlook",
+            "word"
+        ],
         "patterns": [
             [
                 "close"
@@ -513,7 +522,7 @@
             ]
         ],
         "start_responses": [
-    ""
+            ""
         ],
         "stop_responses": [
             "Ok"
@@ -546,7 +555,8 @@
         ],
         "patterns": [
             [
-                "cc", "email"
+                "cc",
+                "email"
             ]
         ],
         "start_responses": [

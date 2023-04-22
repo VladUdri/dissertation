@@ -1,18 +1,18 @@
 from commands.command import ICommand
+from speak import Speak
 
 
 class Close(ICommand):
     def __init__(self, app) -> None:
         super().__init__(app)
         self.app = app
-        # self.voice = voice
 
     def execute(self):
+        speaker = Speak()
         try:
-            # speak()
-            if self.app._state != 'closed':
-                self.app.close_app()
-            # setstate
-            # speak()
+            speaker.speak('close_app', True)
+            self.app.close_app()
         except:
-            print('exception open')
+            speaker.simple_speak('Something went wrong, please try again!')
+        else:
+            speaker.speak('close_app', False)

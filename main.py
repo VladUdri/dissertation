@@ -1,9 +1,7 @@
 import json
 from speak import Speak
-from voice_interpretor import VoiceInterpretor
 from speech_commands_listener import VoiceCommandListener
 from speak import Speak
-from voicev import Voicev
 from init_voice import VoiceInit
 import pyautogui as pg
 REC, SAMPLERATE = VoiceInit().setUp()
@@ -28,5 +26,3 @@ if __name__ == '__main__':
             h.write('')
 
     ##########################################################################
-    # res = VoiceInterpretor(comm)
-    # res.execute('new command')
