@@ -3,7 +3,7 @@ import pyautogui as pg
 from time import sleep
 from speak import Speak
 from utils import focus_window
-from one_answer_listener import Voicev
+from one_answer_listener import OneAnswerListener
 from commands.vosk_dictation import VoskDictation
 from word2number import w2n
 
@@ -30,7 +30,7 @@ class Outlook(IApplications):
                                  'key_up', 'alt'])
         self.key_action.execute(
             ['key_down', 'ctrl', 'press', 'a', 'key_up', 'ctrl', 'press', 'backspace'])
-        subject = Voicev(
+        subject = OneAnswerListener(
             'What should be the subject?').listen_for_commands(True)
         pg.write(subject)
 
@@ -39,12 +39,12 @@ class Outlook(IApplications):
                                  'key_up', 'alt', 'key_down', 'shift', 'press', 'tab',
                                  'key_up', 'shift', 'key_down', 'shift', 'press', 'tab',
                                  'key_up', 'shift'])
-        to = Voicev('Say the contact').listen_for_commands(True)
+        to = OneAnswerListener('Say the contact').listen_for_commands(True)
         pg.write(to)
         try:
             sleep(1)
             if pg.locateOnScreen('images\mail.png', grayscale=True, confidence=0.8) is not None:
-                res = Voicev(
+                res = OneAnswerListener(
                     'Please say the number coresponding to your choice').listen_for_commands(True)
                 int_res = w2n.word_to_num(res)
                 int_res -= 1
@@ -59,12 +59,12 @@ class Outlook(IApplications):
         self.key_action.execute(['key_down', 'alt', 'press', 'u',
                                  'key_up', 'alt', 'key_down', 'shift', 'press', 'tab',
                                  'key_up', 'shift'])
-        cc = Voicev('Say the contact').listen_for_commands(True)
+        cc = OneAnswerListener('Say the contact').listen_for_commands(True)
         pg.write(cc)
         try:
             sleep(1)
             if pg.locateOnScreen('images\mail_cc.png', grayscale=True, confidence=0.8) is not None:
-                res = Voicev(
+                res = OneAnswerListener(
                     'Please say the number coresponding to your choice').listen_for_commands(True)
                 int_res = w2n.word_to_num(res)
                 int_res -= 1
@@ -92,18 +92,18 @@ class Outlook(IApplications):
                                  'key_up', 'alt'])
         self.key_action.execute(
             ['key_down', 'ctrl', 'press', 'a', 'key_up', 'ctrl', 'press', 'backspace'])
-        title = Voicev('What should be the title?').listen_for_commands(True)
+        title = OneAnswerListener('What should be the title?').listen_for_commands(True)
         pg.write(title)
 
     # added
     def outlook_event_add_start_time(self):
         self.key_action.execute(['key_down', 'alt', 'press', 't',
                                  'key_up', 'alt'])
-        start_date = Voicev(
+        start_date = OneAnswerListener(
             'What is the start date?').listen_for_commands(True)
         pg.write(start_date)
         self.key_action.execute(['press', 'enter'])
-        start_time = Voicev(
+        start_time = OneAnswerListener(
             'What is the start time?').listen_for_commands(True)
         pg.write(start_time)
         self.key_action.execute(['press', 'enter'])
@@ -112,10 +112,10 @@ class Outlook(IApplications):
     def outlook_event_add_end_time(self):
         self.key_action.execute(['key_down', 'alt', 'press', 'd',
                                  'key_up', 'alt'])
-        end_date = Voicev('What is the end date?').listen_for_commands(True)
+        end_date = OneAnswerListener('What is the end date?').listen_for_commands(True)
         pg.write(end_date)
         self.key_action.execute(['press', 'enter'])
-        end_time = Voicev('What is the end time?').listen_for_commands(True)
+        end_time = OneAnswerListener('What is the end time?').listen_for_commands(True)
         pg.write(end_time)
         self.key_action.execute(['press', 'enter'])
 

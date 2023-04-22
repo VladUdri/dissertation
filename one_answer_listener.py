@@ -13,7 +13,7 @@ vosk.SetLogLevel(-1)
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
-class Voicev():
+class OneAnswerListener():
     def __init__(self, speech = '', safety_word='stop listening'):
         self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         self.q = queue.Queue()

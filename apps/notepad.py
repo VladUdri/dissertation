@@ -2,7 +2,7 @@ from application import IApplications
 import pyautogui as pg
 from time import sleep
 from utils import focus_window
-from one_answer_listener import Voicev
+from one_answer_listener import OneAnswerListener
 
 
 class Notepad(IApplications):
@@ -20,7 +20,7 @@ class Notepad(IApplications):
         self._save_replace()
 
     def _save_replace(self):
-        name = Voicev(
+        name = OneAnswerListener(
             'What should be the name of the note?').listen_for_commands(True)
         pg.write(name)
         sleep(1)
@@ -29,7 +29,7 @@ class Notepad(IApplications):
         if pg.locateOnScreen('images\warning.png') is not None:
             self.speak.simple_speak(
                 'This already exists! Do you want to replace it?')
-            response = Voicev().listen_for_commands(True)
+            response = OneAnswerListener().listen_for_commands(True)
             if response == 'yes':
                 self.key_action.execute(['press', 'left', 'press', 'enter'])
             elif response == 'no':

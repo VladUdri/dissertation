@@ -1,6 +1,6 @@
 from commands.command import ICommand
 from speak import Speak
-from app_interface import AppInt
+from app_interface import AppInterface
 
 
 class Interface(ICommand):
@@ -12,7 +12,7 @@ class Interface(ICommand):
         speaker = Speak()
         try:
             speaker.speak('run_interface', True)
-            AppInt().run()
+            AppInterface().run()
         except:
             speaker.simple_speak('Something went wrong, please try again!')
         else:

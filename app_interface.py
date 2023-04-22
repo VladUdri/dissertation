@@ -3,7 +3,7 @@ import customtkinter
 from save_json import SaveJson
 
 
-class AppInt():
+class AppInterface():
     def __init__(self) -> None:
         self.gl = 0
         self.root = customtkinter.CTk()

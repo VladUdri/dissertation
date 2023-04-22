@@ -17,3 +17,4 @@ class NotepadCreateNew(ICommand):
 
         # else:
             speaker.speak('notepad_create_new', False)
+

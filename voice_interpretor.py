@@ -16,7 +16,7 @@ class VoiceInterpretor:
             self.last_app = h.readlines()
         self.speaker = Speak()
 
-    def get_app(self, text):
+    def _get_app(self, text):
         try:
             for word in text.split(' '):
                 for key, app in default_apps.items():
@@ -31,7 +31,7 @@ class VoiceInterpretor:
         except:
             return None
 
-    def search_str(self, text, app):
+    def _search_str(self, text, app):
         for key in self.comm:
             for i in range(0, len(self.comm[key]['patterns'])):
                 if all(substring in text.lower() for substring in self.comm[key]['patterns'][i]):
@@ -39,7 +39,7 @@ class VoiceInterpretor:
                         return key
         return None
 
-    def search_custom(self, text):
+    def _search_custom(self, text):
         for key in self.custom_comm:
             if key == text:
                 return key
@@ -48,14 +48,15 @@ class VoiceInterpretor:
     def execute(self, phrase):
         convertion = ConvertText(phrase)
         converted_text = convertion.process_text()
+        print(converted_text)
         text_to_compare = ' '.join(converted_text[0:len(converted_text)])
-        app = self.get_app(text_to_compare)
+        app = self._get_app(text_to_compare)
         if app is None:
             app = 'computer'
         custom = ''
-        action = self.search_str(text_to_compare, app)
+        action = self._search_str(text_to_compare, app)
         if action is None:
-            custom = self.search_custom(phrase)
+            custom = self._search_custom(phrase)
             if custom is not None:
                 app = action = 'custom'
             else:

@@ -8,5 +8,3 @@ class ICommand(ABC):
     def execute(self):
         pass
 
-    def backup(self):
-        pass

@@ -2,7 +2,7 @@ from application import IApplications
 import pyautogui as pg
 from time import sleep
 from utils import focus_window
-from one_answer_listener import Voicev
+from one_answer_listener import OneAnswerListener
 from word2number import w2n
 from speak import Speak
 import pygetwindow as gw
@@ -31,7 +31,7 @@ class Word(IApplications):
         self._save_replace()
 
     def _save_replace(self):
-        name = Voicev(
+        name = OneAnswerListener(
             'What should be the name of the document?').listen_for_commands(True)
 
         pg.write(name)
@@ -41,7 +41,7 @@ class Word(IApplications):
         if pg.locateOnScreen('images\save_replace.png', grayscale=True, confidence=0.8) is not None:
             self.speak.simple_speak(
                 'This already exists! Do you want to replace it?')
-            response = Voicev().listen_for_commands(True)
+            response = OneAnswerListener().listen_for_commands(True)
 
             if response == 'yes':
                 self.key_action.execute(['press', 'enter'])
@@ -59,7 +59,7 @@ class Word(IApplications):
         self.key_action.execute(
             ['key_down', 'ctrl', 'press', 'd', 'key_up', 'ctrl'])
         sleep(1)
-        font = Voicev('What should be the new font?').listen_for_commands(True)
+        font = OneAnswerListener('What should be the new font?').listen_for_commands(True)
         sleep(0.5)
         pg.write(font)
         sleep(0.5)
@@ -81,7 +81,7 @@ class Word(IApplications):
         int_size = None
         while int_size is None:
             try:
-                size = Voicev(
+                size = OneAnswerListener(
                     'What should be the new size?').listen_for_commands(True)
                 int_size = w2n.word_to_num(size)
                 sleep(0.5)

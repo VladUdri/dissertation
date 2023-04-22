@@ -97,8 +97,6 @@ class CommandInterpretor:
         }
 
     def process_command(self, command):
-        print(command)
-        print(self.app)
         if command in self.commands:
             print('command: ', command)
             self.commands[command].execute()
@@ -106,19 +104,6 @@ class CommandInterpretor:
         else:
             print('not known')
             return None
-
-    # def startup_app(self, app):
-    #     print(app, self.app, self.last_app)
-    #     if app is not None:
-    #         self.last_app = self.app = app
-    #     else:
-    #         if self.last_app != '':
-    #             self.app = self.last_app
-    #         else:
-    #             print('\n# ', self.last_app, ' #')
-
-    #             return None
-    #     return self.app
 
     def startup_app(self, app, last_app):
         if app is not None:

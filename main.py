@@ -1,6 +1,6 @@
 import json
 from speak import Speak
-from speech_commands_listener import VoiceCommandListener
+from speech_commands_listener import SpeechCommandListener
 from speak import Speak
 from init_voice import VoiceInit
 import pyautogui as pg
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     ########################## - final - #####################################
 
     try:
-        VoiceCommandListener(comm).listen_for_commands(REC, SAMPLERATE)
+        SpeechCommandListener(comm).listen_for_commands(REC, SAMPLERATE)
         # res = VoiceInterpretor(comm)
         # res.execute('search on google')
     except:
