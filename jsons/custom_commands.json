@@ -19,6 +19,38 @@
         "press",
         "a",
         "key_up",
+        "ctrl",
+        "key_down",
+        "ctrl",
+        "key_down",
+        "c",
+        "key_down",
+        "ctrl",
+        "press",
+        "v",
+        "key_up",
         "ctrl"
+    ],
+    "am avut 4 zile grele": [
+        "press",
+        "a"
+    ],
+    "am avut 5 zile": [
+        "press",
+        "b"
+    ],
+    "asdasd a": [
+        "key_down",
+        "as",
+        "press",
+        "a",
+        "key_up",
+        "as"
+    ],
+    "asdasd": [
+        "press",
+        "a",
+        "press",
+        "a"
     ]
 }

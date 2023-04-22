@@ -1,4 +1,3 @@
-# from app_interface import AppInt
 import json
 from speak import Speak
 from voice_interpretor import VoiceInterpretor
@@ -7,7 +6,7 @@ from speak import Speak
 from voicev import Voicev
 from init_voice import VoiceInit
 import pyautogui as pg
-REC, SAMPLERATE = VoiceInit().setUp()
+# REC, SAMPLERATE = VoiceInit().setUp()
 with open('jsons/all_commands.json') as f:
     comm = json.load(f)
 
@@ -30,6 +29,4 @@ if __name__ == '__main__':
 
     ##########################################################################
     # res = VoiceInterpretor(comm)
-    # print('4 ' + str(res.execute('huiyguh on google')))   
-
-
+    # res.execute('new command')

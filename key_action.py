@@ -4,7 +4,6 @@ from time import sleep
 
 class KeyAction:
     def __init__(self) -> None:
-        # self.actions = actions
         pass
 
     def execute(self, actions):
@@ -21,6 +20,10 @@ class KeyAction:
                     print(actions[index])
                     pg.press(keys=actions[index + 1], presses=actions[index])
                 sleep(0.1)
+            if actions[len(actions)-2] == 'key_down':
+                print('yep...')
+                pg.keyUp(actions[len(actions) - 1])
+
             return True
         except Exception as e:
             print('exception', e)

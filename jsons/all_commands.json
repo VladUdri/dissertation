@@ -628,18 +628,16 @@
         "apps": [],
         "patterns": [
             [
-                "add",
                 "new",
                 "command"
             ],
             [
-                "add",
                 "new",
                 "shortcuts"
             ]
         ],
         "start_responses": [
-            "Opening applicaiton interface"
+            "Opening application interface"
         ],
         "stop_responses": [
             "Application interface closed"
