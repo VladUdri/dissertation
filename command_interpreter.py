@@ -35,7 +35,7 @@ from commands.word_change_size import WordChangeSize
 from commands.word_create_new_blank import WordCreateNewBlank
 
 
-class CommandInterpretor:
+class CommandInterpreter:
 
     start_apps = {
         'word': Word(),
