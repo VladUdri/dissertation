@@ -6,7 +6,7 @@ from speak import Speak
 from voicev import Voicev
 from init_voice import VoiceInit
 import pyautogui as pg
-# REC, SAMPLERATE = VoiceInit().setUp()
+REC, SAMPLERATE = VoiceInit().setUp()
 with open('jsons/all_commands.json') as f:
     comm = json.load(f)
 
