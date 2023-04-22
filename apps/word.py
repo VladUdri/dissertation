@@ -1,17 +1,17 @@
 from application import IApplications
 import pyautogui as pg
 from time import sleep
-from utils import move_and_click, move_mouse, focus_window
-from voicev import Voicev
+from utils import focus_window
+from one_answer_listener import Voicev
 from word2number import w2n
 from speak import Speak
+import pygetwindow as gw
 
 
 class Word(IApplications):
     def __init__(self, app_name='word'):
         super().__init__(app_name)
 
-# #########################################################################################
     def word_create_new(self):
         focus_window(self._app_name)
         self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
@@ -31,7 +31,8 @@ class Word(IApplications):
         self._save_replace()
 
     def _save_replace(self):
-        name = Voicev('What should be the name of the document?').listen_for_commands(True)
+        name = Voicev(
+            'What should be the name of the document?').listen_for_commands(True)
 
         pg.write(name)
         sleep(1)
@@ -90,5 +91,3 @@ class Word(IApplications):
         pg.write(str(int_size))
         sleep(0.5)
         pg.press('enter')
-
-# #########################################################################################

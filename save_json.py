@@ -27,8 +27,11 @@ class SaveJson:
             if i > 0 and self.data['actions'][i - 1] == 'Keep pressed' and self.data['actions'][i] == 'Press':
                 action_list.append('key_up')
                 action_list.append(self.data['keys'][i - 1])
+        if self.data['actions'][len(self.data['actions']) - 1] == 'Keep pressed':
+            action_list.append('key_up')
+            action_list.append(
+                self.data['keys'][len(self.data['actions']) - 1])
         return action_list
-        # todo do here
 
     def __write_json(self):
         with open(file_path, 'w') as f:

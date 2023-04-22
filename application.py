@@ -49,7 +49,10 @@ class IApplications(ABC):
         if self.is_app_open():
             res = gw.getWindowsWithTitle(self._app_name)[0]
             res.close()
+            self.key_action.execute(
+                ['key_down', 'alt', 'press', 'n', 'key_up', 'alt'])
             self.speak.simple_speak('Done closing!')
+
             return True
         else:
             self.speak.simple_speak('App is not opened!')
