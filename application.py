@@ -3,8 +3,7 @@ from time import sleep
 from AppOpener import open
 import psutil
 import pygetwindow as gw
-from abc import ABC, abstractmethod
-from images.vosk_voice import VoskModel
+from abc import ABC
 from speak import Speak
 from key_action import KeyAction
 '''
@@ -18,16 +17,8 @@ State rules:
 class IApplications(ABC):
     def __init__(self, app_name):
         self._app_name = app_name
-        self.listen = VoskModel()
         self.speak = Speak()
         self.key_action = KeyAction()
-
-    # to use
-    def is_app_open(self):
-        for p in psutil.process_iter():
-            if self._app_name.lower() in p.name().lower():
-                return True
-        return False
 
     '''
     In order to open an application, we use the method open from the AppOpener library.
@@ -35,24 +26,31 @@ class IApplications(ABC):
     # to use
 
     def open_app(self):
-        open(self._app_name)
-        sleep(2)
-        return True
+        try:
+            open(self._app_name)
+            sleep(2)
+            return True
+        except:
+            self.speak.simple_speak('I don\'t know this app!')
+            return
+
+    def is_app_open(self):
+        for p in psutil.process_iter():
+            if self._app_name.lower() in p.name().lower():
+                return True
+        return False
 
     '''
     save_as function that presses combinations of key so that it saves the document.
     It uses pyautogui to execute the presses
     '''
-    # to use
-    # todo add states
-    # to use
 
     def close_app(self):
         if self.is_app_open():
             res = gw.getWindowsWithTitle(self._app_name)[0]
             res.close()
-            print('App closed')
+            self.speak.simple_speak('Done closing!')
             return True
         else:
-            print('App is not opened!')
+            self.speak.simple_speak('App is not opened!')
             return False
