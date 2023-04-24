@@ -1,3 +1,6 @@
+import json
+from app_interface import AppInterface
+from commands.interface import Interface
 from speak import Speak
 from speech_commands_listener import SpeechCommandListener
 from speak import Speak

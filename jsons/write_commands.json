@@ -81,11 +81,11 @@
             "ctrl"
         ],
         "pattern": [
+            "position center",
             "align center",
             "align centre",
             "alignment center",
             "alignment centre",
-            "position center",
             "position centre"
         ],
         "type": "action"
@@ -100,9 +100,9 @@
             "ctrl"
         ],
         "pattern": [
+            "position left",
             "align left",
-            "alignment left",
-            "position left"
+            "alignment left"
         ],
         "type": "action"
     },
@@ -116,9 +116,9 @@
             "ctrl"
         ],
         "pattern": [
+            "position right",
             "align right",
-            "alignment right",
-            "position right"
+            "alignment right"
         ],
         "type": "action"
     },
@@ -132,9 +132,9 @@
             "ctrl"
         ],
         "pattern": [
+            "position justify",
             "align justify",
-            "alignment justify",
-            "position justify"
+            "alignment justify"
         ],
         "type": "action"
     },
@@ -146,9 +146,9 @@
             "space"
         ],
         "pattern": [
+            "full stop",
             "period symbol",
-            "dot symbol",
-            "full stop"
+            "dot symbol"
         ],
         "type": "key"
     },

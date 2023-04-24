@@ -1,1 +1,1 @@
-{"copy all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl", "key_down", "ctrl", "press", "c", "key_up", "ctrl"], "select all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl"], "what is this": ["key_down", "shift", "press", "/", "key_up", "shift"]}
+{"copy all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl", "key_down", "ctrl", "press", "c", "key_up", "ctrl"], "select all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl"], "what is this": ["key_down", "shift", "press", "/", "key_up", "shift"], "my other new command": ["press", "a"]}

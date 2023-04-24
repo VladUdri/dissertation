@@ -1,6 +1,7 @@
 from tkinter import *
 import customtkinter
 from save_json import SaveJson
+import json
 
 
 class AppInterface():
@@ -20,16 +21,39 @@ class AppInterface():
         self.save_button = customtkinter.CTkButton(
             self.frame, text="Save", fg_color='#00008B', hover_color='#00003f', command=self.save_fnc, height=45, font=('Helvetica', 18), text_color='#fff')
         self.text_voice_command = customtkinter.CTkEntry(self.frame, width=650, height=45,
-                                                        border_width=1, placeholder_text="Add speech command",
-                                                        text_color="black", font=('Helvetica', 18))
+                                                         border_width=1, placeholder_text="Add speech command",
+                                                         text_color="black", font=('Helvetica', 18))
         self.error = ''
         self.error_text = StringVar()
         self.error_label = customtkinter.CTkLabel(master=self.frame,
-                                                textvariable=self.error_text,
-                                                width=120,
-                                                height=25,
-                                                corner_radius=8)
+                                                  textvariable=self.error_text,
+                                                  width=120,
+                                                  height=25,
+                                                  corner_radius=8)
         self.data = {'voice_command': '', 'actions': [], 'keys': []}
+        self.s = "In order to start the application say \"initialise application\".\nTo stop the application say \"close application\".\n\nTo add new custom commands, say \"new command\", then the application user interface will start.\nThe red button will reset the interface and empty all the boxes.\n The green button will add a new fild for a command. \nThe light blue button will save the custom action."
+        with open('jsons/all_commands.json') as f:
+            comm = json.load(f)
+        with open('jsons/custom_commands.json') as g:
+            custom_comm = json.load(g)
+        with open('jsons/write_commands.json') as h:
+            write_comm = json.load(h)
+
+        self.s += '\n\nYour custom actions\n\n'
+        if len(custom_comm.keys()) > 1:
+            for i in custom_comm.keys():
+                self.s += (str(i) + '\n')
+        self.s += '\n\n\nDefault actions and the appplications where they are available\n\n'
+        for i in comm:
+            if len(comm[i]['apps']) > 0:
+                self.s += (str(' '.join(comm[i]['patterns'][0])) +
+                           ' -> ' + str(', '.join(comm[i]['apps'])) + '\n')
+            else:
+                self.s += (str(' '.join(comm[i]['patterns'][0])) +
+                           ' -> ' + 'Start the application interface\n')
+        self.s += '\n\n\nDefault dictation actions\n\n'
+        for i in write_comm:
+            self.s += (str('/ '.join(write_comm[i]['pattern'])) + '\n')
 
     def get_val(self):
         # Returns the value of the instance variable 'gl'
@@ -42,13 +66,11 @@ class AppInterface():
         # Calls the 'run()' method
         self.run()
 
-
-
     def add_checkbox(self):
-    # Creates a combobox with two values, 'Press' and 'Keep pressed'
+        # Creates a combobox with two values, 'Press' and 'Keep pressed'
         combobox = customtkinter.CTkComboBox(self.frame,
-                                            values=["Press", "Keep pressed"], height=45,
-                                            state="readonly", font=('Helvetica', 15))
+                                             values=["Press", "Keep pressed"], height=45,
+                                             state="readonly", font=('Helvetica', 15))
         # Appends the combobox to the checkboxes list
         self.checkboxes.append(combobox)
         # Creates a StringVar object with value 'Press' and appends to the actions list in data dictionary
@@ -58,8 +80,8 @@ class AppInterface():
     def add_textbox(self):
         # Creates an entry textbox with width 200 and height 45
         textbox = customtkinter.CTkEntry(self.frame, width=200, height=45,
-                                        border_width=1, placeholder_text="Enter a key",
-                                        text_color="black", font=('Helvetica', 18))
+                                         border_width=1, placeholder_text="Enter a key",
+                                         text_color="black", font=('Helvetica', 18))
         # Appends the textbox to the textboxes list
         self.textboxes.append(textbox)
         # Appends an empty string to the keys list in data dictionary
@@ -70,28 +92,34 @@ class AppInterface():
         newWindow = customtkinter.CTkToplevel(self.root)
         customtkinter.set_appearance_mode("light")
         newWindow.title('Help')
-        newWindow.geometry("500x500")
+        newWindow.geometry("800x500")
         newWindow.attributes('-topmost', True)
 
         # Adds a label to display title
         title = customtkinter.CTkLabel(master=newWindow,
-                                    text="Instructions on how to use the application",
+                                    text="Help - Instructions on how to use the application",
                                     text_color="#000",
                                     width=250,
                                     justify="left",
                                     anchor="w",
                                     font=('Helvetica', 18, 'bold'))
-        # Adds a label to display instructions
-        instrucitons = customtkinter.CTkLabel(master=newWindow,
-                                            text="Instructions on how to use the application",
-                                            text_color="#000",
-                                            width=250,
-                                            justify="left",
-                                            anchor="w",
-                                            font=('Helvetica', 12))
-        # Places the title and instructions labels in the new window
         title.place(x=10, y=0)
-        instrucitons.place(x=10, y=30)
+
+        # Adds a CTkText widget to display instructions
+        instructions_text = customtkinter.CTkTextbox(master=newWindow,
+                                                wrap="word",
+                                                font=('Helvetica', 12),
+                                                height=450,
+                                                width=780)
+        instructions_text.insert("1.0", self.s)
+        instructions_text.place(x=10, y=30)
+
+        # Adds a CTkScrollbar widget for the CTkText widget
+        scrollbar = customtkinter.CTkScrollbar(master=newWindow,
+                                            orientation='vertical',height=400,
+                                            command=instructions_text.yview)
+        scrollbar.place(x=780, y=30)
+        instructions_text.configure(yscrollcommand=scrollbar.set)
 
 
     def save_fnc(self):
@@ -124,7 +152,6 @@ class AppInterface():
             self.error = 'An error occured'
         self.refresh()
 
-
     def add_new_func(self):
         # Check if maximum number of functions has been reached
         if self.gl < 7:
@@ -140,7 +167,6 @@ class AppInterface():
             self.error = ''
             self.refresh()
 
-
     def reset(self):
         # Reset all values and clear inputs
         self.gl = 0
@@ -154,7 +180,6 @@ class AppInterface():
         self.text_voice_command.delete(0, END)
         self.error = ''
         self.refresh()
-
 
     def run(self):
         # Set appearance mode of tkinter window
@@ -176,10 +201,10 @@ class AppInterface():
                 row=1, column=0, padx=10, pady=10, columnspan=3)
 
             self.new_button.grid(row=self.get_val(), column=2, padx=10,
-                                pady=10)
+                                 pady=10)
 
             self.save_button.grid(row=self.gl + 2, column=1, padx=100,
-                                pady=10)
+                                  pady=10)
 
         # Show checkboxes and textboxes for each function
         for i in range(0, self.gl):

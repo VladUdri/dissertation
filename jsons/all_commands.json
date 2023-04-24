@@ -262,8 +262,9 @@
         ],
         "patterns": [
             [
-                "volume",
-                "increase"
+                "increase",
+                "volume"
+                
             ]
         ],
         "start_responses": [
@@ -279,8 +280,8 @@
         ],
         "patterns": [
             [
-                "volume",
-                "decrease"
+                "decrease",
+                "volume"
             ]
         ],
         "start_responses": [
@@ -466,6 +467,10 @@
         ],
         "patterns": [
             [
+                "write",
+                "body"
+            ],
+            [
                 "add",
                 "body"
             ],
@@ -478,10 +483,6 @@
                 "write",
                 "body",
                 "text"
-            ],
-            [
-                "write",
-                "body"
             ]
         ],
         "start_responses": [
@@ -589,8 +590,8 @@
         ],
         "patterns": [
             [
-                "body",
-                "email"
+                "email",
+                "body"
             ]
         ],
         "start_responses": [
