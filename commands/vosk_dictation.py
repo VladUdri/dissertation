@@ -7,9 +7,12 @@ import sounddevice as sd
 import vosk
 from key_action import KeyAction
 from comlpex_actions import ComplexAction
+
+from speak import Speak
+
 vosk.SetLogLevel(-1)
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
 class VoskDictation():
@@ -25,11 +28,13 @@ class VoskDictation():
         self.listening = True
         with open('jsons/last_app/last_app.txt') as h:
             self.last_app = h.readlines()
+        self.speaker = Speak()
 
     def execute(self):
 
         # Importing REC and SAMPLERATE from main module
         from main import REC, SAMPLERATE
+        self.speaker.simple_speak('You can start dictating. To stop it say stop dictating.')
 
         try:
             # Recording voice input using sd.RawInputStream method
@@ -67,6 +72,10 @@ class VoskDictation():
                                     if d[key] == self.safety_word:
                                         self.key_action.execute(
                                             ['key_down', 'ctrl', 2, 'backspace', 'key_up', 'ctrl'])
+                                        self.q.queue.clear()
+                                        self.speaker.simple_speak('Stopping dictation.')
+                                        self.q.queue.clear()
+                                    
                                         return
                                     self.previous_line = d[key]
         except KeyboardInterrupt:
