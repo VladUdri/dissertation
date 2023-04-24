@@ -15,6 +15,6 @@ class NotepadCreateNew(ICommand):
         except:
             speaker.simple_speak('Something went wrong, please try again!')
 
-        # else:
+        else:
             speaker.speak('notepad_create_new', False)
 
