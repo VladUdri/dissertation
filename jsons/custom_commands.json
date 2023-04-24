@@ -1,16 +1,1 @@
-{
-    "copy all": [
-        "key_down",
-        "ctrl",
-        "press",
-        "a",
-        "key_up",
-        "ctrl",
-        "key_down",
-        "ctrl",
-        "press",
-        "c",
-        "key_up",
-        "ctrl"
-    ]
-}
+{"copy all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl", "key_down", "ctrl", "press", "c", "key_up", "ctrl"], "select all": ["key_down", "ctrl", "press", "a", "key_up", "ctrl"]}

@@ -9,9 +9,7 @@ class ConvertText:
     def __init__(self, text):
         self.text = text
 
-    """
-    Function that removes stop words from a text
-    """
+    # Function that removes stop words from a text
 
     def _remove_stopwords(self, text):
         res = text.translate(str.maketrans('', '', string.punctuation))
@@ -25,11 +23,9 @@ class ConvertText:
                     not in stop_words]
         return filtered
 
-    """
-    Function that lemmatizes the words so everytime we will have the form from dictionary of the word
-    - takes text as parameter (a text composed of one or more sentences)
-    - returns result (a text having the words lemmetized)
-    """
+    # Function that lemmatizes the words so everytime we will have the form from dictionary of the word
+    # - takes text as parameter (a text composed of one or more sentences)
+    # - returns result (a text having the words lemmetized)
 
     def _lemm(self, text):
         words = word_tokenize(text)
@@ -47,10 +43,8 @@ class ConvertText:
             result += ' '
         return result
 
-    """
-    Funtion that converts the part of speech so that it can be used in the lemmetizer 
-    e.g. NN -> n; VBG -> v
-    """
+    # Funtion that converts the part of speech so that it can be used in the lemmetizer 
+    # e.g. NN -> n; VBG -> v
 
     def _part_of_speech(self, touple):
         if touple[1][0] == 'N':

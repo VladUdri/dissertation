@@ -1,3 +1,4 @@
+# Import necessary commands and apps
 from commands.google_wikipedia_search import GoogleWikipediaSearch
 from commands.notepad_save_as import NotepadSaveAs
 from commands.open import Open
@@ -97,14 +98,15 @@ class CommandInterpreter:
         }
 
     def process_command(self, command):
+        # if command can be found in self.commands, it executes it
         if command in self.commands:
             print('command: ', command)
             self.commands[command].execute()
             return command
         else:
-            print('not known')
             return None
 
+    # function that selects the app on which the action will be performed
     def startup_app(self, app, last_app):
         if app is not None:
             self.last_app = self.app = app

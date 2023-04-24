@@ -136,7 +136,7 @@ class AppInterface():
     def run(self):
         customtkinter.set_appearance_mode("light")
 
-        self.root.title('Add commands')
+        self.root.title('Add action')
         self.root.geometry("900x750")
         self.frame.grid(pady=10, sticky="nsew")
         self.frame.grid_columnconfigure(0, weight=1)

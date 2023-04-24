@@ -1,4 +1,3 @@
-import pyautogui as pg
 from time import sleep
 from AppOpener import open
 import psutil
@@ -6,12 +5,6 @@ import pygetwindow as gw
 from abc import ABC
 from speak import Speak
 from key_action import KeyAction
-'''
-State rules: 
-    ### 'close' = app is not opened;
-    ### 'open' = app just got open, default open settings;
-    ### 'new_created' = app has a new document/email created;
-'''
 
 
 class IApplications(ABC):
@@ -23,8 +16,7 @@ class IApplications(ABC):
     '''
     In order to open an application, we use the method open from the AppOpener library.
     '''
-    # to use
-
+    # Funtion that opens an app. If app cannot be found, give speech feedback
     def open_app(self):
         try:
             open(self._app_name)
@@ -34,16 +26,14 @@ class IApplications(ABC):
             self.speak.simple_speak('I don\'t know this app!')
             return
 
+    # Function that checks if an app is open or not
     def is_app_open(self):
         for p in psutil.process_iter():
             if self._app_name.lower() in p.name().lower():
                 return True
         return False
 
-    '''
-    save_as function that presses combinations of key so that it saves the document.
-    It uses pyautogui to execute the presses
-    '''
+    # Funtion that closes an app. If app is not opened, give speech feedback
 
     def close_app(self):
         if self.is_app_open():

@@ -1,9 +1,7 @@
-import json
 from speak import Speak
 from speech_commands_listener import SpeechCommandListener
 from speak import Speak
 from init_voice import VoiceInit
-import pyautogui as pg
 REC, SAMPLERATE = VoiceInit().setUp()
 
 

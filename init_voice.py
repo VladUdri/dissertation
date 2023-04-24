@@ -1,8 +1,5 @@
 import pytesseract
-import time
 import os
-import json
-import sys
 import queue
 import sounddevice as sd
 import vosk
@@ -28,7 +25,6 @@ class VoiceInit():
         if not os.path.exists(self.model_path):
             print(r"D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph")
             print(f"and unpack into {self.model_path}.")
-        # print(self.model_path)
         device_info = sd.query_devices(kind='input')
         samplerate = int(device_info['default_samplerate'])
         model = vosk.Model(self.model_path)
