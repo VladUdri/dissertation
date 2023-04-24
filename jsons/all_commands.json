@@ -1,0 +1,657 @@
+{
+    "open_app": {
+        "apps": [
+            "notepad",
+            "outlook",
+            "word"
+        ],
+        "patterns": [
+            [
+                "open"
+            ],
+            [
+                "initialise"
+            ],
+            [
+                "initialize"
+            ]
+        ],
+        "start_responses": [
+            "Opening"
+        ],
+        "stop_responses": [
+            "Done opening"
+        ]
+    },
+    "close_app": {
+        "apps": [
+            "notepad",
+            "google",
+            "outlook",
+            "word"
+        ],
+        "patterns": [
+            [
+                "close"
+            ]
+        ],
+        "start_responses": [
+            "Closing"
+        ],
+        "stop_responses": [
+            ""
+        ]
+    },
+    "word_create_new": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "new",
+                "document"
+            ],
+            [
+                "create",
+                "new",
+                "document"
+            ]
+        ],
+        "start_responses": [
+            "Please wait. I am creating a new word document!"
+        ],
+        "stop_responses": [
+            "Done!"
+        ]
+    },
+    "word_create_new_blank": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "new",
+                "blank"
+            ],
+            [
+                "press",
+                "blank"
+            ]
+        ],
+        "start_responses": [
+            "Please wait. I am creating a new word document!"
+        ],
+        "stop_responses": [
+            "Done!"
+        ]
+    },
+    "word_save_as": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "save",
+                "document"
+            ]
+        ],
+        "start_responses": [
+            "Please wait. I am saving!"
+        ],
+        "stop_responses": [
+            "Done!"
+        ]
+    },
+    "word_change_font": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "change",
+                "font"
+            ]
+        ],
+        "start_responses": [
+            "Please wait!"
+        ],
+        "stop_responses": [
+            "Font changed!"
+        ]
+    },
+    "word_change_size": {
+        "apps": [
+            "word"
+        ],
+        "patterns": [
+            [
+                "change",
+                "size"
+            ]
+        ],
+        "start_responses": [
+            "Please wait!"
+        ],
+        "stop_responses": [
+            "Size changed!"
+        ]
+    },
+    "notepad_create_new": {
+        "apps": [
+            "notepad"
+        ],
+        "patterns": [
+            [
+                "create",
+                "new"
+            ]
+        ],
+        "start_responses": [
+            "Creating new notepad"
+        ],
+        "stop_responses": [
+            "Done!"
+        ]
+    },
+    "notepad_save_as": {
+        "apps": [
+            "notepad"
+        ],
+        "patterns": [
+            [
+                "save",
+                "note"
+            ]
+        ],
+        "start_responses": [
+            "Saving"
+        ],
+        "stop_responses": [
+            "Done!"
+        ]
+    },
+    "start_dictation": {
+        "apps": [
+            "word",
+            "outlook",
+            "notepad"
+        ],
+        "patterns": [
+            [
+                "start",
+                "writing"
+            ],
+            [
+                "write",
+                "text"
+            ],
+            [
+                "start",
+                "dictation"
+            ],
+            [
+                "start",
+                "dictate"
+            ]
+        ],
+        "start_responses": [
+            "You can start dictating"
+        ],
+        "stop_responses": [
+            "Dictation stopped!"
+        ]
+    },
+    "computer_brightness_up": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "increase",
+                "brightness"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Brightness increased by 10 percent"
+        ]
+    },
+    "computer_brightness_down": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "decrease",
+                "brightness"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Brightness decreased by 10 percent"
+        ]
+    },
+    "computer_brightness_value": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "change",
+                "brightness"
+            ],
+            [
+                "set",
+                "brightness"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Brightness set"
+        ]
+    },
+    "computer_volume_up": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "increase",
+                "volume"
+                
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Volume increased"
+        ]
+    },
+    "computer_volume_down": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "decrease",
+                "volume"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Volume decreased"
+        ]
+    },
+    "computer_volume_value": {
+        "apps": [
+            "computer"
+        ],
+        "patterns": [
+            [
+                "change",
+                "volume"
+            ],
+            [
+                "set",
+                "volume"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Volume set"
+        ]
+    },
+    "outlook_event_create": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "create",
+                "event"
+            ],
+            [
+                "add",
+                "calendar"
+            ]
+        ],
+        "start_responses": [
+            "Creating new event"
+        ],
+        "stop_responses": [
+            "Event created"
+        ]
+    },
+    "outlook_event_add_title": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "add",
+                "title"
+            ],
+            [
+                "write",
+                "title"
+            ],
+            [
+                "change",
+                "title"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_event_add_start_time": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "add",
+                "start",
+                "time"
+            ],
+            [
+                "change",
+                "start",
+                "time"
+            ],
+            [
+                "edit",
+                "start",
+                "time"
+            ]
+        ],
+        "start_responses": [
+            "Ok"
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_event_add_end_time": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "add",
+                "finish",
+                "time"
+            ],
+            [
+                "change",
+                "finish",
+                "time"
+            ],
+            [
+                "edit",
+                "finish",
+                "time"
+            ]
+        ],
+        "start_responses": [
+            "Ok"
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_event_make_event_all_day": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "make",
+                "day"
+            ],
+            [
+                "day",
+                "event"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Ok"
+        ]
+    },
+    "outlook_event_save": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "save",
+                "event"
+            ],
+            [
+                "press",
+                "save",
+                "continue"
+            ],
+            [
+                "save",
+                "continue"
+            ]
+        ],
+        "start_responses": [
+            "Saving"
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_event_add_body": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "write",
+                "body"
+            ],
+            [
+                "add",
+                "body"
+            ],
+            [
+                "add",
+                "body",
+                "text"
+            ],
+            [
+                "write",
+                "body",
+                "text"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_email_create_new": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "compose",
+                "email"
+            ],
+            [
+                "new",
+                "email"
+            ]
+        ],
+        "start_responses": [
+            "Creating new email"
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "outlook_email_add_subject": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "subject"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "Ok"
+        ]
+    },
+    "outlook_email_add_to": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "destination",
+                "email"
+            ],
+            [
+                "add",
+                "recipient"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            ""
+        ]
+    },
+    "outlook_email_add_cc": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "cc",
+                "email"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            ""
+        ]
+    },
+    "outlook_email_send": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "send",
+                "email"
+            ]
+        ],
+        "start_responses": [
+            "Sending"
+        ],
+        "stop_responses": [
+            "Email sent!"
+        ]
+    },
+    "outlook_email_add_body": {
+        "apps": [
+            "outlook"
+        ],
+        "patterns": [
+            [
+                "email",
+                "body"
+            ]
+        ],
+        "start_responses": [
+            "Adding body"
+        ],
+        "stop_responses": [
+            "Done"
+        ]
+    },
+    "google_search": {
+        "apps": [
+            "google"
+        ],
+        "patterns": [
+            [
+                "search",
+                "google"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "This is what I found on Google"
+        ]
+    },
+    "google_wikipedia_search": {
+        "apps": [
+            "google"
+        ],
+        "patterns": [
+            [
+                "search",
+                "wikipedia"
+            ]
+        ],
+        "start_responses": [
+            ""
+        ],
+        "stop_responses": [
+            "This is what I found on Wikipedia"
+        ]
+    },
+    "run_interface": {
+        "apps": [],
+        "patterns": [
+            [
+                "new",
+                "command"
+            ],
+            [
+                "new",
+                "shortcuts"
+            ]
+        ],
+        "start_responses": [
+            "Opening application interface"
+        ],
+        "stop_responses": [
+            "Application interface closed"
+        ]
+    }
+}

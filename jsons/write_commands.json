@@ -1,0 +1,338 @@
+{
+    "bold": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "b",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "bold"
+        ],
+        "type": "action"
+    },
+    "italic": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "i",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "italic",
+            "italics"
+        ],
+        "type": "action"
+    },
+    "underlined": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "u",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "underlined",
+            "underline"
+        ],
+        "type": "action"
+    },
+    "increase_font": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "]",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "increase font size"
+        ],
+        "type": "action"
+    },
+    "decrease_font": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "[",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "decrease font size"
+        ],
+        "type": "action"
+    },
+    "align_center": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "e",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "position center",
+            "align center",
+            "align centre",
+            "alignment center",
+            "alignment centre",
+            "position centre"
+        ],
+        "type": "action"
+    },
+    "align_left": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "l",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "position left",
+            "align left",
+            "alignment left"
+        ],
+        "type": "action"
+    },
+    "align_right": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "r",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "position right",
+            "align right",
+            "alignment right"
+        ],
+        "type": "action"
+    },
+    "align_justify": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "j",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "position justify",
+            "align justify",
+            "alignment justify"
+        ],
+        "type": "action"
+    },
+    "period": {
+        "execute": [
+            "press",
+            ".",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "full stop",
+            "period symbol",
+            "dot symbol"
+        ],
+        "type": "key"
+    },
+    "comma": {
+        "execute": [
+            "press",
+            ",",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "commma symbol",
+            "pause mark"
+        ],
+        "type": "key"
+    },
+    "question": {
+        "execute": [
+            "press",
+            "?",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "question mark"
+        ],
+        "type": "key"
+    },
+    "exclamation": {
+        "execute": [
+            "press",
+            "!",
+            "press",
+            "space"
+        ],
+        "pattern": [
+            "exclamation mark"
+        ],
+        "type": "key"
+    },
+    "at": {
+        "execute": [
+            "press",
+            "@"
+        ],
+        "pattern": [
+            "at symbol"
+        ],
+        "type": "key"
+    },
+    "backspace": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "backspace",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "backspace",
+            "delete word",
+            "back space",
+            "delete"
+        ],
+        "type": "action"
+    },
+    "delete_row": {
+        "execute": [
+            "press",
+            "end",
+            "key_down",
+            "shift",
+            "press",
+            "home",
+            "key_up",
+            "shift",
+            "press",
+            "backspace"
+        ],
+        "pattern": [
+            "erase line",
+            "delete line"
+        ],
+        "type": "action"
+    },
+    "open_font_editor": {
+        "execute": [
+            "key_down",
+            "ctrl",
+            "press",
+            "d",
+            "key_up",
+            "ctrl"
+        ],
+        "pattern": [
+            "open font editor"
+        ],
+        "type": "action"
+    },
+    "font_size": {
+        "steps": [
+            "open_font_editor",
+            "execute",
+            "listen_int"
+        ],
+        "execute": [
+            "key_down",
+            "alt",
+            "press",
+            "s",
+            "key_up",
+            "alt"
+        ],
+        "pattern": [
+            "change font size",
+            "set font size"
+        ],
+        "speak": "What should be the font size?",
+        "type": "complex_action"
+    },
+    "change_font": {
+        "steps": [
+            "open_font_editor",
+            "execute",
+            "listen_word"
+        ],
+        "execute": [
+            "key_down",
+            "alt",
+            "press",
+            "f",
+            "key_up",
+            "alt"
+        ],
+        "pattern": [
+            "change font"
+        ],
+        "speak": "What should be the new font?",
+        "type": "complex_action"
+    },
+    "new_line": {
+        "execute": [
+            "press",
+            "enter"
+        ],
+        "pattern": [
+            "new line"
+        ],
+        "type": "action"
+    },
+    "write_title": {
+        "steps": [
+            "execute",
+            "align_center",
+            "increase_font",
+            "increase_font",
+            "bold",
+            "listen_word",
+            "execute",
+            "decrease_font",
+            "decrease_font",
+            "bold",
+            "align_left"
+        ],
+        "execute": [
+            "press",
+            "enter"
+        ],
+        "pattern": [
+            "new title"
+        ],
+        "speak": "What should be the title?",
+        "type": "complex_action"
+    },
+    "stop_dictationg": {
+        "steps": [
+            "backspace",
+            "backspace"
+        ],
+        "pattern": [
+            "stop dictating"
+        ],
+        "speak": "",
+        "type": "action"
+    }
+}

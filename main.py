@@ -1,11 +1,28 @@
-from final_word import Word
 import json
-import execution
-import pyttsx3 as pt
+from app_interface import AppInterface
+from commands.interface import Interface
+from speak import Speak
+from speech_commands_listener import SpeechCommandListener
+from speak import Speak
+from init_voice import VoiceInit
+REC, SAMPLERATE = VoiceInit().setUp()
+
 
 if __name__ == '__main__':
-    engine = pt.init()
-    engine.setProperty(
-        'voice', 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0')
 
-    execution.execute_app('please open word', engine)
+    try:
+        # Call the listen_for_commands function from SpeechCommandListener.py
+        # to start the speech recognition system
+        SpeechCommandListener().listen_for_commands(REC, SAMPLERATE)
+    except:
+        # If an exception occurs, provide speech feedback about it
+        speaker = Speak()
+        speaker.simple_speak('Something went wrong? please try again!')
+        with open('jsons/last_app/last_app.txt', 'w') as h:
+            h.write('')
+    else:
+        # If everything works well, delete the contents of the last_app.txt
+        # file so it can be reused when the program starts again
+
+        with open('jsons/last_app/last_app.txt', 'w') as h:
+            h.write('')
