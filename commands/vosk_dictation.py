@@ -26,7 +26,7 @@ class VoskDictation():
         self.key_action = KeyAction()
         self.complex_action = ComplexAction()
         self.listening = True
-        with open('jsons/last_app/last_app.txt') as h:
+        with open('last_app/last_app.txt') as h:
             self.last_app = h.readlines()
         self.speaker = Speak()
 

@@ -16,8 +16,6 @@ class SpeechCommandListener():
 
     # Initialize class with the stop and trigger commands
     def __init__(self, stop_command='close application', trigger_command='initialize application'):
-        # Set the path to the Vosk speech recognition model
-        self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         # Create a queue to store audio data
         self.q = queue.Queue()
         # Initialize variables for stop and trigger commands
@@ -63,7 +61,7 @@ class SpeechCommandListener():
                                         new_fin = d["partial"]
                                     # If the stop command is detected, exit the program
                                     if d[key] == self.stop_command:
-                                        with open('jsons/last_app/last_app.txt', 'w') as h:
+                                        with open('last_app/last_app.txt', 'w') as h:
                                             h.write('')
                                         self.speaker.simple_speak('Good bye!')
                                         return

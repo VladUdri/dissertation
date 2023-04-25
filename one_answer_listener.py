@@ -11,8 +11,6 @@ vosk.SetLogLevel(-1)
 # Define OneAnswerListener class
 class OneAnswerListener():
     def __init__(self, speech='', safety_word='stop listening'):
-        # Set model path
-        self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         # Create queue object
         self.q = queue.Queue()
         # Initialize previous line
