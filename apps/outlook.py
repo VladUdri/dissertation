@@ -188,7 +188,7 @@ class Outlook(IApplications):
         self.speak.simple_speak(
             'The dictation will start. To stop it say stop dictationg')
         VoskDictation().execute()
-
+    
     def outlook_create_event(self):
         # Bring the Outlook window into focus
         focus_window(self._app_name)
@@ -199,6 +199,7 @@ class Outlook(IApplications):
         # Wait for 0.5 seconds
         sleep(0.5)
         # Create a new event
-        self.create_new()
+        self.key_action.execute(['key_down', 'ctrl', 'press', 'n',
+                                'key_up', 'ctrl'])
         # Wait for 0.5 seconds
         sleep(0.5)

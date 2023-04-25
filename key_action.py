@@ -24,7 +24,7 @@ class KeyAction:
                     # simulate pressing the keys for a certain number of times using pyautogui
                     pg.press(keys=actions[index + 1], presses=actions[index])
                 # wait for 0.1 seconds between each action
-                sleep(0.1)
+                sleep(0.2)
 
             # return True if all actions were successfully executed
             return True

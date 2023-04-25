@@ -25,7 +25,7 @@ following command: ```pip install -r requirements.txt```
 in init voice.py) with the actual path of the model from your computer. The
 result should look something like this: self.model\_path="D:\\pythonProj
 ect1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
-8. Next, run the code using the following command python main.py. If the system
+8. Next, run the code using the following command ```python main.py```. If the system
 prompts you to install more libraries install the library via a pip command.
 
 ### Use another Vosk model
@@ -44,7 +44,8 @@ After running the application, to start the system say ”initialize application
 6. ”save document”
 7. ”close Microsoft Word”
 
-The complete list of default available actions is presented in the table from below. Important to mention is that the system is able to identify different ways of saying the same spoken command, so, although Table A.1 contains the recommended spoken command, that does not necessarily mean that others will not work (for example, instead of saying ”new command”, the user can also say ”add new commands”, or ”new shortcuts”). If you try to perform an action on an app on which it is not intended to be used, the system will not perform it.
+The complete list of default available actions is presented in the tables from below. The first table contains the recommended spoken command, and the apps where they are available. If you try to perform an action on an app on which it is not intended to be used, the system will not perform it. 
+The second table contains the commands available when dictating. 
 | **Action**          | **Application where action is available** |
 |----------------------|-------------------------------------------|
 | open                 | notepad, outlook, word                    |

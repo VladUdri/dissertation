@@ -2,10 +2,11 @@ from speak import Speak
 from speech_commands_listener import SpeechCommandListener
 from speak import Speak
 from init_voice import VoiceInit
-REC, SAMPLERATE = VoiceInit().setUp()
 
 
 if __name__ == '__main__':
+    
+    REC, SAMPLERATE = VoiceInit().setUp()
 
     try:
         # Call the listen_for_commands function from SpeechCommandListener.py
