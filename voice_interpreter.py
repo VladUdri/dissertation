@@ -17,7 +17,7 @@ class VoiceInterpreter:
             self.comm = json.load(f)
         with open('jsons/custom_commands.json') as g:
             self.custom_comm = json.load(g)
-        with open('jsons/last_app/last_app.txt') as h:
+        with open('last_app/last_app.txt') as h:
             self.last_app = h.readlines()
         # create a Speak object to speak responses
         self.speaker = Speak()
@@ -29,7 +29,7 @@ class VoiceInterpreter:
                 for key, app in default_apps.items():
                     if word in app:
                         self.last_app = key
-                        with open('jsons/last_app/last_app.txt', 'w') as h:
+                        with open('last_app/last_app.txt', 'w') as h:
                             h.write(self.last_app)
                         return key
             if isinstance(self.last_app, list):

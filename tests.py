@@ -227,7 +227,7 @@ class TestVoiceInterpretor(unittest.TestCase):
         self.assertEqual(function_result, expected_result)
 
     def test_6(self):
-        with open('jsons/last_app/last_app.txt', 'w') as h:
+        with open('last_app/last_app.txt', 'w') as h:
             h.write('')
         text = 'search on reddit'
         function_result = VoiceInterpreter()._get_app(text)

@@ -1,19 +1,16 @@
-import pytesseract
 import pyautogui as pg
 import json
 import sys
 import queue
 import sounddevice as sd
 import vosk
+from init_voice import VoiceInit
 from key_action import KeyAction
 from comlpex_actions import ComplexAction
 
 from speak import Speak
 
 vosk.SetLogLevel(-1)
-
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
 
 class VoskDictation():
     def __init__(self, safety_word='stop dictating'):
@@ -26,14 +23,14 @@ class VoskDictation():
         self.key_action = KeyAction()
         self.complex_action = ComplexAction()
         self.listening = True
-        with open('jsons/last_app/last_app.txt') as h:
+        with open('last_app/last_app.txt') as h:
             self.last_app = h.readlines()
         self.speaker = Speak()
 
     def execute(self):
 
         # Importing REC and SAMPLERATE from main module
-        from main import REC, SAMPLERATE
+        REC, SAMPLERATE = VoiceInit().setUp()
         self.speaker.simple_speak('You can start dictating. To stop it say stop dictating.')
 
         try:

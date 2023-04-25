@@ -5,6 +5,7 @@ import pygetwindow as gw
 from abc import ABC
 from speak import Speak
 from key_action import KeyAction
+from utils import focus_window
 
 
 class IApplications(ABC):
@@ -20,7 +21,9 @@ class IApplications(ABC):
     def open_app(self):
         try:
             open(self._app_name)
-            sleep(2)
+            sleep(3)
+            focus_window(self._app_name)
+
             return True
         except:
             self.speak.simple_speak('I don\'t know this app!')

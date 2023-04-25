@@ -3,6 +3,7 @@ import sys
 import queue
 import sounddevice as sd
 import vosk
+from init_voice import VoiceInit
 
 from speak import Speak
 
@@ -11,10 +12,9 @@ vosk.SetLogLevel(-1)
 # Define OneAnswerListener class
 class OneAnswerListener():
     def __init__(self, speech='', safety_word='stop listening'):
-        # Set model path
-        self.model_path = "D:\\pythonProject1\\assets\\vosk-model-en-us-daanzu-20200905-lgraph"
         # Create queue object
-        self.q = queue.Queue()
+        self.one_q = queue.Queue()
+
         # Initialize previous line
         self.previous_line = ""
         # Initialize previous length
@@ -29,9 +29,12 @@ class OneAnswerListener():
     # Define function to listen for commands
     def listen_for_commands(self, one_time=False):
         # Import required variables from main module
-        from main import REC, SAMPLERATE
+        # from main import REC, SAMPLERATE
+        REC, SAMPLERATE = VoiceInit().setUp()
+
         # Speak given speech
         self.speaker.simple_speak(self.speech)
+        self.one_q.queue.clear()
 
         try:
             # Set up raw input stream for recording audio
@@ -46,7 +49,7 @@ class OneAnswerListener():
                     # If still listening
                     if listening == True:
                         # Get audio data from queue
-                        data = self.q.get()
+                        data = self.one_q.get()
                         # Pass audio data to Vosk recognizer
                         if REC.AcceptWaveform(data):
                             d = json.loads(REC.Result())
@@ -88,4 +91,4 @@ class OneAnswerListener():
         if status:
             print(status, file=sys.stderr)
             sys.stdout.flush()
-        self.q.put(bytes(indata))
+        self.one_q.put(bytes(indata))
