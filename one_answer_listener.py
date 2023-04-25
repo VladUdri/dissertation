@@ -28,8 +28,6 @@ class OneAnswerListener():
 
     # Define function to listen for commands
     def listen_for_commands(self, one_time=False):
-        # Import required variables from main module
-        # from main import REC, SAMPLERATE
         REC, SAMPLERATE = VoiceInit().setUp()
 
         # Speak given speech

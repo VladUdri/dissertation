@@ -29,7 +29,6 @@ class VoskDictation():
 
     def execute(self):
 
-        # Importing REC and SAMPLERATE from main module
         REC, SAMPLERATE = VoiceInit().setUp()
         self.speaker.simple_speak('You can start dictating. To stop it say stop dictating.')
 
