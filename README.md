@@ -1,7 +1,6 @@
 # System manual
 ## Run the code
-1. Go to the Github repository of the project: https://github.com/VladUdr
-i/dissertation
+1. Go to the Github repository of the project: https://github.com/VladUdri/dissertation
 2. You can either choose to download the source code from the Github repository,
 or you can use the source code provided with this dissertation.
 3. Go to the root directory of this project
